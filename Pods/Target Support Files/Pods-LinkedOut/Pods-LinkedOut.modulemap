@@ -1,0 +1,6 @@
+framework module Pods_LinkedOut {
+  umbrella header "Pods-LinkedOut-umbrella.h"
+
+  export *
+  module * { export * }
+}
