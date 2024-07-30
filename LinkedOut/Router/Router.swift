@@ -321,8 +321,4 @@ extension Router: RouterType {
 //        let vc = StaffSupportAuthCodeViewController(eventSeq: eventSeq, isEvent: isEvent, preScreenId: preScreenId)
 //        self.screenPush(to: vc, animated: false)
 //    }
-    
-    public func routeMainView() {
-        
-    }
 }

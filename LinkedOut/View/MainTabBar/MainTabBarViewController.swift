@@ -34,13 +34,13 @@ public final class MainTabBarViewController: BaseViewController, MainTabBarViewC
     // MARK: Image
     fileprivate struct Image {
         static let homeTab = UIImage(named: "home_tab")
-        static let selectedHomeTab = UIImage(named: "home_tab")
+        static let homeTabSelected = UIImage(named: "home_tab_selected")
         static let writingTab = UIImage(named: "writing_tab")
-        static let selectedWritingTab = UIImage(named: "writing_tab")
+        static let writingTabSelected = UIImage(named: "writing_tab_selected")
         static let comunityTab = UIImage(named: "comunity_tab")
-        static let selectedComunityTab = UIImage(named: "comunity_tab")
+        static let comunityTabSelected = UIImage(named: "comunity_tab_selected")
         static let myTab = UIImage(named: "my_tab")
-        static let selectedMyTab = UIImage(named: "my_tab")
+        static let myTabSelected = UIImage(named: "my_tab_selected")
     }
     
     // MARK: UI
@@ -49,6 +49,7 @@ public final class MainTabBarViewController: BaseViewController, MainTabBarViewC
         let tabbar = UITabBar()
         tabbar.items = self.tabbarList
         tabbar.barTintColor = .Theme.black
+        tabbar.tintColor = .white
         tabbar.isTranslucent = false
         
         tabbar.selectedItem = self.tabbarList.first
@@ -77,10 +78,10 @@ public final class MainTabBarViewController: BaseViewController, MainTabBarViewC
     
     // MARK: - Variable
     private let tabbarList = [
-        UITabBarItem(title: "홈", image: Image.homeTab, selectedImage: Image.selectedHomeTab),
-        UITabBarItem(title: "내 글 목록", image: Image.writingTab, selectedImage: Image.selectedWritingTab),
-        UITabBarItem(title: "커뮤니티", image: Image.comunityTab, selectedImage: Image.selectedComunityTab),
-        UITabBarItem(title: "마이페이지", image: Image.myTab, selectedImage: Image.selectedMyTab),
+        UITabBarItem(title: "홈", image: Image.homeTab, selectedImage: Image.homeTabSelected),
+        UITabBarItem(title: "내 글 목록", image: Image.writingTab, selectedImage: Image.writingTabSelected),
+        UITabBarItem(title: "커뮤니티", image: Image.comunityTab, selectedImage: Image.comunityTabSelected),
+        UITabBarItem(title: "마이페이지", image: Image.myTab, selectedImage: Image.myTabSelected),
     ]
     
     // MARK: View Life Cycle

@@ -35,11 +35,6 @@ public final class HomeViewController: BaseViewController, HomeViewControllerTyp
     public struct Image {
         static let backgroundImage = UIImage(named: "main_background")
         
-        static let homeTab = UIImage(named: "home_tab")
-        static let writingTab = UIImage(named: "writing_tab")
-        static let comunityTab = UIImage(named: "comunity_tab")
-        static let myTab = UIImage(named: "my_tab")
-        
         static let menu = UIImage(named: "menu")
         static let alarm = UIImage(named: "alarm")
         static let alarmNew = UIImage(named: "alarm_new")

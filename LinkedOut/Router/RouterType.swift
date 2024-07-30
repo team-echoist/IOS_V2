@@ -16,7 +16,6 @@ public enum RouterMethod {
 }
 
 public protocol RouterType {
-    func routeMainView()
     
     func routeHomeView()
     func getHomeView() -> UIViewController
