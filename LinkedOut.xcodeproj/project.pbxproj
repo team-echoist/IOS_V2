@@ -32,6 +32,10 @@
 		552A42C12C51F01A002199F6 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552A42C02C51F01A002199F6 /* List.swift */; };
 		552A42C32C51F219002199F6 /* UtilsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552A42C22C51F219002199F6 /* UtilsScreen.swift */; };
 		553F85BB2C58777B001D4AFC /* Int+Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553F85BA2C58777B001D4AFC /* Int+Number.swift */; };
+		553F85C02C5884A5001D4AFC /* SideNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553F85BD2C5884A5001D4AFC /* SideNavigationViewController.swift */; };
+		553F85C12C5884A5001D4AFC /* SideNavigationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553F85BE2C5884A5001D4AFC /* SideNavigationModel.swift */; };
+		553F85C22C5884A5001D4AFC /* SideNavigationReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553F85BF2C5884A5001D4AFC /* SideNavigationReactor.swift */; };
+		553F85C52C58C25A001D4AFC /* ISideNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553F85C42C58C25A001D4AFC /* ISideNavigation.swift */; };
 		55A01B272C536D9D00B92C63 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B242C536D9D00B92C63 /* HomeViewController.swift */; };
 		55A01B282C536D9D00B92C63 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B252C536D9D00B92C63 /* HomeModel.swift */; };
 		55A01B292C536D9D00B92C63 /* HomeReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B262C536D9D00B92C63 /* HomeReactor.swift */; };
@@ -159,6 +163,10 @@
 		552A42C02C51F01A002199F6 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		552A42C22C51F219002199F6 /* UtilsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsScreen.swift; sourceTree = "<group>"; };
 		553F85BA2C58777B001D4AFC /* Int+Number.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Number.swift"; sourceTree = "<group>"; };
+		553F85BD2C5884A5001D4AFC /* SideNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideNavigationViewController.swift; sourceTree = "<group>"; };
+		553F85BE2C5884A5001D4AFC /* SideNavigationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideNavigationModel.swift; sourceTree = "<group>"; };
+		553F85BF2C5884A5001D4AFC /* SideNavigationReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideNavigationReactor.swift; sourceTree = "<group>"; };
+		553F85C42C58C25A001D4AFC /* ISideNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISideNavigation.swift; sourceTree = "<group>"; };
 		55A01B242C536D9D00B92C63 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		55A01B252C536D9D00B92C63 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		55A01B262C536D9D00B92C63 /* HomeReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeReactor.swift; sourceTree = "<group>"; };
@@ -429,9 +437,29 @@
 			path = Int;
 			sourceTree = "<group>";
 		};
+		553F85BC2C588490001D4AFC /* SideNavigation */ = {
+			isa = PBXGroup;
+			children = (
+				553F85C32C58C23A001D4AFC /* Interface */,
+				553F85BD2C5884A5001D4AFC /* SideNavigationViewController.swift */,
+				553F85BE2C5884A5001D4AFC /* SideNavigationModel.swift */,
+				553F85BF2C5884A5001D4AFC /* SideNavigationReactor.swift */,
+			);
+			path = SideNavigation;
+			sourceTree = "<group>";
+		};
+		553F85C32C58C23A001D4AFC /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				553F85C42C58C25A001D4AFC /* ISideNavigation.swift */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
 		55A01B232C536D9000B92C63 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				553F85BC2C588490001D4AFC /* SideNavigation */,
 				55A01B242C536D9D00B92C63 /* HomeViewController.swift */,
 				55A01B252C536D9D00B92C63 /* HomeModel.swift */,
 				55A01B262C536D9D00B92C63 /* HomeReactor.swift */,
@@ -847,6 +875,9 @@
 				55F49DFD2C532AFE000879D1 /* NVActivityIndicatorAnimationSquareSpin.swift in Sources */,
 				55F49D6D2C523498000879D1 /* UIViewController+Embed.swift in Sources */,
 				55F49D6B2C52347B000879D1 /* UIViewController+ChildAddRemove.swift in Sources */,
+				553F85C02C5884A5001D4AFC /* SideNavigationViewController.swift in Sources */,
+				553F85C12C5884A5001D4AFC /* SideNavigationModel.swift in Sources */,
+				553F85C22C5884A5001D4AFC /* SideNavigationReactor.swift in Sources */,
 				55F49D742C5234A4000879D1 /* UIViewController+ResizingScrollViewOnKeyboard.swift in Sources */,
 				55F49DE92C532AFE000879D1 /* NVActivityIndicatorAnimationBallRotateChase.swift in Sources */,
 				552A40952C50F45F002199F6 /* Logger.swift in Sources */,
@@ -916,6 +947,7 @@
 				55F49DF32C532AFE000879D1 /* NVActivityIndicatorAnimationCircleStrokeSpin.swift in Sources */,
 				55F49D562C521086000879D1 /* Dependencies.swift in Sources */,
 				55F49D752C5234A4000879D1 /* UIViewController+NavigationBar.swift in Sources */,
+				553F85C52C58C25A001D4AFC /* ISideNavigation.swift in Sources */,
 				55A01B3F2C54A5FE00B92C63 /* WritingViewController.swift in Sources */,
 				55A01B402C54A5FE00B92C63 /* WritingModel.swift in Sources */,
 				55A01B412C54A5FE00B92C63 /* WritingReactor.swift in Sources */,

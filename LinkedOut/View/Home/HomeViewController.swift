@@ -16,6 +16,7 @@ import RxViewController
 import SnapKit
 import Device
 import ManualLayout
+import RxGesture
 
 public protocol HomeViewControllerType {
     
@@ -28,6 +29,15 @@ public final class HomeViewController: BaseViewController, HomeViewControllerTyp
     // MARK: Constant
         
     fileprivate struct Constant {
+    }
+    
+    fileprivate struct Metric {
+        static let sectionLineSpacing = 0.f
+        static let alarmSize = 30.f
+        static let menuSize = 24.f
+        
+        static let menuLeftMargin = 24.f
+        static let alarmRightMargin = 24.f
     }
     
     // MARK: Image
@@ -51,6 +61,17 @@ public final class HomeViewController: BaseViewController, HomeViewControllerTyp
         $0.setImage(Image.menu, for: .normal)
     }
     
+    public let btnAlarm = UIButton().then {
+        $0.setImage(Image.alarm, for: .normal)
+    }
+    
+    private lazy var viSideNavigation: SideNavigationViewController = {
+        let vi = SideNavigationViewController(reactor: SideNavigationReactor(), sideNavigationDelegate: self)
+        self.addChild(vi)
+
+        return vi
+    }()
+    
     // MARK: Initialize
     
     public init(
@@ -60,9 +81,14 @@ public final class HomeViewController: BaseViewController, HomeViewControllerTyp
         super.init()
         
         
-        self.view.addSubview(self.ivBackground)
-     
+        let _ = [self.ivBackground].map {
+            self.view.addSubview($0)
+        }
+        self.view.sendSubviewToBack(self.ivBackground)
         
+        let _ = [self.btnMenu, self.btnAlarm].map {
+            self.viNavigation.addSubview($0)
+        }
     }
     
     public required convenience init?(coder aDecoder: NSCoder) {
@@ -90,9 +116,23 @@ public final class HomeViewController: BaseViewController, HomeViewControllerTyp
         super.layoutCommon()
     
         
+        // 배경
         self.ivBackground.snp.makeConstraints {
             $0.width.height.equalToSuperview()
             $0.edges.equalToSuperview()
+        }
+        
+        // 상단 버튼
+        self.btnAlarm.snp.makeConstraints {
+            $0.width.height.equalTo(Metric.alarmSize)
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(Metric.alarmRightMargin)
+        }
+        
+        self.btnMenu.snp.makeConstraints {
+            $0.width.height.equalTo(Metric.menuSize)
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().offset(Metric.menuLeftMargin)
         }
     }
     
@@ -100,64 +140,80 @@ public final class HomeViewController: BaseViewController, HomeViewControllerTyp
     
     public func bind(reactor: Reactor) {        
         
-//        self.bindView(reactor)
-//        self.bindState(reactor)
+        self.bindView(reactor)
+        self.bindState(reactor)
     }
     
     // MARK: Bind - View
     
     public func bindView(_ reactor: Reactor) {
-       
-    }
-    
-    public func bindTabbar(_ reactor: Reactor) {
-      
+        
+        self.btnAlarm.rx
+            .tapGesture()
+            .filter { $0.state == .ended }
+            .subscribe(onNext: { _ in
+                reactor.action.onNext(.inputAlarm)
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.btnMenu.rx
+            .tapGesture()
+            .filter { $0.state == .ended }
+            .subscribe(onNext: { _ in
+                reactor.action.onNext(.inputMenu(!reactor.currentState.showMenu))
+            })
+            .disposed(by: self.disposeBag)
     }
     
     // MARK: Bind - State
     public func bindState(_ reactor: Reactor) {
-        self.bindSelectedTab(reactor)
-    }
-    
-    public func bindSelectedTab(_ reactor: Reactor) {
+        
         reactor.state
-            .map { $0.selectedTab }
+            .map { $0.showMenu }
             .distinctUntilChanged()
-            .subscribe(onNext: { [weak self] selectedTab in
+            .bind(onNext: { [weak self] showMenu in
                 guard let self = self else { return }
-                   switch selectedTab {
-                   case .home:
-                       self.displayContentController(SceneDelegate.shared.router.getHomeView())
-                   case .comunity:
-                       self.displayContentController(SceneDelegate.shared.router.getHomeView())
-                   case .profile:
-                       self.displayContentController(SceneDelegate.shared.router.getHomeView())
-                   case .writing:
-                       self.displayContentController(SceneDelegate.shared.router.getWriting())
-                   }
-                
+                if showMenu {
+                    self.showSideNavigation()
+                } else {
+                    self.hideSideNavigation()
+                    
+                }
             })
             .disposed(by: self.disposeBag)
     }
     
     // MARK: Event
-    
-    private func displayContentController(_ content: UIViewController) {
-        let _ = children.map { child in
-            child.willMove(toParent: nil)
-            child.view.removeFromSuperview()
-            child.removeFromParent()
-        }
-        
-        // Add new child view controller
-        addChild(content)
-        view.addSubview(content.view)
-        content.view.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        content.didMove(toParent: self)
-    }
-
 
     // MARK: Action
+    func showSideNavigation() {
+        if !self.view.subviews.contains(self.viSideNavigation.view) {
+            self.view.addSubview(self.viSideNavigation.view)
+            self.viSideNavigation.didMove(toParent: self)
+            
+            UIView.animate(withDuration: 0.3) {
+                self.viSideNavigation.view.frame.origin.x = 0
+            }
+        }
+    }
+                
+    func hideSideNavigation() {
+        if self.view.subviews.contains(self.viSideNavigation.view) {
+            self.viSideNavigation.view.removeFromSuperview()
+            
+            UIView.animate(withDuration: 0.3) {
+                self.viSideNavigation.view.frame.origin.x = -self.view.frame.width
+            }
+        }
+    }
+}
+
+extension HomeViewController: ISideNavigationDelegate {
+    func openSideNavigationView() {
+        self.reactor?.action.onNext(.inputMenu(true))
+    }
+    
+    func hideSideNavigationView() {
+        self.reactor?.action.onNext(.inputMenu(false))
+    }
 }

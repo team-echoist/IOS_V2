@@ -74,7 +74,7 @@ open class BaseViewController: UIViewController, BaseViewControllerType, NVActiv
     // MARK: UI
     
     public let viNavigation = UIView().then {
-        $0.backgroundColor = .white
+        $0.backgroundColor = .clear
     }
     
     public let labNavigationTitle = UILabel().then {
@@ -152,6 +152,7 @@ open class BaseViewController: UIViewController, BaseViewControllerType, NVActiv
     
     /// iPhone/iPad 디바이스 구분 없는 레이아웃일 경우
     open func layoutCommon() {
+        self.layoutNavigationView()
     }
     
     /// iPhone
