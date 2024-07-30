@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct MainModel: ModelType {
+public struct HomeModel: ModelType {
     
     enum Event {
         

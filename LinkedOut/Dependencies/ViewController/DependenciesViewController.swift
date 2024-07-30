@@ -12,7 +12,7 @@ import UIKit
 extension Dependencies: DependenciesViewControllerType {
     
     public func makeMain() -> UIViewController {
-        return MainViewController(reactor: makeMain())
+        return HomeViewController(reactor: makeMain())
     }
     
     public func makeMainTabBar() -> UIViewController {

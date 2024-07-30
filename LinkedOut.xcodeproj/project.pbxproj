@@ -31,9 +31,9 @@
 		552A42BF2C51EFC5002199F6 /* Int+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552A42BE2C51EFC5002199F6 /* Int+Random.swift */; };
 		552A42C12C51F01A002199F6 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552A42C02C51F01A002199F6 /* List.swift */; };
 		552A42C32C51F219002199F6 /* UtilsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552A42C22C51F219002199F6 /* UtilsScreen.swift */; };
-		55A01B272C536D9D00B92C63 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B242C536D9D00B92C63 /* MainViewController.swift */; };
-		55A01B282C536D9D00B92C63 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B252C536D9D00B92C63 /* MainModel.swift */; };
-		55A01B292C536D9D00B92C63 /* MainReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B262C536D9D00B92C63 /* MainReactor.swift */; };
+		55A01B272C536D9D00B92C63 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B242C536D9D00B92C63 /* HomeViewController.swift */; };
+		55A01B282C536D9D00B92C63 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B252C536D9D00B92C63 /* HomeModel.swift */; };
+		55A01B292C536D9D00B92C63 /* HomeReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B262C536D9D00B92C63 /* HomeReactor.swift */; };
 		55A01B2D2C53743A00B92C63 /* DependenciesReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B2A2C53743A00B92C63 /* DependenciesReactor.swift */; };
 		55A01B2E2C53743A00B92C63 /* DependenciesReactorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B2B2C53743A00B92C63 /* DependenciesReactorType.swift */; };
 		55A01B312C537AB500B92C63 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B302C537AB500B92C63 /* UIColor+.swift */; };
@@ -157,9 +157,9 @@
 		552A42BE2C51EFC5002199F6 /* Int+Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Random.swift"; sourceTree = "<group>"; };
 		552A42C02C51F01A002199F6 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		552A42C22C51F219002199F6 /* UtilsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsScreen.swift; sourceTree = "<group>"; };
-		55A01B242C536D9D00B92C63 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		55A01B252C536D9D00B92C63 /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
-		55A01B262C536D9D00B92C63 /* MainReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainReactor.swift; sourceTree = "<group>"; };
+		55A01B242C536D9D00B92C63 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		55A01B252C536D9D00B92C63 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
+		55A01B262C536D9D00B92C63 /* HomeReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeReactor.swift; sourceTree = "<group>"; };
 		55A01B2A2C53743A00B92C63 /* DependenciesReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependenciesReactor.swift; sourceTree = "<group>"; };
 		55A01B2B2C53743A00B92C63 /* DependenciesReactorType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependenciesReactorType.swift; sourceTree = "<group>"; };
 		55A01B302C537AB500B92C63 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
@@ -426,14 +426,14 @@
 			path = Int;
 			sourceTree = "<group>";
 		};
-		55A01B232C536D9000B92C63 /* Main */ = {
+		55A01B232C536D9000B92C63 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				55A01B242C536D9D00B92C63 /* MainViewController.swift */,
-				55A01B252C536D9D00B92C63 /* MainModel.swift */,
-				55A01B262C536D9D00B92C63 /* MainReactor.swift */,
+				55A01B242C536D9D00B92C63 /* HomeViewController.swift */,
+				55A01B252C536D9D00B92C63 /* HomeModel.swift */,
+				55A01B262C536D9D00B92C63 /* HomeReactor.swift */,
 			);
-			path = Main;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		55A01B2C2C53743A00B92C63 /* Reactor */ = {
@@ -453,14 +453,14 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
-		55A01B322C537D5A00B92C63 /* Tabbar */ = {
+		55A01B322C537D5A00B92C63 /* MainTabBar */ = {
 			isa = PBXGroup;
 			children = (
 				55A01B342C537D8000B92C63 /* MainTabBarModel.swift */,
 				55A01B352C537D8000B92C63 /* MainTabBarReactor.swift */,
 				55A01B422C575DCA00B92C63 /* MainTabBarViewController.swift */,
 			);
-			path = Tabbar;
+			path = MainTabBar;
 			sourceTree = "<group>";
 		};
 		55A01B392C54A5A800B92C63 /* Writing */ = {
@@ -493,8 +493,8 @@
 				55A01B3B2C54A5C000B92C63 /* MyPage */,
 				55A01B3A2C54A5B100B92C63 /* Comunity */,
 				55A01B392C54A5A800B92C63 /* Writing */,
-				55A01B322C537D5A00B92C63 /* Tabbar */,
-				55A01B232C536D9000B92C63 /* Main */,
+				55A01B322C537D5A00B92C63 /* MainTabBar */,
+				55A01B232C536D9000B92C63 /* Home */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -863,10 +863,10 @@
 				55F49DDE2C532AFE000879D1 /* NVActivityIndicatorAnimationBallBeat.swift in Sources */,
 				552A40652C50D07E002199F6 /* ViewController.swift in Sources */,
 				55F49DF22C532AFE000879D1 /* NVActivityIndicatorAnimationBlank.swift in Sources */,
-				55A01B272C536D9D00B92C63 /* MainViewController.swift in Sources */,
+				55A01B272C536D9D00B92C63 /* HomeViewController.swift in Sources */,
 				55A01B432C575DCA00B92C63 /* MainTabBarViewController.swift in Sources */,
-				55A01B282C536D9D00B92C63 /* MainModel.swift in Sources */,
-				55A01B292C536D9D00B92C63 /* MainReactor.swift in Sources */,
+				55A01B282C536D9D00B92C63 /* HomeModel.swift in Sources */,
+				55A01B292C536D9D00B92C63 /* HomeReactor.swift in Sources */,
 				552A427F2C50FB74002199F6 /* RouterType.swift in Sources */,
 				552A42BB2C51ED40002199F6 /* Localization.swift in Sources */,
 				55F49DE12C532AFE000879D1 /* NVActivityIndicatorAnimationBallClipRotatePulse.swift in Sources */,

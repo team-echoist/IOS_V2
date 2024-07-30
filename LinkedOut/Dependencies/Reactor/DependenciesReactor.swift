@@ -9,8 +9,8 @@
 
 extension Dependencies: DependenciesReactorType {
     
-    public func makeMain() -> MainReactor {
-        return MainReactor()
+    public func makeMain() -> HomeReactor {
+        return HomeReactor()
     }
     
     public func makeMainTabBar() -> MainTabBarReactor {

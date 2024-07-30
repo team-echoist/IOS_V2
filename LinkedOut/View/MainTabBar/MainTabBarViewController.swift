@@ -147,7 +147,7 @@ public final class MainTabBarViewController: BaseViewController, MainTabBarViewC
                 guard let self = self else { return }
                    switch selectedTab {
                    case .home:
-                       self.displayContentController(MainViewController(reactor: MainReactor()))
+                       self.displayContentController(HomeViewController(reactor: HomeReactor()))
                    case .comunity:
                        self.displayContentController(SceneDelegate.shared.router.getHomeView())
                    case .profile:

@@ -20,7 +20,7 @@ public enum BottomTab: Int {
     case profile = 3
 }
 
-public final class MainReactor: Reactor {
+public final class HomeReactor: Reactor {
     
     private let startLoading = Observable<Mutation>.just(.setLoading(true))
     private let endLoading = Observable<Mutation>.just(.setLoading(false))
@@ -80,9 +80,9 @@ public final class MainReactor: Reactor {
     // MARK: Reduce
     
     public func reduce(
-        state: MainReactor.State,
-        mutation: MainReactor.Mutaion
-    ) -> MainReactor.State {        
+        state: HomeReactor.State,
+        mutation: HomeReactor.Mutaion
+    ) -> HomeReactor.State {        
         var newState = state
         
         switch mutation {

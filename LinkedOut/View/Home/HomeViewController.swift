@@ -17,13 +17,13 @@ import SnapKit
 import Device
 import ManualLayout
 
-public protocol MainViewControllerType {
+public protocol HomeViewControllerType {
     
 }
 
-public final class MainViewController: BaseViewController, MainViewControllerType, View {
+public final class HomeViewController: BaseViewController, HomeViewControllerType, View {
     
-    public typealias Reactor = MainReactor
+    public typealias Reactor = HomeReactor
     
     // MARK: Constant
         
@@ -39,6 +39,10 @@ public final class MainViewController: BaseViewController, MainViewControllerTyp
         static let writingTab = UIImage(named: "writing_tab")
         static let comunityTab = UIImage(named: "comunity_tab")
         static let myTab = UIImage(named: "my_tab")
+        
+        static let menu = UIImage(named: "menu")
+        static let alarm = UIImage(named: "alarm")
+        static let alarmNew = UIImage(named: "alarm_new")
     }
     
     // MARK: UI
@@ -48,11 +52,9 @@ public final class MainViewController: BaseViewController, MainViewControllerTyp
         $0.layer.masksToBounds = true
     }
     
-    public let btnRoute = UIButton().then {
-        $0.setTitle("화면 전환", for: .normal)
+    public let btnMenu = UIButton().then {
+        $0.setImage(Image.menu, for: .normal)
     }
-    
-    public let tabbar = UITabBar()
     
     // MARK: Initialize
     
@@ -72,20 +74,11 @@ public final class MainViewController: BaseViewController, MainViewControllerTyp
         fatalError("init(coder:) has not been implemented")
     }
     
-    private let tabbarList = [
-        UITabBarItem(title: "홈", image: Image.homeTab, tag: 0),
-        UITabBarItem(title: "내 글 목록", image: Image.writingTab, tag: 1),
-        UITabBarItem(title: "커뮤니티", image: Image.comunityTab, tag: 2),
-        UITabBarItem(title: "마이페이지", image: Image.myTab, tag: 3),
-    ]
-    
     // MARK: View Life Cycle
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-            
-        
-        
+                    
     }
     
     override public func viewWillAppear(_ animated: Bool) {
