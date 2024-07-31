@@ -11,7 +11,7 @@ import UIKit
 
 
 public protocol DependenciesViewControllerType {
-    
+    func makeRoot() -> UIViewController
     func makeMain() -> UIViewController
     func makeMainTabBar() -> UIViewController
     func makeWriting() -> UIViewController

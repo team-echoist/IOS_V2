@@ -8,10 +8,12 @@
 
 
 extension Dependencies: DependenciesRepositoryType {
-//    public func makeUser() -> UserRepository {
-//        if self.userRepository == nil {
-//            self.userRepository = UserRepository(dependencies: self)
-//        }
-//        return self.userRepository!
-//    }
+    
+    public func makeAuth() -> AuthRepository {
+        if self.authRepository == nil {
+            self.authRepository = AuthRepository(dependencies: self)
+        }
+        
+        return self.authRepository!
+    }
 }

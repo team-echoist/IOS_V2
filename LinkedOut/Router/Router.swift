@@ -62,7 +62,7 @@ public final class Router: BaseViewController, View {
         self.repoFactory = repoFactory
                 
         if (self.rootViewController == nil) {
-            let mainVc = UINavigationController(rootViewController: self.viewFactory.makeMainTabBar())
+            let mainVc = UINavigationController(rootViewController: self.viewFactory.makeRoot())
             mainVc.interactivePopGestureRecognizer?.isEnabled = false
             mainVc.navigationBar.isHidden = true
             self.rootViewController = mainVc
@@ -284,7 +284,7 @@ extension Router: RouterType {
     
     public func routeMainTabBar() {
         let vc = self.viewFactory.makeMainTabBar()
-        self.screenPush(to: vc)
+        self.screenSwitch(to: vc)
     }
     
     public func getHomeView() -> UIViewController {

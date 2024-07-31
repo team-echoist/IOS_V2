@@ -8,5 +8,6 @@
 
 
 public protocol DependenciesRepositoryType { 
-//    func makeUser() -> UserRepository
+
+    func makeAuth() -> AuthRepository
 }

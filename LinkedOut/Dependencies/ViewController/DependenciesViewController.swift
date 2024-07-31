@@ -11,6 +11,11 @@ import UIKit
 
 extension Dependencies: DependenciesViewControllerType {
     
+    public func makeRoot() -> UIViewController {
+        return RootViewController(reactor: self.makeRoot())
+    }
+    
+    
     public func makeMain() -> UIViewController {
         return HomeViewController(reactor: makeMain())
     }

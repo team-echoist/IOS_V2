@@ -13,23 +13,15 @@ import RxCocoa
 import RxSwift
 import Moya
 
-public enum BottomTab: Int {
-    case home = 0
-    case writing = 1
-    case comunity = 2
-    case profile = 3
-}
 
-public final class HomeReactor: Reactor {
+public final class RootReactor: Reactor {
+    
     
     private let startLoading = Observable<Mutation>.just(.setLoading(true))
     private let endLoading = Observable<Mutation>.just(.setLoading(false))
     
     public enum Action {
-        case selectTab(BottomTab)
-        
-        case inputAlarm
-        case inputMenu(Bool)
+        case checkStatus
     }
     
     public enum Mutaion {
@@ -37,9 +29,7 @@ public final class HomeReactor: Reactor {
         case setError(Tracked<LinkedOutError>?)
         case setAlert(Tracked<LocalizeString>?)
         case setMessage(Tracked<String>?)
-        
-        case setSelectedTab(BottomTab)
-        case setMenuToggle(Bool)
+        case setNextPage
     }
     
     public struct State {
@@ -47,9 +37,6 @@ public final class HomeReactor: Reactor {
         public var error: Tracked<LinkedOutError>?
         public var alert: Tracked<LocalizeString>?
         public var message: Tracked<String>?
-        
-        public var selectedTab: BottomTab = BottomTab.home
-        public var showMenu: Bool = false
     }
     
     // MARK: State
@@ -58,15 +45,12 @@ public final class HomeReactor: Reactor {
     
     // MARK: View Model
     
-//    fileprivate let authViewModel: AuthViewModelType
+    fileprivate let authViewModel: AuthViewModelType
     
     // MARK: Initialize
     
-//    public init(authViewModel: AuthViewModelType) {
-//        self.authViewModel = authViewModel
-//    }
-//    
-    public init() {
+    public init (authViewModel: AuthViewModelType) {
+        self.authViewModel = authViewModel
     }
     
     // MARK: Mutate
@@ -74,23 +58,29 @@ public final class HomeReactor: Reactor {
     public func mutate(action: Action) -> Observable<Mutaion> {
         
         switch action {
-            case .selectTab(let tab):
-//                authViewModel.getHealthcheck()
-                return .just(.setSelectedTab(tab))
-            case .inputMenu(let isShow):
-                return .just(.setMenuToggle(isShow))
-            case .inputAlarm:
-                // TODO: Route
-                return .empty()
+            case .checkStatus:
+            return authViewModel
+                .getHealthcheck()
+                .asObservable()
+                .map { response in
+                    print(response)
+                    SceneDelegate.shared.router.routeMainTabBar()
+                    return .setNextPage
+                }
+                .catch { (error) in
+                    return .just(.setError(makeError(LinkedOutError(error))))
+                }
         }
+        
     }
     
     // MARK: Reduce
     
     public func reduce(
-        state: HomeReactor.State,
-        mutation: HomeReactor.Mutaion
-    ) -> HomeReactor.State {        
+        state: RootReactor.State,
+        mutation: RootReactor.Mutaion
+    ) -> RootReactor.State {
+        
         var newState = state
         
         switch mutation {
@@ -98,9 +88,8 @@ public final class HomeReactor: Reactor {
             case let .setError(error): newState.error = error; return newState
             case let .setAlert(alert): newState.alert = alert; return newState
             case let .setMessage(message): newState.message = message; return newState
-            
-            case let .setSelectedTab(tab): newState.selectedTab = tab; return newState
-            case let .setMenuToggle(showMenu): newState.showMenu = showMenu; return newState
-        }
-    }
-}
+            case .setNextPage:
+                return newState
+        }// switch
+    }// reduce
+}// class

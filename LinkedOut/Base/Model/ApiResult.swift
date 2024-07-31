@@ -12,8 +12,9 @@ import Moya
 // MARK: - ApiWebResult
 
 public struct ApiWebResult: Codable {
-    let code: Int?
-    let message: String?
+    let statusCode: Int?
+    let success: Bool
+//    let message: String?
 
 //    enum CodingKeys: String, CodingKey {
 //        case code = "code"
@@ -73,7 +74,7 @@ public struct LinkedOutError: LocalizedError, CustomStringConvertible {
     
     // Foodinko API Error
     public init(_ res: ApiWebResult?) {
-        self.init(description: res?.message, code: res?.code ?? 0)
+        self.init(description: nil, code: res?.statusCode ?? 0)
     }
     
     // Others Error
@@ -101,15 +102,19 @@ extension PrimitiveSequence where Trait == SingleTrait, Element == Response {
                                                failsOnEmptyData: false)
             
             // 비지니스 에러
-            guard foodinkoWebResult.code == 0 else {
-                do {
-                    throw LinkedOutError(foodinkoWebResult)
-                }
-                catch {
-                    throw error
+            if foodinkoWebResult.success {
+                return .just(response)
+            } else {
+                guard foodinkoWebResult.statusCode == 200 else {
+                    do {
+                        throw LinkedOutError(foodinkoWebResult)
+                    }
+                    catch {
+                        throw error
+                    }
                 }
             }
-            
+                                    
             return .just(response)
         }
         .debug()

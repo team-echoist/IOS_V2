@@ -8,5 +8,6 @@
 
 
 public protocol DependenciesViewModelType {
-//    func makeUser() -> UserViewModelA
+
+    func makeAuth() -> AuthViewModel
 }

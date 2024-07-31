@@ -8,6 +8,7 @@
 
 
 public protocol DependenciesReactorType {
+    func makeRoot() -> RootReactor
     func makeMain() -> HomeReactor
     func makeMainTabBar() -> MainTabBarReactor
     func makeWriting() -> WritingReactor

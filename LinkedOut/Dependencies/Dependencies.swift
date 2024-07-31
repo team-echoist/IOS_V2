@@ -23,11 +23,13 @@ public class Dependencies: HasNetworking, HasPushStore, HasFileStore {
     public let fileStore: FileStoreType
     
     // MARK: Repository
+    public var authRepository: AuthRepository?
 //    public var userRepository: UserRepository?
 //    public var feedRepository: FeedRepository?
 //    public var searchRepository: SearchRepository?
     
     // MARK: View Model
+    public var authViewModel: AuthViewModel?
 //    public var userViewModel: UserViewModelA?
 //    public var feedViewModel: FeedViewModelA?
 //    public var searchViewModel: SearchViewModel?

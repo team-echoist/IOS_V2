@@ -8,11 +8,13 @@
 
 
 extension Dependencies: DependenciesViewModelType {
-//    public func makeUser() -> UserViewModelA {
-//        if self.userViewModel == nil {
-//            self.userViewModel = UserViewModelA(userRepository: self.makeUser())
-//        }
-//        return self.userViewModel!
-//    }
+
+    public func makeAuth() -> AuthViewModel {
+        if self.authViewModel == nil {
+            self.authViewModel = AuthViewModel(authRepository: self.makeAuth())
+        }
+        
+        return self.authViewModel!
+    }
 
 }
