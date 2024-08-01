@@ -38,6 +38,11 @@ public final class HomeViewController: BaseViewController, HomeViewControllerTyp
         
         static let menuLeftMargin = 24.f
         static let alarmRightMargin = 24.f
+        
+        static let writingSize = 50.f
+        static let writingRightMargin = 24.f
+        static let writingBottomMargin = 20.f
+        static let writingIconSize = 18.f
     }
     
     // MARK: Image
@@ -48,6 +53,8 @@ public final class HomeViewController: BaseViewController, HomeViewControllerTyp
         static let menu = UIImage(named: "menu")
         static let alarm = UIImage(named: "alarm")
         static let alarmNew = UIImage(named: "alarm_new")
+        
+        static let writing = UIImage(named: "writing")
     }
     
     // MARK: UI
@@ -63,6 +70,20 @@ public final class HomeViewController: BaseViewController, HomeViewControllerTyp
     
     public let btnAlarm = UIButton().then {
         $0.setImage(Image.alarm, for: .normal)
+    }
+    
+    public let viWriting = UIView().then {
+        let ivWriting = UIImageView(image: Image.writing)
+        
+        $0.addSubview(ivWriting)
+        $0.backgroundColor = .white
+        $0.cornerRadius = Metric.writingSize / 2
+        $0.width = Metric.writingSize
+        
+        ivWriting.snp.makeConstraints {
+            $0.centerY.centerX.equalToSuperview()
+            $0.width.height.equalTo(Metric.writingIconSize)
+        }
     }
     
     private lazy var viSideNavigation: SideNavigationViewController = {
@@ -81,7 +102,7 @@ public final class HomeViewController: BaseViewController, HomeViewControllerTyp
         super.init()
         
         
-        let _ = [self.ivBackground].map {
+        let _ = [self.ivBackground, self.viWriting].map {
             self.view.addSubview($0)
         }
         self.view.sendSubviewToBack(self.ivBackground)
@@ -132,7 +153,13 @@ public final class HomeViewController: BaseViewController, HomeViewControllerTyp
         self.btnMenu.snp.makeConstraints {
             $0.width.height.equalTo(Metric.menuSize)
             $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().offset(Metric.menuLeftMargin)
+            $0.leading.equalToSuperview().inset(Metric.menuLeftMargin)
+        }
+        
+        self.viWriting.snp.makeConstraints {
+            $0.width.height.equalTo(Metric.writingSize)
+            $0.trailing.equalToSuperview().inset(Metric.writingRightMargin)
+            $0.bottom.equalToSuperview().inset(Metric.writingBottomMargin)
         }
     }
     

@@ -30,8 +30,8 @@ public struct ApiResult<T: Codable>: Codable {
 }
 
 public struct ApiResultArray<T: Codable>: Codable {
-    public var result: ApiWebResult?
-    public var data: [T]?
+    public var result: ApiWebResult?    
+    public var data: T?
 }
 
 // MARK: - FoodinkoError

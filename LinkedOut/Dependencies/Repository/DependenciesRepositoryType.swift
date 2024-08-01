@@ -10,4 +10,5 @@
 public protocol DependenciesRepositoryType { 
 
     func makeAuth() -> AuthRepository
+    func makeEssay() -> EssayRepository
 }

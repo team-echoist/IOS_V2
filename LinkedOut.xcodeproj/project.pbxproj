@@ -44,6 +44,11 @@
 		558264A12C59B94500449B13 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5582649E2C59B94500449B13 /* RootViewController.swift */; };
 		558264A22C59B94500449B13 /* RootModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5582649F2C59B94500449B13 /* RootModel.swift */; };
 		558264A32C59B94500449B13 /* RootReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264A02C59B94500449B13 /* RootReactor.swift */; };
+		558264A62C59FC4300449B13 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264A52C59FC4300449B13 /* View+.swift */; };
+		558264AA2C5A19B700449B13 /* EssayViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264A82C5A19B700449B13 /* EssayViewModelType.swift */; };
+		558264AB2C5A19B700449B13 /* EssayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264A92C5A19B700449B13 /* EssayViewModel.swift */; };
+		558264AE2C5A19F100449B13 /* EssayRepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264AC2C5A19F100449B13 /* EssayRepositoryType.swift */; };
+		558264AF2C5A19F100449B13 /* EssayRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264AD2C5A19F100449B13 /* EssayRepository.swift */; };
 		55A01B272C536D9D00B92C63 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B242C536D9D00B92C63 /* HomeViewController.swift */; };
 		55A01B282C536D9D00B92C63 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B252C536D9D00B92C63 /* HomeModel.swift */; };
 		55A01B292C536D9D00B92C63 /* HomeReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B262C536D9D00B92C63 /* HomeReactor.swift */; };
@@ -183,6 +188,11 @@
 		5582649E2C59B94500449B13 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		5582649F2C59B94500449B13 /* RootModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootModel.swift; sourceTree = "<group>"; };
 		558264A02C59B94500449B13 /* RootReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootReactor.swift; sourceTree = "<group>"; };
+		558264A52C59FC4300449B13 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
+		558264A82C5A19B700449B13 /* EssayViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssayViewModelType.swift; sourceTree = "<group>"; };
+		558264A92C5A19B700449B13 /* EssayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssayViewModel.swift; sourceTree = "<group>"; };
+		558264AC2C5A19F100449B13 /* EssayRepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssayRepositoryType.swift; sourceTree = "<group>"; };
+		558264AD2C5A19F100449B13 /* EssayRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssayRepository.swift; sourceTree = "<group>"; };
 		55A01B242C536D9D00B92C63 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		55A01B252C536D9D00B92C63 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		55A01B262C536D9D00B92C63 /* HomeReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeReactor.swift; sourceTree = "<group>"; };
@@ -436,6 +446,7 @@
 		552A42BC2C51EF8C002199F6 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				558264A42C59FC3500449B13 /* View */,
 				55A01B2F2C537AA200B92C63 /* Assets */,
 				55F49DB02C532AFD000879D1 /* NVActivityIndicatorView */,
 				55F49D812C5239D9000879D1 /* Data */,
@@ -467,6 +478,7 @@
 		553824C02C58DCC800A744BD /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				558264A72C5A199700449B13 /* Essay */,
 				553824C22C58DE0800A744BD /* Auth */,
 			);
 			path = ViewModel;
@@ -504,10 +516,10 @@
 			isa = PBXGroup;
 			children = (
 				553F85CE2C58CE35001D4AFC /* Alert */,
-				553F85C92C58CE08001D4AFC /* Assay */,
 				553F85C82C58CE01001D4AFC /* Auth */,
 				553F85CD2C58CE29001D4AFC /* Badge */,
 				553F85D02C58CE43001D4AFC /* Bookmark */,
+				553F85C92C58CE08001D4AFC /* Essay */,
 				553F85CC2C58CE1F001D4AFC /* Follow */,
 				553F85CB2C58CE19001D4AFC /* Report */,
 				553F85CA2C58CE11001D4AFC /* Story */,
@@ -533,11 +545,13 @@
 			path = Auth;
 			sourceTree = "<group>";
 		};
-		553F85C92C58CE08001D4AFC /* Assay */ = {
+		553F85C92C58CE08001D4AFC /* Essay */ = {
 			isa = PBXGroup;
 			children = (
+				558264AC2C5A19F100449B13 /* EssayRepositoryType.swift */,
+				558264AD2C5A19F100449B13 /* EssayRepository.swift */,
 			);
-			path = Assay;
+			path = Essay;
 			sourceTree = "<group>";
 		};
 		553F85CA2C58CE11001D4AFC /* Story */ = {
@@ -597,6 +611,23 @@
 				558264A02C59B94500449B13 /* RootReactor.swift */,
 			);
 			path = Root;
+			sourceTree = "<group>";
+		};
+		558264A42C59FC3500449B13 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				558264A52C59FC4300449B13 /* View+.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		558264A72C5A199700449B13 /* Essay */ = {
+			isa = PBXGroup;
+			children = (
+				558264A82C5A19B700449B13 /* EssayViewModelType.swift */,
+				558264A92C5A19B700449B13 /* EssayViewModel.swift */,
+			);
+			path = Essay;
 			sourceTree = "<group>";
 		};
 		55A01B232C536D9000B92C63 /* Home */ = {
@@ -1041,9 +1072,12 @@
 				55F49DDF2C532AFE000879D1 /* NVActivityIndicatorAnimationBallClipRotate.swift in Sources */,
 				55F49E022C532AFE000879D1 /* NVActivityIndicatorShape.swift in Sources */,
 				55F49DE02C532AFE000879D1 /* NVActivityIndicatorAnimationBallClipRotateMultiple.swift in Sources */,
+				558264AA2C5A19B700449B13 /* EssayViewModelType.swift in Sources */,
+				558264AB2C5A19B700449B13 /* EssayViewModel.swift in Sources */,
 				55F49DDE2C532AFE000879D1 /* NVActivityIndicatorAnimationBallBeat.swift in Sources */,
 				552A40652C50D07E002199F6 /* ViewController.swift in Sources */,
 				55F49DF22C532AFE000879D1 /* NVActivityIndicatorAnimationBlank.swift in Sources */,
+				558264A62C59FC4300449B13 /* View+.swift in Sources */,
 				55A01B272C536D9D00B92C63 /* HomeViewController.swift in Sources */,
 				55A01B432C575DCA00B92C63 /* MainTabBarViewController.swift in Sources */,
 				55A01B282C536D9D00B92C63 /* HomeModel.swift in Sources */,
@@ -1102,6 +1136,8 @@
 				55A01B3F2C54A5FE00B92C63 /* WritingViewController.swift in Sources */,
 				55A01B402C54A5FE00B92C63 /* WritingModel.swift in Sources */,
 				55A01B412C54A5FE00B92C63 /* WritingReactor.swift in Sources */,
+				558264AE2C5A19F100449B13 /* EssayRepositoryType.swift in Sources */,
+				558264AF2C5A19F100449B13 /* EssayRepository.swift in Sources */,
 				55F49DDD2C532AFE000879D1 /* NVActivityIndicatorAnimationAudioEqualizer.swift in Sources */,
 				55F49D522C52107E000879D1 /* DependenciesViewControllerType.swift in Sources */,
 				55A01B2D2C53743A00B92C63 /* DependenciesReactor.swift in Sources */,

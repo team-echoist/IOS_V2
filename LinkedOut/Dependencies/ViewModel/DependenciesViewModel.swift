@@ -16,5 +16,14 @@ extension Dependencies: DependenciesViewModelType {
         
         return self.authViewModel!
     }
+    
+    public func makeEssay() -> EssayViewModel {
+        if self.essayViewModel == nil {
+            self.essayViewModel = EssayViewModel(essayRepository: self.makeEssay())
+        }
+        
+        return self.essayViewModel!
+
+    }
 
 }

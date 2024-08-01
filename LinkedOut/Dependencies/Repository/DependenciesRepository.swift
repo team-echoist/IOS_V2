@@ -16,4 +16,12 @@ extension Dependencies: DependenciesRepositoryType {
         
         return self.authRepository!
     }
+    
+    public func makeEssay() -> EssayRepository {
+        if self.essayRepository == nil {
+            self.essayRepository = EssayRepository(dependencies: self)
+        }
+        
+        return self.essayRepository!
+    }
 }
