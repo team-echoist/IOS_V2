@@ -16,6 +16,7 @@ import RxViewController
 import SnapKit
 import Device
 import ManualLayout
+import RxGesture
 
 public protocol WritingViewControllerType {
     
@@ -49,6 +50,14 @@ public final class WritingViewController: BaseViewController, WritingViewControl
         static let alarm = UIImage(named: "alarm")
     }
     
+    fileprivate struct Font {
+        static let tab: UIFont = .systemFont(ofSize: 14.0, weight: .regular)
+    }
+    
+    fileprivate struct Color {
+        static let divider: UIColor = .init(hexCode: "#686868", alpha: 0.3)
+    }
+    
     // MARK: UI
     
     private let lbNickname = UILabel().then {
@@ -79,6 +88,22 @@ public final class WritingViewController: BaseViewController, WritingViewControl
         $0.register(EssayViewCell.self, forCellWithReuseIdentifier: Constant.essayCell)
     }
     
+    private let viStackTab = UIStackView().then {
+        $0.spacing = 8.0
+        $0.axis = .horizontal
+        $0.distribution = .equalSpacing
+    }
+    
+    private let viEssayTab = WritingTabView(tabData: nil)
+    
+    private let viPostedTab = WritingTabView(tabData: nil)
+    
+    private let viStoryTab = WritingTabView(tabData: nil)
+    
+    private let viTabDivider = UIView().then {
+        $0.backgroundColor = Color.divider
+    }
+    
     // MARK: Property
     
     fileprivate let dataSource: DataSource
@@ -102,8 +127,15 @@ public final class WritingViewController: BaseViewController, WritingViewControl
             self.viNavStack.addArrangedSubview($0)
         }
         
-        let _ = [self.assayCollectionView].map {
+        let _ = [self.viStackTab, self.viTabDivider, self.assayCollectionView].map {
             self.view.addSubview($0)
+        }
+        
+        let _ = [self.viEssayTab, self.viPostedTab, self.viStoryTab].map {
+            self.viStackTab.addArrangedSubview($0)
+            $0.snp.makeConstraints {
+                $0.height.equalTo(28.0)
+            }
         }
         
     }
@@ -149,8 +181,23 @@ public final class WritingViewController: BaseViewController, WritingViewControl
             }
         }
         
+        self.viStackTab.snp.makeConstraints {
+            $0.top.equalTo(self.viNavigation.snp.bottom).offset(20)
+            $0.leading.equalToSuperview().inset(20.0)
+            $0.trailing.lessThanOrEqualToSuperview().inset(20)
+            $0.height.equalTo(28.0)
+        }
+        
+        self.viTabDivider.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(self.viStackTab.snp.bottom).offset(-1.0)
+            $0.height.equalTo(2.0)
+        }
+        
+        self.view.sendSubviewToBack(self.viTabDivider)
+        
         self.assayCollectionView.snp.makeConstraints {
-            $0.top.equalTo(self.viNavigation.snp.bottom).offset(50)
+            $0.top.equalTo(self.viStackTab.snp.bottom).offset(18)
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }
@@ -176,29 +223,105 @@ public final class WritingViewController: BaseViewController, WritingViewControl
     
     public func bind(reactor: Reactor) {
         reactor.action.onNext(.refresh)
+        self.bindState(reactor)
         self.bindView(reactor)
+        self.bindViewAction(reactor)
+    }
+    
+    // MARK: Bind - State
+    
+    public func bindState(_ reactor: Reactor) {
+        
+        reactor.state.map { $0.selectedTab }
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] selectedTab in
+                guard let self = self else { return }
+                
+                // TODO: Reactor 로 고치기
+                switch selectedTab {
+                case .essay:
+                    DispatchQueue.main.async {
+                        self.viEssayTab.setSelected()
+                        self.viPostedTab.setDeselected()
+                        self.viStoryTab.setDeselected()
+                    }
+                case .posted:
+                    DispatchQueue.main.async {
+                        self.viEssayTab.setDeselected()
+                        self.viPostedTab.setSelected()
+                        self.viStoryTab.setDeselected()
+                    }
+                case .story:
+                    DispatchQueue.main.async {
+                        self.viEssayTab.setDeselected()
+                        self.viPostedTab.setDeselected()
+                        self.viStoryTab.setSelected()
+                    }
+                }
+            })
+            .disposed(by: self.disposeBag)
     }
     
     // MARK: Bind - View
     public func bindView(_ reactor: Reactor) {
+        self.bindTab(reactor)
         self.bindViewCollection(reactor)
     }
     
+    public func bindTab(_ reactor: Reactor) {
+        reactor.state.map { $0.tabList }
+            .subscribe(onNext: { [weak self] list in
+                guard let self = self else { return }
+                                
+                self.viEssayTab.setTabData(tabData: list[0])
+                self.viPostedTab.setTabData(tabData: list[1])
+                self.viStoryTab.setTabData(tabData: list[2])
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
     public func bindViewCollection(_ reactor: Reactor) {
-        // Data Source
         reactor.state
             .map { $0.essayList }
             .bind(to: self.assayCollectionView.rx.items(dataSource: self.dataSource))
             .disposed(by: self.disposeBag)
         
-        // Delegate
         self.assayCollectionView.rx.setDelegate(self).disposed(by: self.disposeBag)
     }
+        
     
     // MARK: Event
 
 
     // MARK: Action
+    
+    public func bindViewAction(_ reactor: Reactor) {
+        self.bindTabAction(reactor)
+    }
+    
+    public func bindTabAction(_ reactor: Reactor) {
+        
+        self.viEssayTab.rx.tapGesture()
+            .filter { $0.state == .ended }
+            .subscribe(onNext: { _ in
+                reactor.action.onNext(.inputTab(.essay))
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.viPostedTab.rx.tapGesture()
+            .filter { $0.state == .ended }
+            .subscribe(onNext: { _ in
+                reactor.action.onNext(.inputTab(.posted))
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.viStoryTab.rx.tapGesture()
+            .filter { $0.state == .ended }
+            .subscribe(onNext: { _ in
+                reactor.action.onNext(.inputTab(.story))
+            })
+            .disposed(by: self.disposeBag)
+    }
 }
 
 // MARK: Extension - UICollectionViewDelegateFlowLayout

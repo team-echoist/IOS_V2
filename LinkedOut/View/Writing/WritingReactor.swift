@@ -25,6 +25,7 @@ public final class WritingReactor: Reactor {
         case refresh
         
         case inputNextPage
+        case inputTab(WritingTabType)
     }
     
     public enum Mutaion {
@@ -35,6 +36,7 @@ public final class WritingReactor: Reactor {
         
         case setRefreshing(Bool)
         case appendEssays([Essay])
+        case setSelectedTab(WritingTabType)
     }
     
     public struct State {
@@ -48,6 +50,14 @@ public final class WritingReactor: Reactor {
         public var currentPage: Int = 1
         public var endOfPage: Int = 0
         public var essayList: [EssaySection] = [.items([])]
+        
+        public var selectedTab: WritingTabType = .essay
+        
+        public var tabList: [WritingTabModel] = [
+            .init(tabType: .essay, title: "나만의 글 n", selected: true),
+            .init(tabType: .posted, title: "발행한 글 n", selected: false),
+            .init(tabType: .story, title: "스토리 n", selected: false)
+        ]
     }
     
     // MARK: State
@@ -81,6 +91,8 @@ public final class WritingReactor: Reactor {
             return self.getEssayList(start: self.startLoading, pageNum: 1, pageSize: 10, end: self.endLoading)
         case .inputNextPage:
             return .just(.appendEssays([]))
+        case .inputTab(let selectedTab):
+            return .just(.setSelectedTab(selectedTab))
         }
         
     }
@@ -108,6 +120,8 @@ public final class WritingReactor: Reactor {
             let sectionItems = newState.essayList[0].items + self.getSectionItems(with : essays)
             newState.essayList = [.items(sectionItems)]
                 return newState
+            case let .setSelectedTab(selectedTab): newState.selectedTab = selectedTab; return newState
+            
         }// switch
     }// reduce
     

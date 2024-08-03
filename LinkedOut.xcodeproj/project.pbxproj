@@ -56,6 +56,10 @@
 		558264BE2C5C675400449B13 /* UIImageView+Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264BD2C5C675400449B13 /* UIImageView+Kingfisher.swift */; };
 		558264C12C5C6BDF00449B13 /* EssaySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264C02C5C6BDF00449B13 /* EssaySection.swift */; };
 		558264C32C5CD70A00449B13 /* String+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264C22C5CD70A00449B13 /* String+Date.swift */; };
+		558264C62C5E898F00449B13 /* WritingTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264C52C5E898F00449B13 /* WritingTabView.swift */; };
+		558264C82C5E89D500449B13 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264C72C5E89D500449B13 /* BaseView.swift */; };
+		558264CA2C5E8AA900449B13 /* WritingTabModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264C92C5E8AA900449B13 /* WritingTabModel.swift */; };
+		558264CC2C5E8D4300449B13 /* IWritingTabDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264CB2C5E8D4300449B13 /* IWritingTabDelegate.swift */; };
 		55A01B272C536D9D00B92C63 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B242C536D9D00B92C63 /* HomeViewController.swift */; };
 		55A01B282C536D9D00B92C63 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B252C536D9D00B92C63 /* HomeModel.swift */; };
 		55A01B292C536D9D00B92C63 /* HomeReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B262C536D9D00B92C63 /* HomeReactor.swift */; };
@@ -207,6 +211,10 @@
 		558264BD2C5C675400449B13 /* UIImageView+Kingfisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Kingfisher.swift"; sourceTree = "<group>"; };
 		558264C02C5C6BDF00449B13 /* EssaySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssaySection.swift; sourceTree = "<group>"; };
 		558264C22C5CD70A00449B13 /* String+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Date.swift"; sourceTree = "<group>"; };
+		558264C52C5E898F00449B13 /* WritingTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingTabView.swift; sourceTree = "<group>"; };
+		558264C72C5E89D500449B13 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		558264C92C5E8AA900449B13 /* WritingTabModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingTabModel.swift; sourceTree = "<group>"; };
+		558264CB2C5E8D4300449B13 /* IWritingTabDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWritingTabDelegate.swift; sourceTree = "<group>"; };
 		55A01B242C536D9D00B92C63 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		55A01B252C536D9D00B92C63 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		55A01B262C536D9D00B92C63 /* HomeReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeReactor.swift; sourceTree = "<group>"; };
@@ -651,6 +659,7 @@
 			children = (
 				558264B22C5B723C00449B13 /* BaseCollectionViewCell.swift */,
 				558264B52C5B729900449B13 /* BaseTableViewCell.swift */,
+				558264C72C5E89D500449B13 /* BaseView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -677,6 +686,16 @@
 				558264C02C5C6BDF00449B13 /* EssaySection.swift */,
 			);
 			path = Section;
+			sourceTree = "<group>";
+		};
+		558264C42C5E897B00449B13 /* Tab */ = {
+			isa = PBXGroup;
+			children = (
+				558264C52C5E898F00449B13 /* WritingTabView.swift */,
+				558264C92C5E8AA900449B13 /* WritingTabModel.swift */,
+				558264CB2C5E8D4300449B13 /* IWritingTabDelegate.swift */,
+			);
+			path = Tab;
 			sourceTree = "<group>";
 		};
 		55A01B232C536D9000B92C63 /* Home */ = {
@@ -720,6 +739,7 @@
 		55A01B392C54A5A800B92C63 /* Writing */ = {
 			isa = PBXGroup;
 			children = (
+				558264C42C5E897B00449B13 /* Tab */,
 				558264BF2C5C6BC600449B13 /* Section */,
 				558264B72C5B7A4500449B13 /* View */,
 				55A01B3C2C54A5FE00B92C63 /* WritingViewController.swift */,
@@ -1124,6 +1144,7 @@
 				55F49DF62C532AFE000879D1 /* NVActivityIndicatorAnimationLineScaleParty.swift in Sources */,
 				55F49D7C2C5238DE000879D1 /* String+localized.swift in Sources */,
 				55F49DDF2C532AFE000879D1 /* NVActivityIndicatorAnimationBallClipRotate.swift in Sources */,
+				558264CA2C5E8AA900449B13 /* WritingTabModel.swift in Sources */,
 				55F49E022C532AFE000879D1 /* NVActivityIndicatorShape.swift in Sources */,
 				55F49DE02C532AFE000879D1 /* NVActivityIndicatorAnimationBallClipRotateMultiple.swift in Sources */,
 				558264AA2C5A19B700449B13 /* EssayViewModelType.swift in Sources */,
@@ -1171,6 +1192,7 @@
 				55F49DF72C532AFE000879D1 /* NVActivityIndicatorAnimationLineScalePulseOut.swift in Sources */,
 				55F49D632C5217C0000879D1 /* LinkedOutNetworking.swift in Sources */,
 				55F49DF12C532AFE000879D1 /* NVActivityIndicatorAnimationBallZigZagDeflect.swift in Sources */,
+				558264CC2C5E8D4300449B13 /* IWritingTabDelegate.swift in Sources */,
 				552A42C32C51F219002199F6 /* UtilsScreen.swift in Sources */,
 				552A42B62C51EA39002199F6 /* ModelType.swift in Sources */,
 				55F49DE72C532AFE000879D1 /* NVActivityIndicatorAnimationBallPulseSync.swift in Sources */,
@@ -1192,12 +1214,14 @@
 				55F49D752C5234A4000879D1 /* UIViewController+NavigationBar.swift in Sources */,
 				553F85C52C58C25A001D4AFC /* ISideNavigation.swift in Sources */,
 				55A01B3F2C54A5FE00B92C63 /* WritingViewController.swift in Sources */,
+				558264C82C5E89D500449B13 /* BaseView.swift in Sources */,
 				55A01B402C54A5FE00B92C63 /* WritingModel.swift in Sources */,
 				558264C32C5CD70A00449B13 /* String+Date.swift in Sources */,
 				55A01B412C54A5FE00B92C63 /* WritingReactor.swift in Sources */,
 				558264AE2C5A19F100449B13 /* EssayRepositoryType.swift in Sources */,
 				558264AF2C5A19F100449B13 /* EssayRepository.swift in Sources */,
 				55F49DDD2C532AFE000879D1 /* NVActivityIndicatorAnimationAudioEqualizer.swift in Sources */,
+				558264C62C5E898F00449B13 /* WritingTabView.swift in Sources */,
 				55F49D522C52107E000879D1 /* DependenciesViewControllerType.swift in Sources */,
 				55A01B2D2C53743A00B92C63 /* DependenciesReactor.swift in Sources */,
 				55F49DF02C532AFE000879D1 /* NVActivityIndicatorAnimationBallZigZag.swift in Sources */,
