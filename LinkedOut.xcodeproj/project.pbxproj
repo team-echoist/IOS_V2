@@ -49,6 +49,13 @@
 		558264AB2C5A19B700449B13 /* EssayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264A92C5A19B700449B13 /* EssayViewModel.swift */; };
 		558264AE2C5A19F100449B13 /* EssayRepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264AC2C5A19F100449B13 /* EssayRepositoryType.swift */; };
 		558264AF2C5A19F100449B13 /* EssayRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264AD2C5A19F100449B13 /* EssayRepository.swift */; };
+		558264B42C5B723C00449B13 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264B22C5B723C00449B13 /* BaseCollectionViewCell.swift */; };
+		558264B62C5B729900449B13 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264B52C5B729900449B13 /* BaseTableViewCell.swift */; };
+		558264B92C5B7B6100449B13 /* EssayViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264B82C5B7B6100449B13 /* EssayViewCell.swift */; };
+		558264BB2C5B7CA400449B13 /* EssayViewCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264BA2C5B7CA400449B13 /* EssayViewCellReactor.swift */; };
+		558264BE2C5C675400449B13 /* UIImageView+Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264BD2C5C675400449B13 /* UIImageView+Kingfisher.swift */; };
+		558264C12C5C6BDF00449B13 /* EssaySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264C02C5C6BDF00449B13 /* EssaySection.swift */; };
+		558264C32C5CD70A00449B13 /* String+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264C22C5CD70A00449B13 /* String+Date.swift */; };
 		55A01B272C536D9D00B92C63 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B242C536D9D00B92C63 /* HomeViewController.swift */; };
 		55A01B282C536D9D00B92C63 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B252C536D9D00B92C63 /* HomeModel.swift */; };
 		55A01B292C536D9D00B92C63 /* HomeReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B262C536D9D00B92C63 /* HomeReactor.swift */; };
@@ -193,6 +200,13 @@
 		558264A92C5A19B700449B13 /* EssayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssayViewModel.swift; sourceTree = "<group>"; };
 		558264AC2C5A19F100449B13 /* EssayRepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssayRepositoryType.swift; sourceTree = "<group>"; };
 		558264AD2C5A19F100449B13 /* EssayRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssayRepository.swift; sourceTree = "<group>"; };
+		558264B22C5B723C00449B13 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		558264B52C5B729900449B13 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		558264B82C5B7B6100449B13 /* EssayViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssayViewCell.swift; sourceTree = "<group>"; };
+		558264BA2C5B7CA400449B13 /* EssayViewCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssayViewCellReactor.swift; sourceTree = "<group>"; };
+		558264BD2C5C675400449B13 /* UIImageView+Kingfisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Kingfisher.swift"; sourceTree = "<group>"; };
+		558264C02C5C6BDF00449B13 /* EssaySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssaySection.swift; sourceTree = "<group>"; };
+		558264C22C5CD70A00449B13 /* String+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Date.swift"; sourceTree = "<group>"; };
 		55A01B242C536D9D00B92C63 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		55A01B252C536D9D00B92C63 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		55A01B262C536D9D00B92C63 /* HomeReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeReactor.swift; sourceTree = "<group>"; };
@@ -369,6 +383,7 @@
 		552A40902C50DB42002199F6 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				558264B02C5B722900449B13 /* View */,
 				553824BD2C58DC4D00A744BD /* ViewModel */,
 				552A42B42C51EA22002199F6 /* Model */,
 				552A40912C50DB60002199F6 /* BaseViewController.swift */,
@@ -446,6 +461,7 @@
 		552A42BC2C51EF8C002199F6 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				558264BC2C5C673A00449B13 /* UIImageView */,
 				558264A42C59FC3500449B13 /* View */,
 				55A01B2F2C537AA200B92C63 /* Assets */,
 				55F49DB02C532AFD000879D1 /* NVActivityIndicatorView */,
@@ -630,6 +646,39 @@
 			path = Essay;
 			sourceTree = "<group>";
 		};
+		558264B02C5B722900449B13 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				558264B22C5B723C00449B13 /* BaseCollectionViewCell.swift */,
+				558264B52C5B729900449B13 /* BaseTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		558264B72C5B7A4500449B13 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				558264B82C5B7B6100449B13 /* EssayViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		558264BC2C5C673A00449B13 /* UIImageView */ = {
+			isa = PBXGroup;
+			children = (
+				558264BD2C5C675400449B13 /* UIImageView+Kingfisher.swift */,
+			);
+			path = UIImageView;
+			sourceTree = "<group>";
+		};
+		558264BF2C5C6BC600449B13 /* Section */ = {
+			isa = PBXGroup;
+			children = (
+				558264C02C5C6BDF00449B13 /* EssaySection.swift */,
+			);
+			path = Section;
+			sourceTree = "<group>";
+		};
 		55A01B232C536D9000B92C63 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -671,9 +720,12 @@
 		55A01B392C54A5A800B92C63 /* Writing */ = {
 			isa = PBXGroup;
 			children = (
+				558264BF2C5C6BC600449B13 /* Section */,
+				558264B72C5B7A4500449B13 /* View */,
 				55A01B3C2C54A5FE00B92C63 /* WritingViewController.swift */,
 				55A01B3D2C54A5FE00B92C63 /* WritingModel.swift */,
 				55A01B3E2C54A5FE00B92C63 /* WritingReactor.swift */,
+				558264BA2C5B7CA400449B13 /* EssayViewCellReactor.swift */,
 			);
 			path = Writing;
 			sourceTree = "<group>";
@@ -773,6 +825,7 @@
 				55F49D7B2C5238DE000879D1 /* String+localized.swift */,
 				55F49D7D2C523900000879D1 /* String+.swift */,
 				55F49D7F2C52393E000879D1 /* String+Validate.swift */,
+				558264C22C5CD70A00449B13 /* String+Date.swift */,
 			);
 			path = String;
 			sourceTree = "<group>";
@@ -1058,6 +1111,7 @@
 				553F85C22C5884A5001D4AFC /* SideNavigationReactor.swift in Sources */,
 				55F49D742C5234A4000879D1 /* UIViewController+ResizingScrollViewOnKeyboard.swift in Sources */,
 				55F49DE92C532AFE000879D1 /* NVActivityIndicatorAnimationBallRotateChase.swift in Sources */,
+				558264B42C5B723C00449B13 /* BaseCollectionViewCell.swift in Sources */,
 				552A40952C50F45F002199F6 /* Logger.swift in Sources */,
 				55A0428D2C53440C0065DDBC /* Bundle.swift in Sources */,
 				55F49DF82C532AFE000879D1 /* NVActivityIndicatorAnimationLineScalePulseOutRapid.swift in Sources */,
@@ -1081,7 +1135,9 @@
 				55A01B272C536D9D00B92C63 /* HomeViewController.swift in Sources */,
 				55A01B432C575DCA00B92C63 /* MainTabBarViewController.swift in Sources */,
 				55A01B282C536D9D00B92C63 /* HomeModel.swift in Sources */,
+				558264B92C5B7B6100449B13 /* EssayViewCell.swift in Sources */,
 				55A01B292C536D9D00B92C63 /* HomeReactor.swift in Sources */,
+				558264B62C5B729900449B13 /* BaseTableViewCell.swift in Sources */,
 				553F85D22C58D111001D4AFC /* AuthRepositoryType.swift in Sources */,
 				552A427F2C50FB74002199F6 /* RouterType.swift in Sources */,
 				552A42BB2C51ED40002199F6 /* Localization.swift in Sources */,
@@ -1125,16 +1181,19 @@
 				552A42802C50FB74002199F6 /* Moya+Rx.swift in Sources */,
 				55F49DFC2C532AFE000879D1 /* NVActivityIndicatorAnimationSemiCircleSpin.swift in Sources */,
 				55F49DEF2C532AFE000879D1 /* NVActivityIndicatorAnimationBallTrianglePath.swift in Sources */,
+				558264BE2C5C675400449B13 /* UIImageView+Kingfisher.swift in Sources */,
 				552A40632C50D07E002199F6 /* SceneDelegate.swift in Sources */,
 				553F85BB2C58777B001D4AFC /* Int+Number.swift in Sources */,
 				55F49D782C523820000879D1 /* Localizable.swift in Sources */,
 				55F49DF32C532AFE000879D1 /* NVActivityIndicatorAnimationCircleStrokeSpin.swift in Sources */,
 				553F85D42C58D121001D4AFC /* AuthRepository.swift in Sources */,
 				55F49D562C521086000879D1 /* Dependencies.swift in Sources */,
+				558264C12C5C6BDF00449B13 /* EssaySection.swift in Sources */,
 				55F49D752C5234A4000879D1 /* UIViewController+NavigationBar.swift in Sources */,
 				553F85C52C58C25A001D4AFC /* ISideNavigation.swift in Sources */,
 				55A01B3F2C54A5FE00B92C63 /* WritingViewController.swift in Sources */,
 				55A01B402C54A5FE00B92C63 /* WritingModel.swift in Sources */,
+				558264C32C5CD70A00449B13 /* String+Date.swift in Sources */,
 				55A01B412C54A5FE00B92C63 /* WritingReactor.swift in Sources */,
 				558264AE2C5A19F100449B13 /* EssayRepositoryType.swift in Sources */,
 				558264AF2C5A19F100449B13 /* EssayRepository.swift in Sources */,
@@ -1153,6 +1212,7 @@
 				552A42C12C51F01A002199F6 /* List.swift in Sources */,
 				55F49D612C5217B1000879D1 /* Networking.swift in Sources */,
 				55F49DFE2C532AFE000879D1 /* NVActivityIndicatorAnimationTriangleSkewSpin.swift in Sources */,
+				558264BB2C5B7CA400449B13 /* EssayViewCellReactor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

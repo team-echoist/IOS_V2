@@ -22,6 +22,9 @@ extension Dependencies: DependenciesReactorType {
     }
     
     public func makeWriting() -> WritingReactor {
-        return WritingReactor(essayViewModel: self.makeEssay())
+        return WritingReactor(
+            essayViewModel: self.makeEssay(),
+            cellReactorFactory: EssayViewCellReactor.init
+        )
     }
 }

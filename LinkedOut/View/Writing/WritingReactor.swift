@@ -47,7 +47,7 @@ public final class WritingReactor: Reactor {
         public var hasNextPage: Bool = false
         public var currentPage: Int = 1
         public var endOfPage: Int = 0
-        public var essayList: [Essay] = []
+        public var essayList: [EssaySection] = [.items([])]
     }
     
     // MARK: State
@@ -57,11 +57,18 @@ public final class WritingReactor: Reactor {
     // MARK: View Model
     
     fileprivate let essayViewModel: EssayViewModelType
+    // MARK: Factory
+    
+    public let cellReactorFactory: (Essay) -> EssayViewCellReactor
     
     // MARK: Initialize
     
-    public init(essayViewModel: EssayViewModelType) {
+    public init(
+        essayViewModel: EssayViewModelType,
+        cellReactorFactory: @escaping (Essay) -> EssayViewCellReactor
+    ) {
         self.essayViewModel = essayViewModel
+        self.cellReactorFactory = cellReactorFactory
     }
     
     // MARK: Mutate
@@ -98,9 +105,8 @@ public final class WritingReactor: Reactor {
                 return newState
             
             case let .appendEssays(essays):
-                let _ = essays.map {
-                    newState.essayList.append($0)
-                }
+            let sectionItems = newState.essayList[0].items + self.getSectionItems(with : essays)
+            newState.essayList = [.items(sectionItems)]
                 return newState
         }// switch
     }// reduce
@@ -136,6 +142,16 @@ public final class WritingReactor: Reactor {
         }
         
         return .appendEssays([])
+    }
+    
+    // MARK: Section
+    
+    private func getSectionItems(with essays: [Essay]) -> [EssayItem] {
+        let items = essays
+            .map(self.cellReactorFactory)
+            .map(EssayItem.essayViewCellReactor)
+        log.debug("items: \(items)")
+        return items
     }
     
     

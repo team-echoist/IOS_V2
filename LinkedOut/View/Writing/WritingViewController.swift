@@ -24,6 +24,8 @@ public protocol WritingViewControllerType {
 public final class WritingViewController: BaseViewController, WritingViewControllerType, View {
     
     public typealias Reactor = WritingReactor
+    public typealias DataSource = RxCollectionViewSectionedReloadDataSource<EssaySection>
+
     
     // MARK: Constant
     
@@ -32,9 +34,14 @@ public final class WritingViewController: BaseViewController, WritingViewControl
         static let rightNavSpace = 8.f
         static let navRightMargin = 20.f
         static let btnSize = 30.f
+        
+        static let sectionLineSpacing = 0.f
+        static let sectionInsetLeftRight = 0.f
+        static let sectionInteritemSpacing = 0.f
     }
         
     fileprivate struct Constant {
+        static let essayCell = "EssayCell"
     }
     
     fileprivate struct Image {
@@ -69,19 +76,21 @@ public final class WritingViewController: BaseViewController, WritingViewControl
     ).then {
         $0.backgroundColor = .clear
         $0.bounces = false
-//        $0.register(<#T##cellClass: AnyClass?##AnyClass?#>, forCellWithReuseIdentifier: <#T##String#>)
+        $0.register(EssayViewCell.self, forCellWithReuseIdentifier: Constant.essayCell)
     }
     
     // MARK: Property
     
-//    fileprivate let dataSource: DataSource
+    fileprivate let dataSource: DataSource
     
     // MARK: Initialize
     
     public init(
-        reactor: Reactor
+        reactor: Reactor,
+        cellDependency: EssayViewCell.Dependency
     ) {
         defer { self.reactor = reactor }
+        self.dataSource = type(of: self).dataSourceFactory(cellDependency: cellDependency)
         super.init()
         
         
@@ -91,6 +100,10 @@ public final class WritingViewController: BaseViewController, WritingViewControl
         
         let _ = [self.btnSearch, self.btnAlarm].map {
             self.viNavStack.addArrangedSubview($0)
+        }
+        
+        let _ = [self.assayCollectionView].map {
+            self.view.addSubview($0)
         }
         
     }
@@ -135,17 +148,107 @@ public final class WritingViewController: BaseViewController, WritingViewControl
                 $0.height.width.equalTo(Metric.btnSize)
             }
         }
+        
+        self.assayCollectionView.snp.makeConstraints {
+            $0.top.equalTo(self.viNavigation.snp.bottom).offset(50)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+    }
+    
+    // MARK: Data Source Factory
+    
+    private static func dataSourceFactory(cellDependency: EssayViewCell.Dependency) -> DataSource {
+        return .init(
+            configureCell: { datasource, collectionview, indexPath, sectionItem in
+                switch sectionItem {
+                case .essayViewCellReactor(let reactor):
+                    let cell = collectionview.dequeueReusableCell(withReuseIdentifier: Constant.essayCell, for: indexPath) as! EssayViewCell
+                    
+                    cell.dependency = cellDependency
+                    cell.reactor = reactor
+                    return cell
+                }
+            }
+        )
     }
     
     // MARK: Bind
     
     public func bind(reactor: Reactor) {
         reactor.action.onNext(.refresh)
-            
+        self.bindView(reactor)
+    }
+    
+    // MARK: Bind - View
+    public func bindView(_ reactor: Reactor) {
+        self.bindViewCollection(reactor)
+    }
+    
+    public func bindViewCollection(_ reactor: Reactor) {
+        // Data Source
+        reactor.state
+            .map { $0.essayList }
+            .bind(to: self.assayCollectionView.rx.items(dataSource: self.dataSource))
+            .disposed(by: self.disposeBag)
+        
+        // Delegate
+        self.assayCollectionView.rx.setDelegate(self).disposed(by: self.disposeBag)
     }
     
     // MARK: Event
 
 
     // MARK: Action
+}
+
+// MARK: Extension - UICollectionViewDelegateFlowLayout
+
+extension WritingViewController: UICollectionViewDelegateFlowLayout {
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        switch self.dataSource[section] {
+            case .items:
+                let topBottom = Metric.sectionLineSpacing
+                let leftRight = Metric.sectionInsetLeftRight
+            return UIEdgeInsets(top: topBottom, left: leftRight, bottom: topBottom, right: leftRight)
+        }
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        let sectionItem = self.dataSource[section]
+        switch sectionItem {
+            case .items:
+            return Metric.sectionLineSpacing
+        }
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        switch self.dataSource[section] {
+            case .items:
+                return Metric.sectionInteritemSpacing
+        }
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let sectionItem = self.dataSource[indexPath]
+        switch sectionItem {
+        case .essayViewCellReactor(let reactor):
+            return EssayViewCell.size(width: self.view.width, reactor: reactor)
+        }
+    }
+    
+//    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+//        return CGSize(width: collectionView.width, height: Metric.sectionHeaderHeight /*collectionView.width * Metric.sectionHeaderRatio*/)
+//    }
+
+//    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+//        return CGSize(width: collectionView.width, height: Metric.sectionFooterHeight)
+//    }
+
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        if scrollView.isDetectEdgesBottom() {
+//            self.loadNextPage()
+//        }
+    }
+    
 }

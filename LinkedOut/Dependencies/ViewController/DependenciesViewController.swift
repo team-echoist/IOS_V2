@@ -25,6 +25,10 @@ extension Dependencies: DependenciesViewControllerType {
     }
     
     public func makeWriting() -> UIViewController {
-        return WritingViewController(reactor: makeWriting())
+        let imageOptions: ImageOptions = []
+        return WritingViewController(
+            reactor: makeWriting(),
+            cellDependency: EssayViewCell.Dependency(imageOptions: imageOptions)
+        )
     }
 }

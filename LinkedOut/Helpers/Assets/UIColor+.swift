@@ -11,6 +11,7 @@ extension UIColor {
     
     struct Theme {
         static let black = UIColor(hexCode: "#121212")
+        static let gray01 = UIColor(hexCode: "#686868")
     }
             
     convenience init(redValue: CGFloat, greenValue: CGFloat, blueValue: CGFloat, alpha: CGFloat = 1) {

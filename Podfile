@@ -16,6 +16,9 @@ target 'LinkedOut' do
   
   #Architecture
   pod 'ReactorKit'
+  
+  #Image
+  pod 'Kingfisher'
 
   #Etc
   pod 'Then'
