@@ -60,6 +60,12 @@
 		558264C82C5E89D500449B13 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264C72C5E89D500449B13 /* BaseView.swift */; };
 		558264CA2C5E8AA900449B13 /* WritingTabModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264C92C5E8AA900449B13 /* WritingTabModel.swift */; };
 		558264CC2C5E8D4300449B13 /* IWritingTabDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264CB2C5E8D4300449B13 /* IWritingTabDelegate.swift */; };
+		558264D02C5EA5E700449B13 /* UsersRepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264CE2C5EA5E700449B13 /* UsersRepositoryType.swift */; };
+		558264D12C5EA5E700449B13 /* UsersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264CF2C5EA5E700449B13 /* UsersRepository.swift */; };
+		558264D42C5EA95100449B13 /* UsersViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264D22C5EA95100449B13 /* UsersViewModelType.swift */; };
+		558264D52C5EA95100449B13 /* UsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264D32C5EA95100449B13 /* UsersViewModel.swift */; };
+		558264D82C5EA9C800449B13 /* UserInfoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264D72C5EA9C800449B13 /* UserInfoData.swift */; };
+		558264DA2C60C53600449B13 /* MyInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264D92C60C53600449B13 /* MyInfoManager.swift */; };
 		55A01B272C536D9D00B92C63 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B242C536D9D00B92C63 /* HomeViewController.swift */; };
 		55A01B282C536D9D00B92C63 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B252C536D9D00B92C63 /* HomeModel.swift */; };
 		55A01B292C536D9D00B92C63 /* HomeReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B262C536D9D00B92C63 /* HomeReactor.swift */; };
@@ -215,6 +221,12 @@
 		558264C72C5E89D500449B13 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		558264C92C5E8AA900449B13 /* WritingTabModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingTabModel.swift; sourceTree = "<group>"; };
 		558264CB2C5E8D4300449B13 /* IWritingTabDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWritingTabDelegate.swift; sourceTree = "<group>"; };
+		558264CE2C5EA5E700449B13 /* UsersRepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersRepositoryType.swift; sourceTree = "<group>"; };
+		558264CF2C5EA5E700449B13 /* UsersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersRepository.swift; sourceTree = "<group>"; };
+		558264D22C5EA95100449B13 /* UsersViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewModelType.swift; sourceTree = "<group>"; };
+		558264D32C5EA95100449B13 /* UsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewModel.swift; sourceTree = "<group>"; };
+		558264D72C5EA9C800449B13 /* UserInfoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoData.swift; sourceTree = "<group>"; };
+		558264D92C60C53600449B13 /* MyInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoManager.swift; sourceTree = "<group>"; };
 		55A01B242C536D9D00B92C63 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		55A01B252C536D9D00B92C63 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		55A01B262C536D9D00B92C63 /* HomeReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeReactor.swift; sourceTree = "<group>"; };
@@ -365,6 +377,7 @@
 				552A42792C50FB74002199F6 /* Rx */,
 				552A42732C50FB73002199F6 /* Store */,
 				552A42B12C51E8E8002199F6 /* Utils */,
+				558264D62C5EA9A400449B13 /* DataModel */,
 				55A0428E2C536AA90065DDBC /* View */,
 				553824C02C58DCC800A744BD /* ViewModel */,
 			);
@@ -442,6 +455,7 @@
 				552A42C22C51F219002199F6 /* UtilsScreen.swift */,
 				55F49D652C5221A7000879D1 /* Environment.swift */,
 				55A0428C2C53440C0065DDBC /* Bundle.swift */,
+				558264D92C60C53600449B13 /* MyInfoManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -502,6 +516,7 @@
 		553824C02C58DCC800A744BD /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				558264CD2C5EA5B000449B13 /* Users */,
 				558264A72C5A199700449B13 /* Essay */,
 				553824C22C58DE0800A744BD /* Auth */,
 			);
@@ -548,16 +563,18 @@
 				553F85CB2C58CE19001D4AFC /* Report */,
 				553F85CA2C58CE11001D4AFC /* Story */,
 				553F85CF2C58CE3B001D4AFC /* Support */,
-				553F85C72C58CDF4001D4AFC /* User */,
+				553F85C72C58CDF4001D4AFC /* Users */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
 		};
-		553F85C72C58CDF4001D4AFC /* User */ = {
+		553F85C72C58CDF4001D4AFC /* Users */ = {
 			isa = PBXGroup;
 			children = (
+				558264CE2C5EA5E700449B13 /* UsersRepositoryType.swift */,
+				558264CF2C5EA5E700449B13 /* UsersRepository.swift */,
 			);
-			path = User;
+			path = Users;
 			sourceTree = "<group>";
 		};
 		553F85C82C58CE01001D4AFC /* Auth */ = {
@@ -696,6 +713,23 @@
 				558264CB2C5E8D4300449B13 /* IWritingTabDelegate.swift */,
 			);
 			path = Tab;
+			sourceTree = "<group>";
+		};
+		558264CD2C5EA5B000449B13 /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				558264D22C5EA95100449B13 /* UsersViewModelType.swift */,
+				558264D32C5EA95100449B13 /* UsersViewModel.swift */,
+			);
+			path = Users;
+			sourceTree = "<group>";
+		};
+		558264D62C5EA9A400449B13 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				558264D72C5EA9C800449B13 /* UserInfoData.swift */,
+			);
+			path = DataModel;
 			sourceTree = "<group>";
 		};
 		55A01B232C536D9000B92C63 /* Home */ = {
@@ -1116,11 +1150,15 @@
 				552A427E2C50FB74002199F6 /* RouterReactor.swift in Sources */,
 				55A01B2E2C53743A00B92C63 /* DependenciesReactorType.swift in Sources */,
 				552A427C2C50FB74002199F6 /* PushStore.swift in Sources */,
+				558264DA2C60C53600449B13 /* MyInfoManager.swift in Sources */,
 				55F49D7E2C523900000879D1 /* String+.swift in Sources */,
 				55F49DF42C532AFE000879D1 /* NVActivityIndicatorAnimationCubeTransition.swift in Sources */,
+				558264D02C5EA5E700449B13 /* UsersRepositoryType.swift in Sources */,
+				558264D12C5EA5E700449B13 /* UsersRepository.swift in Sources */,
 				55F49D512C52107E000879D1 /* DependenciesViewController.swift in Sources */,
 				55F49E2C2C533D6B000879D1 /* JSONDecoder+NewEncoderDecoder.swift in Sources */,
 				55F49DFD2C532AFE000879D1 /* NVActivityIndicatorAnimationSquareSpin.swift in Sources */,
+				558264D82C5EA9C800449B13 /* UserInfoData.swift in Sources */,
 				55F49D6D2C523498000879D1 /* UIViewController+Embed.swift in Sources */,
 				558264A12C59B94500449B13 /* RootViewController.swift in Sources */,
 				558264A22C59B94500449B13 /* RootModel.swift in Sources */,
@@ -1219,6 +1257,8 @@
 				558264C32C5CD70A00449B13 /* String+Date.swift in Sources */,
 				55A01B412C54A5FE00B92C63 /* WritingReactor.swift in Sources */,
 				558264AE2C5A19F100449B13 /* EssayRepositoryType.swift in Sources */,
+				558264D42C5EA95100449B13 /* UsersViewModelType.swift in Sources */,
+				558264D52C5EA95100449B13 /* UsersViewModel.swift in Sources */,
 				558264AF2C5A19F100449B13 /* EssayRepository.swift in Sources */,
 				55F49DDD2C532AFE000879D1 /* NVActivityIndicatorAnimationAudioEqualizer.swift in Sources */,
 				558264C62C5E898F00449B13 /* WritingTabView.swift in Sources */,

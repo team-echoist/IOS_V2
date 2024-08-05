@@ -10,5 +10,6 @@
 public protocol DependenciesViewModelType {
 
     func makeAuth() -> AuthViewModel
+    func makeUser() -> UsersViewModel
     func makeEssay() -> EssayViewModel
 }

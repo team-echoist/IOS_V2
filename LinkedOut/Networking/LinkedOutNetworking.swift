@@ -20,7 +20,11 @@ enum EnvironmentAPI {
 // MARK: Target
 
 public enum LinkedOutAPI {
+    // auth
     case authHealthCheck
+    // user
+    case getUserInfo
+    // essay
     case getEssays
     case postEssays
 }
@@ -30,6 +34,9 @@ public enum LinkedOutAPI {
 enum ApiRoute: String {
     // auth
     case authHealthCheck = "auth/health-check"
+    
+    // user
+    case userInfo = "users/info"
     
     // essay
     case essays = "essays"
@@ -67,6 +74,8 @@ extension LinkedOutAPI: SugarTargetType {
         switch self {
             case .authHealthCheck:
                 return .get(ApiRoute.authHealthCheck.rawValue)
+            case .getUserInfo:
+                return .get(ApiRoute.userInfo.rawValue)
             case .getEssays:
                 return .get(ApiRoute.essays.rawValue)
             case .postEssays:
@@ -77,14 +86,20 @@ extension LinkedOutAPI: SugarTargetType {
     public var parameters: MoyaSugar.Parameters? {
         return ApiParam.makeParam(from: [:], method: .get)
         switch self {
+            // auth
+            case .authHealthCheck:
+                return ApiParam.makeParam(from: [:], method: .get)
+            // user
+            case .getUserInfo:
+                return ApiParam.makeParam(from: [:], method: .get)
+            // essay
             case .getEssays:
                 let dic: [String: Any] = [:]
                 return ApiParam.makeParam(from: dic, method: .get)
             case .postEssays:
                 let dic: [String: Any] = [:]
                 return ApiParam.makeParam(from: dic, method: .post)
-            case .authHealthCheck:
-                return ApiParam.makeParam(from: [:], method: .get)
+            
             }
     }
     

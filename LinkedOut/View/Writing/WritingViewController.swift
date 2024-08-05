@@ -61,7 +61,7 @@ public final class WritingViewController: BaseViewController, WritingViewControl
     // MARK: UI
     
     private let lbNickname = UILabel().then {
-        $0.text = "님"
+        $0.text = "\(MyInfoManager.shared.myInfo?.nickname ?? "") 님"
         $0.textColor = .white
         $0.font = UIFont.boldSystemFont(ofSize: 24.0)
     }

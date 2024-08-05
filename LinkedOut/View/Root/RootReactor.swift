@@ -22,6 +22,7 @@ public final class RootReactor: Reactor {
     
     public enum Action {
         case checkStatus
+        case setInit
     }
     
     public enum Mutaion {
@@ -46,11 +47,16 @@ public final class RootReactor: Reactor {
     // MARK: View Model
     
     fileprivate let authViewModel: AuthViewModelType
+    fileprivate let userViewModel: UsersViewModelType
     
     // MARK: Initialize
     
-    public init (authViewModel: AuthViewModelType) {
+    public init (
+        authViewModel: AuthViewModelType,
+        userViewModel: UsersViewModelType
+    ) {
         self.authViewModel = authViewModel
+        self.userViewModel = userViewModel
     }
     
     // MARK: Mutate
@@ -58,6 +64,19 @@ public final class RootReactor: Reactor {
     public func mutate(action: Action) -> Observable<Mutaion> {
         
         switch action {
+            case .setInit:
+            return userViewModel
+                .getUserInfo()
+                .asObservable()
+                .map { response in
+                    print(response)
+                    MyInfoManager.shared.myInfo = response.data
+                    SceneDelegate.shared.router.routeMainTabBar()
+                    return .setNextPage
+                }
+                .catch { (error) in
+                    return .just(.setError(makeError(LinkedOutError(error))))
+                }
             case .checkStatus:
             return authViewModel
                 .getHealthcheck()

@@ -24,6 +24,7 @@ public class Dependencies: HasNetworking, HasPushStore, HasFileStore {
     
     // MARK: Repository
     public var authRepository: AuthRepository?
+    public var userRepository: UsersRepository?
     public var essayRepository: EssayRepository?
 //    public var userRepository: UserRepository?
 //    public var feedRepository: FeedRepository?
@@ -31,6 +32,7 @@ public class Dependencies: HasNetworking, HasPushStore, HasFileStore {
     
     // MARK: View Model
     public var authViewModel: AuthViewModel?
+    public var userViewModel: UsersViewModel?
     public var essayViewModel: EssayViewModel?
 //    public var userViewModel: UserViewModelA?
 //    public var feedViewModel: FeedViewModelA?

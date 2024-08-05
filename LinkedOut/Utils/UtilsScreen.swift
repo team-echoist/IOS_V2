@@ -22,7 +22,7 @@ class UtilsScreen {
     }
     
     static func getSizeNavigationBar() -> CGFloat {
-        return 64
+        return 62
     }
     
     static func getSizeNavigationBarToStatusBar() -> CGFloat {

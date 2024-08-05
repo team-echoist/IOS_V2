@@ -10,7 +10,10 @@
 extension Dependencies: DependenciesReactorType {
     
     public func makeRoot() -> RootReactor {        
-        return RootReactor(authViewModel: self.makeAuth())
+        return RootReactor(
+            authViewModel: self.makeAuth(), 
+            userViewModel: self.makeUser()
+        )
     }
     
     public func makeMain() -> HomeReactor {

@@ -112,6 +112,6 @@ public final class RootViewController: BaseViewController, RootViewControllerTyp
 
     // MARK: Action
     private func checkStatus(_ reactor: Reactor) {
-        reactor.action.onNext(.checkStatus)
+        reactor.action.onNext(.setInit)
     }
 }
