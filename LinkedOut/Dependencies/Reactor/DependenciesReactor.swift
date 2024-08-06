@@ -30,4 +30,8 @@ extension Dependencies: DependenciesReactorType {
             cellReactorFactory: EssayViewCellReactor.init
         )
     }
+    
+    public func makeComunity() -> ComunityReactor {
+        return ComunityReactor()
+    }
 }

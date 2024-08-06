@@ -12,4 +12,5 @@ public protocol DependenciesReactorType {
     func makeMain() -> HomeReactor
     func makeMainTabBar() -> MainTabBarReactor
     func makeWriting() -> WritingReactor
+    func makeComunity() -> ComunityReactor
 }

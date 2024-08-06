@@ -150,7 +150,7 @@ public final class MainTabBarViewController: BaseViewController, MainTabBarViewC
                    case .home:
                        self.displayContentController(HomeViewController(reactor: HomeReactor()))
                    case .comunity:
-                       self.displayContentController(SceneDelegate.shared.router.getHomeView())
+                       self.displayContentController(SceneDelegate.shared.router.getComunity())
                    case .profile:
                        self.displayContentController(SceneDelegate.shared.router.getHomeView())
                    case .writing:

@@ -31,4 +31,8 @@ extension Dependencies: DependenciesViewControllerType {
             cellDependency: EssayViewCell.Dependency(imageOptions: imageOptions)
         )
     }
+    
+    public func makeComunity() -> UIViewController {
+        return ComunityViewController(reactor: makeComunity())
+    }
 }

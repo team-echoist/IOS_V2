@@ -23,5 +23,6 @@ public protocol RouterType {
     func routeWriting()
     func getWriting() -> UIViewController
     func routeComunity()
+    func getComunity() -> UIViewController
     func routeProfile()
 }

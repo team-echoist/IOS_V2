@@ -301,6 +301,11 @@ extension Router: RouterType {
         self.screenPush(to: vc)
     }
     
+    public func getComunity() -> UIViewController {
+        let vc = self.viewFactory.makeComunity()
+        return vc
+    }
+    
     public func routeComunity() {
         
     }
