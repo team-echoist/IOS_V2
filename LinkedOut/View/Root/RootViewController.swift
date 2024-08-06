@@ -31,12 +31,12 @@ public final class RootViewController: BaseViewController, RootViewControllerTyp
     }
     
     fileprivate struct Image {
-        static let logo = UIImage(named: "splash")
+        static let logo = UIImage(named: "splash_image")
     }
     
     // MARK: Initialize
     private let ivLogo = UIImageView().then {
-        $0.image = Image.logo
+        $0.image = UIImage.gifImageWithName("splash_clear")
     }
     
     public init(
@@ -56,6 +56,7 @@ public final class RootViewController: BaseViewController, RootViewControllerTyp
     
     override public func viewDidLoad() {
         super.viewDidLoad()
+
     }
     
     override public func viewWillAppear(_ animated: Bool) {
@@ -78,7 +79,8 @@ public final class RootViewController: BaseViewController, RootViewControllerTyp
         
         self.ivLogo.snp.makeConstraints {
             $0.height.width.equalToSuperview()
-            $0.centerX.centerY.equalToSuperview()
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalToSuperview()
         }
     }
     
@@ -87,7 +89,13 @@ public final class RootViewController: BaseViewController, RootViewControllerTyp
     public func bind(reactor: Reactor) {
         
         self.bindState(reactor)
-        self.checkStatus(reactor)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+            self.checkStatus(reactor)
+        }
+        
+        self.ivLogo.startAnimating()
+        
     }
     
     // MARK: Bind - Status
