@@ -14,7 +14,7 @@ import Moya
 public struct ApiWebResult: Codable {
     let statusCode: Int?
     let success: Bool
-//    let message: String?
+    let message: String?
 
 //    enum CodingKeys: String, CodingKey {
 //        case code = "code"
@@ -41,17 +41,14 @@ public struct LinkedOutError: LocalizedError, CustomStringConvertible {
     public var title: String!
     public var code: Int = 0
     
-    private static let emptyTitle = "Error"
-    private static let emptyDesc = "Error Description"
+    private static let emptyTitle = "오류"
+    private static let emptyDesc = "알수 없는 오류가 발생했습니다."
     private static let emptyCode = "Error Code"
     
     public init(_ e: Error?) {
         if let err = e as? HTTPURLResponse {
             self.init(err)
         } else if let err = e as? MoyaError {
-            self.init(err)
-        }
-        else if let err = e as? ApiWebResult {
             self.init(err)
         }
         else if let err = e as? LinkedOutError {
@@ -68,8 +65,14 @@ public struct LinkedOutError: LocalizedError, CustomStringConvertible {
     
     // Moya Error
     public init(_ err: MoyaError?) {
-        self.init(description: err?.localizedDescription, code: err?.errorCode ?? 0)
-        //String(describing: err?.response?.statusCode)
+        if let response = try? err?.response?.mapJSON(failsOnEmptyData: false) as? [String: Any] {            
+            let message = response["message"] as? String
+            let statusCode = response["statusCode"] as? Int
+            self.init(description: message ?? LinkedOutError.emptyDesc, code: statusCode ?? 0)
+        } else {
+            self.init(description: err?.localizedDescription, code: err?.errorCode ?? 0)
+        }
+        
     }
     
     // Foodinko API Error

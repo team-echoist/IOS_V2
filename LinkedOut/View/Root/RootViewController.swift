@@ -94,6 +94,7 @@ public final class RootViewController: BaseViewController, RootViewControllerTyp
     
     private func bindState(_ reactor: Reactor) {
         self.bindStateAlert(reactor)
+        self.bindStateError(reactor)
     }
     
     private func bindStateAlert(_ reactor: Reactor) {
@@ -103,6 +104,17 @@ public final class RootViewController: BaseViewController, RootViewControllerTyp
             .subscribe(onNext: { [weak self] message in
                 guard let self = self else { return }
                 self.showAlert(message: message.localized)
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
+    private func bindStateError(_ reactor: Reactor) {
+        reactor.state
+            .map { $0.error }.filterNil()
+            .mapChangedTracked({ $0 }).filterNil()
+            .subscribe(onNext: { [weak self] error in
+                guard let self = self else { return }
+                self.showAlert(message: error.description)
             })
             .disposed(by: self.disposeBag)
     }
