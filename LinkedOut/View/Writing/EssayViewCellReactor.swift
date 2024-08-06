@@ -11,6 +11,13 @@ import RxSwift
 
 public class EssayViewCellReactor: Reactor {
     
+    // MARK: Constant
+    
+    public struct Constant {
+        static let createDateOriginFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"
+        static let createDateTargetFormat = "yyyy년 MM월 dd일 HH:mm"
+    }
+    
     // MARK: Action
     
     public enum Action {
@@ -39,9 +46,13 @@ public class EssayViewCellReactor: Reactor {
         
         self.initialState = State(
             id: essayData.id,
-            createdDate: essayData.createdDate.changeDateStringFormat(),
+            createdDate: essayData.createdDate
+                            .changeDateStringFormat(
+                                dateFormat: Constant.createDateOriginFormat,
+                                changeForamt: Constant.createDateTargetFormat
+                            ),
             title: essayData.title,
-            content: essayData.content,
+            content: essayData.content + "...",
             thumbnail: essayData.thumbnail
         )
     }

@@ -64,8 +64,8 @@ public class WritingTabView: BaseView {
     
     private func setLayout() {
         self.lbTitle.snp.makeConstraints {
-            $0.leading.trailing.top.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(4.0)
+            $0.top.equalToSuperview()
+            $0.leading.trailing.bottom.equalToSuperview().inset(4.0)
         }
         
         self.viBottomBar.snp.makeConstraints {
