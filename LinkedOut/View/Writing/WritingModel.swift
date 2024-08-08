@@ -42,17 +42,33 @@ public struct EssayArray: Codable {
     public var page: Int
 }
 
+public struct EssayNonePagingArray: Codable {
+    let essays: [Essay]
+}
+
 public struct Essay: Codable {
     
     let id: Int
     let createdDate, status: String
     let thumbnail: String?
     let title, content: String
-    let author: Author    
+    let author: Author?
+}
+
+public struct EssaySentenceArray: Codable {
+    let essays: [EssaySentence]
+}
+
+public struct EssaySentence: Codable {
+    let id: Int
+    let content: String
+    let status: String
+    let createdDate: String
 }
 
 public struct Author: Codable {
     let id: Int
-    let email, nickname, createdDate: String
+    let email, createdDate: String
+    let nickname: String?
     let profileImage: String?
 }

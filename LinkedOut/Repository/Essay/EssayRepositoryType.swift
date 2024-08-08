@@ -8,6 +8,19 @@
 import RxSwift
 
 public protocol EssayRepositoryType {
+    
     func getEssays() -> Single<ApiResult<EssayArray>>
+    
     func postEssays()
+    
+    func getEssayRecommend(limit: Int?) -> Single<ApiResult<EssayNonePagingArray>>
+    
+    func getEssaysFollowings(page: Int?, limit: Int?) -> Single<ApiResult<EssayNonePagingArray>>
+    
+    func getEssaysSentence(type: String, limit: Int?) -> Single<ApiResult<EssaySentenceArray>>
+    
+    func getEssaysRecent(page: Int?, limit: Int?) -> Single<ApiResult<EssayArray>>
+    
+    func getEssaysSearch(keyword: String, page: Int?, limit: Int?) -> Single<ApiResult<EssayArray>>
+
 }

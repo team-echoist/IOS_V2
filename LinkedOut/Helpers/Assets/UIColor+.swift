@@ -11,6 +11,8 @@ extension UIColor {
     
     struct Theme {
         static let black = UIColor(hexCode: "#121212")
+        static let titleBlack = UIColor(hexCode: "#252525")
+        static let subTitleBlack = UIColor(hexCode: "#262626")
         static let gray01 = UIColor(hexCode: "#686868")
     }
             

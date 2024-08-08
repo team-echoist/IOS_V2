@@ -31,4 +31,59 @@ public class EssayViewModel: BaseViewModel, EssayViewModelType {
         
     }
     
-}// class
+    public func getEssayRecommend(limit: Int?) -> Single<ApiResult<EssayNonePagingArray>> {
+        let observable = self
+            .essayRepository
+            .getEssayRecommend(limit: limit)
+            .flatMap { (response) in
+                return Single.just(response)
+            }
+        
+        return observable
+    }
+    
+    public func getEssaysFollowings(page: Int?, limit: Int?) -> Single<ApiResult<EssayNonePagingArray>> {
+        let observable = self
+            .essayRepository
+            .getEssaysFollowings(page: page, limit: limit)
+            .flatMap { (response) in
+                return Single.just(response)
+            }
+        
+        return observable
+    }
+    
+    public func getEssaysSentence(type: String, limit: Int?) -> Single<ApiResult<EssaySentenceArray>> {
+        let observable = self
+            .essayRepository
+            .getEssaysSentence(type: type, limit: limit)
+            .flatMap { (response) in
+                return Single.just(response)
+            }
+        
+        return observable
+    }
+    
+    public func getEssaysRecent(page: Int?, limit: Int?) -> Single<ApiResult<EssayArray>> {
+        let observable = self
+            .essayRepository
+            .getEssays()
+            .flatMap { (response) in
+                return Single.just(response)
+            }
+        
+        return observable
+    }
+    
+    public func getEssaysSearch(keyword: String, page: Int?, limit: Int?) -> Single<ApiResult<EssayArray>> {
+        let observable = self
+            .essayRepository
+            .getEssaysSearch(keyword: keyword, page: page, limit: limit)
+            .flatMap { (response) in
+                return Single.just(response)
+            }
+        
+        return observable
+    }
+    
+}

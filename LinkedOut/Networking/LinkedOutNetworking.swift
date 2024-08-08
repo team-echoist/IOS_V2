@@ -27,6 +27,11 @@ public enum LinkedOutAPI {
     // essay
     case getEssays
     case postEssays
+    case getEssaysRecommend(limit: Int = 20)
+    case getEssaysFollowings(page: Int = 1, limit: Int = 20)
+    case getEssaysSentence(type: String = "first", limit: Int = 20)
+    case getEssaysRecent(page: Int = 1, limit: Int = 20)
+    case getEssaysSearch(keyword: String, page: Int = 1, limit: Int = 20)
 }
 
 // MARK: Route
@@ -39,7 +44,12 @@ enum ApiRoute: String {
     case userInfo = "users/info"
     
     // essay
-    case essays = "essays"
+    case essays = "essays" // 에세이 조회
+    case essaysRecommend = "essays/recommend" // 랜덤 추천 에세이 리스트 조회
+    case essaysFollowings = "essays/followings" // 팔로우 중인 유저들의 최신 에세이 리스트
+    case essaysSentence = "essays/sentence" // 한 문장 에세이 조회
+    case essaysRecent = "essays/recent" // 최근 조회한 에세이 목록
+    case essaysSearch = "essays/search" // 에세이 검색
 }
 
 // MARK: Param
@@ -49,6 +59,8 @@ public enum ApiParam: String {
     case limit = "limit" // (number, optional): 조회할 에세이 수를 지정합니다. 기본값은 10입니다.
     case published = "published" // 발행 여부 (true 또는 false)
     case storyId = "storyId" // 특정 스토리에 속한 에세이만 조회
+    case keyword = "keyword" // 검색할 키워드
+    case type = "type"
     case title = "title"
     case content = "content"
     case linkedOutGauge = "linkedOutGauge"
@@ -72,35 +84,75 @@ extension LinkedOutAPI: SugarTargetType {
     
     public var route: MoyaSugar.Route {
         switch self {
-            case .authHealthCheck:
-                return .get(ApiRoute.authHealthCheck.rawValue)
-            case .getUserInfo:
-                return .get(ApiRoute.userInfo.rawValue)
-            case .getEssays:
-                return .get(ApiRoute.essays.rawValue)
-            case .postEssays:
-                return .post(ApiRoute.essays.rawValue)
+        case .authHealthCheck:
+            return .get(ApiRoute.authHealthCheck.rawValue)
+        case .getUserInfo:
+            return .get(ApiRoute.userInfo.rawValue)
+        // Essasy
+        case .getEssays:
+            return .get(ApiRoute.essays.rawValue)
+        case .postEssays:
+            return .post(ApiRoute.essays.rawValue)
+        case .getEssaysRecommend:
+            return .get(ApiRoute.essaysRecommend.rawValue)
+        case .getEssaysFollowings:
+            return .get(ApiRoute.essaysFollowings.rawValue)
+        case .getEssaysSentence:
+            return .get(ApiRoute.essaysSentence.rawValue)
+        case .getEssaysRecent:
+            return .get(ApiRoute.essaysRecent.rawValue)
+        case .getEssaysSearch:
+            return .get(ApiRoute.essaysSearch.rawValue)
         }
     }
     
     public var parameters: MoyaSugar.Parameters? {
         return ApiParam.makeParam(from: [:], method: .get)
         switch self {
-            // auth
-            case .authHealthCheck:
-                return ApiParam.makeParam(from: [:], method: .get)
-            // user
-            case .getUserInfo:
-                return ApiParam.makeParam(from: [:], method: .get)
-            // essay
-            case .getEssays:
-                let dic: [String: Any] = [:]
-                return ApiParam.makeParam(from: dic, method: .get)
-            case .postEssays:
-                let dic: [String: Any] = [:]
-                return ApiParam.makeParam(from: dic, method: .post)
-            
-            }
+        // auth
+        case .authHealthCheck:
+            return ApiParam.makeParam(from: [:], method: .get)
+        // user
+        case .getUserInfo:
+            return ApiParam.makeParam(from: [:], method: .get)
+        // essay
+        case .getEssays:
+            let dic: [String: Any] = [:]
+            return ApiParam.makeParam(from: dic, method: .get)
+        case .postEssays:
+            let dic: [String: Any] = [:]
+            return ApiParam.makeParam(from: dic, method: .post)
+        case .getEssaysRecommend(let limit):
+            let dic: [String: Any] = [
+                ApiParam.limit.rawValue: limit
+            ]
+            return ApiParam.makeParam(from: dic, method: .get)
+        case .getEssaysFollowings(let page, let limit):
+            let dic: [String: Any] = [
+                ApiParam.page.rawValue: page,
+                ApiParam.limit.rawValue: limit
+            ]
+            return ApiParam.makeParam(from: dic, method: .get)
+        case .getEssaysSentence(let type, let limit):
+            let dic: [String: Any] = [
+                ApiParam.type.rawValue: type,
+                ApiParam.limit.rawValue: limit
+            ]
+            return ApiParam.makeParam(from: dic, method: .get)
+        case .getEssaysRecent(let page, let limit):
+            let dic: [String: Any] = [
+                ApiParam.page.rawValue: page,
+                ApiParam.limit.rawValue: limit
+            ]
+            return ApiParam.makeParam(from: dic, method: .get)
+        case .getEssaysSearch(let keyword, let page, let limit):
+            let dic: [String: Any] = [
+                ApiParam.keyword.rawValue: keyword,
+                ApiParam.page.rawValue: page,
+                ApiParam.limit.rawValue: limit
+            ]
+            return ApiParam.makeParam(from: dic, method: .get)
+        }
     }
     
     public var baseURL: URL {

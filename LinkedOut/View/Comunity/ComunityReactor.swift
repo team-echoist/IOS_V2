@@ -21,21 +21,30 @@ public final class ComunityReactor: Reactor {
     private let endLoading = Observable<Mutation>.just(.setLoading(false))
     
     public enum Action {
-        case inputBack
+        case inputRefresh
+        
+        case inputSelectedTab(ComunityTabType)
     }
     
     public enum Mutaion {
         case setLoading(Bool)
-//        case setError(Tracked<Error>?)
-//        case setAlert(Tracked<String>?)
+        case setRefresh
+        case setError(Tracked<LinkedOutError>?)
+        case setAlert(Tracked<LocalizeString>?)
         case setMessage(Tracked<String>?)
+        
+        case setSelectedTab(ComunityTabType)
+        case appendEssays([Essay])
     }
     
     public struct State {
         public var isLoading: Bool = false
-//        public var error: Tracked<Error>?
-//        public var alert: Tracked<String>?
+        public var error: Tracked<LinkedOutError>?
+        public var alert: Tracked<LocalizeString>?
         public var message: Tracked<String>?
+        
+        public var selectedTab: ComunityTabType = .random
+        public var essayList: [EssayRandomSection] = [.items([])]
     }
     
     // MARK: State
@@ -44,12 +53,20 @@ public final class ComunityReactor: Reactor {
     
     // MARK: View Model
     
-    //fileprivate let someViewModel: SomeViewModelType
+    fileprivate let essayViewModel: EssayViewModelType
+    
+    // MARK: Factory
+    
+    public let randomCellReactorFactory: (Essay) -> EssayRandomViewCellReactor
     
     // MARK: Initialize
     
-    public init() {//(someViewModel: SomeViewModelType) {
-        //self.someViewModel = someViewModel
+    public init(
+        essayViewModel: EssayViewModelType,
+        randomCellReactorFactory: @escaping (Essay) -> EssayRandomViewCellReactor
+    ) {
+        self.essayViewModel = essayViewModel
+        self.randomCellReactorFactory = randomCellReactorFactory
     }
     
     // MARK: Mutate
@@ -57,12 +74,11 @@ public final class ComunityReactor: Reactor {
     public func mutate(action: Action) -> Observable<Mutaion> {
         
         switch action {
-            case .inputBack:
-                // TODO: go
-                //AppDelegate.shared.router.back()
-                return .empty()
+        case .inputRefresh:
+            return self.getEssayList(start: self.startLoading, end: self.endLoading)
+        case .inputSelectedTab(let tab):
+            return .just(.setSelectedTab(tab))
         }
-        
     }
     
     // MARK: Reduce
@@ -77,10 +93,56 @@ public final class ComunityReactor: Reactor {
         switch mutation {
             
             case let .setLoading(isLoading): newState.isLoading = isLoading; return newState
-//            case let .setError(error): newState.error = error; return newState
-//            case let .setAlert(alert): newState.alert = alert; return newState
+            case let .setError(error): newState.error = error; return newState
+            case let .setAlert(alert): newState.alert = alert; return newState
             case let .setMessage(message): newState.message = message; return newState
             
-        }// switch
-    }// reduce
-}// class
+            case .setRefresh:
+                return newState
+            case let .setSelectedTab(tab): newState.selectedTab = tab; return newState
+            case let .appendEssays(essays):
+                let sectionItems = newState.essayList[0].items + self.getRandomEssaySectionItems(with : essays)
+                newState.essayList = [.items(sectionItems)]
+                return newState
+        }
+    }
+    
+    // MARK: Fetch
+    
+    private func getEssayList(
+        start: Observable<Mutation>,
+        end: Observable<Mutation>
+    ) -> Observable<Mutation> {
+        guard !self.currentState.isLoading else { return .empty() }
+        
+        let action = self.essayViewModel
+            .getEssayRecommend(limit: nil)
+            .asObservable()
+            .map { (response) -> ComunityReactor.Mutaion in
+                return self.getEssayData(response)
+            }
+            .catch { (error) in
+                return .just(.setError(makeError(LinkedOutError(error))))
+            }
+            .debug()
+        
+        return .concat([start, action, end])
+    }
+    
+    private func getEssayData(_ response: ApiResult<EssayNonePagingArray>) -> ComunityReactor.Mutaion {
+        if let items = response.data?.essays, items.count > 0 {
+            return .appendEssays(items)
+        }
+        
+        return .appendEssays([])
+    }
+    
+    // MARK: Section
+    
+    private func getRandomEssaySectionItems(with essays: [Essay]) -> [EssayRandomItem] {
+        let items = essays
+            .map(self.randomCellReactorFactory)
+            .map(EssayRandomItem.essayRandomViewCellReactor)
+        return items
+    }
+}

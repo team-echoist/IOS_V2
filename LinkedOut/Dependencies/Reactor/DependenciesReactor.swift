@@ -32,6 +32,9 @@ extension Dependencies: DependenciesReactorType {
     }
     
     public func makeComunity() -> ComunityReactor {
-        return ComunityReactor()
+        return ComunityReactor(
+            essayViewModel: self.makeEssay(),
+            randomCellReactorFactory: EssayRandomViewCellReactor.init
+        )
     }
 }

@@ -67,6 +67,7 @@ public final class WritingReactor: Reactor {
     // MARK: View Model
     
     fileprivate let essayViewModel: EssayViewModelType
+    
     // MARK: Factory
     
     public let cellReactorFactory: (Essay) -> EssayViewCellReactor
@@ -117,8 +118,8 @@ public final class WritingReactor: Reactor {
                 return newState
             
             case let .appendEssays(essays):
-            let sectionItems = newState.essayList[0].items + self.getSectionItems(with : essays)
-            newState.essayList = [.items(sectionItems)]
+                let sectionItems = newState.essayList[0].items + self.getSectionItems(with : essays)
+                newState.essayList = [.items(sectionItems)]
                 return newState
             case let .setSelectedTab(selectedTab): newState.selectedTab = selectedTab; return newState
             

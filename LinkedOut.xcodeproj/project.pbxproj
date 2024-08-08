@@ -76,6 +76,13 @@
 		558264EB2C62057600449B13 /* onboarding_clear_1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 558264E62C62057600449B13 /* onboarding_clear_1.gif */; };
 		558264EE2C62061C00449B13 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264ED2C62061C00449B13 /* UIImage+Gif.swift */; };
 		558264F12C620BB000449B13 /* splash_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 558264F02C620BB000449B13 /* splash_image.png */; };
+		558264F62C62205400449B13 /* ComunityTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264F52C62205400449B13 /* ComunityTabView.swift */; };
+		558264F82C62206700449B13 /* ComunityTabModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264F72C62206700449B13 /* ComunityTabModel.swift */; };
+		558264FE2C636A7400449B13 /* EssayRadomListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264FD2C636A7400449B13 /* EssayRadomListView.swift */; };
+		558265002C6444FC00449B13 /* EssayFollowingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264FF2C6444FC00449B13 /* EssayFollowingListView.swift */; };
+		558265022C64462600449B13 /* EssayRandomViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558265012C64462600449B13 /* EssayRandomViewCell.swift */; };
+		558265042C64465F00449B13 /* EssayRandomViewCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558265032C64465F00449B13 /* EssayRandomViewCellReactor.swift */; };
+		558265062C645B8A00449B13 /* EssayRandomSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558265052C645B8A00449B13 /* EssayRandomSection.swift */; };
 		55A01B272C536D9D00B92C63 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B242C536D9D00B92C63 /* HomeViewController.swift */; };
 		55A01B282C536D9D00B92C63 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B252C536D9D00B92C63 /* HomeModel.swift */; };
 		55A01B292C536D9D00B92C63 /* HomeReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B262C536D9D00B92C63 /* HomeReactor.swift */; };
@@ -247,6 +254,13 @@
 		558264E62C62057600449B13 /* onboarding_clear_1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = onboarding_clear_1.gif; sourceTree = "<group>"; };
 		558264ED2C62061C00449B13 /* UIImage+Gif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
 		558264F02C620BB000449B13 /* splash_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_image.png; sourceTree = "<group>"; };
+		558264F52C62205400449B13 /* ComunityTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComunityTabView.swift; sourceTree = "<group>"; };
+		558264F72C62206700449B13 /* ComunityTabModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComunityTabModel.swift; sourceTree = "<group>"; };
+		558264FD2C636A7400449B13 /* EssayRadomListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssayRadomListView.swift; sourceTree = "<group>"; };
+		558264FF2C6444FC00449B13 /* EssayFollowingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssayFollowingListView.swift; sourceTree = "<group>"; };
+		558265012C64462600449B13 /* EssayRandomViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssayRandomViewCell.swift; sourceTree = "<group>"; };
+		558265032C64465F00449B13 /* EssayRandomViewCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssayRandomViewCellReactor.swift; sourceTree = "<group>"; };
+		558265052C645B8A00449B13 /* EssayRandomSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssayRandomSection.swift; sourceTree = "<group>"; };
 		55A01B242C536D9D00B92C63 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		55A01B252C536D9D00B92C63 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		55A01B262C536D9D00B92C63 /* HomeReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeReactor.swift; sourceTree = "<group>"; };
@@ -785,8 +799,45 @@
 		558264F32C621DFC00449B13 /* Tab */ = {
 			isa = PBXGroup;
 			children = (
+				558264F52C62205400449B13 /* ComunityTabView.swift */,
+				558264F72C62206700449B13 /* ComunityTabModel.swift */,
 			);
 			path = Tab;
+			sourceTree = "<group>";
+		};
+		558264F92C63531200449B13 /* Section */ = {
+			isa = PBXGroup;
+			children = (
+				558265052C645B8A00449B13 /* EssayRandomSection.swift */,
+			);
+			path = Section;
+			sourceTree = "<group>";
+		};
+		558264FA2C63531C00449B13 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				558264FC2C636A5B00449B13 /* EssayFollowing */,
+				558264FB2C636A5000449B13 /* EssayRandom */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		558264FB2C636A5000449B13 /* EssayRandom */ = {
+			isa = PBXGroup;
+			children = (
+				558264FD2C636A7400449B13 /* EssayRadomListView.swift */,
+				558265012C64462600449B13 /* EssayRandomViewCell.swift */,
+				558265032C64465F00449B13 /* EssayRandomViewCellReactor.swift */,
+			);
+			path = EssayRandom;
+			sourceTree = "<group>";
+		};
+		558264FC2C636A5B00449B13 /* EssayFollowing */ = {
+			isa = PBXGroup;
+			children = (
+				558264FF2C6444FC00449B13 /* EssayFollowingListView.swift */,
+			);
+			path = EssayFollowing;
 			sourceTree = "<group>";
 		};
 		55A01B232C536D9000B92C63 /* Home */ = {
@@ -844,6 +895,8 @@
 		55A01B3A2C54A5B100B92C63 /* Comunity */ = {
 			isa = PBXGroup;
 			children = (
+				558264FA2C63531C00449B13 /* View */,
+				558264F92C63531200449B13 /* Section */,
 				558264F32C621DFC00449B13 /* Tab */,
 				558264DB2C61F39F00449B13 /* ComunityViewController.swift */,
 				558264DC2C61F39F00449B13 /* ComunityModel.swift */,
@@ -1215,8 +1268,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				558265042C64465F00449B13 /* EssayRandomViewCellReactor.swift in Sources */,
 				552A427E2C50FB74002199F6 /* RouterReactor.swift in Sources */,
 				55A01B2E2C53743A00B92C63 /* DependenciesReactorType.swift in Sources */,
+				558265022C64462600449B13 /* EssayRandomViewCell.swift in Sources */,
 				552A427C2C50FB74002199F6 /* PushStore.swift in Sources */,
 				558264DA2C60C53600449B13 /* MyInfoManager.swift in Sources */,
 				55F49D7E2C523900000879D1 /* String+.swift in Sources */,
@@ -1240,6 +1295,7 @@
 				55F49DE92C532AFE000879D1 /* NVActivityIndicatorAnimationBallRotateChase.swift in Sources */,
 				558264B42C5B723C00449B13 /* BaseCollectionViewCell.swift in Sources */,
 				552A40952C50F45F002199F6 /* Logger.swift in Sources */,
+				558265062C645B8A00449B13 /* EssayRandomSection.swift in Sources */,
 				55A0428D2C53440C0065DDBC /* Bundle.swift in Sources */,
 				55F49DF82C532AFE000879D1 /* NVActivityIndicatorAnimationLineScalePulseOutRapid.swift in Sources */,
 				552A427A2C50FB74002199F6 /* Appstorage.swift in Sources */,
@@ -1261,6 +1317,7 @@
 				55F49DF22C532AFE000879D1 /* NVActivityIndicatorAnimationBlank.swift in Sources */,
 				558264A62C59FC4300449B13 /* View+.swift in Sources */,
 				55A01B272C536D9D00B92C63 /* HomeViewController.swift in Sources */,
+				558265002C6444FC00449B13 /* EssayFollowingListView.swift in Sources */,
 				55A01B432C575DCA00B92C63 /* MainTabBarViewController.swift in Sources */,
 				55A01B282C536D9D00B92C63 /* HomeModel.swift in Sources */,
 				558264B92C5B7B6100449B13 /* EssayViewCell.swift in Sources */,
@@ -1270,6 +1327,7 @@
 				552A427F2C50FB74002199F6 /* RouterType.swift in Sources */,
 				552A42BB2C51ED40002199F6 /* Localization.swift in Sources */,
 				55F49DE12C532AFE000879D1 /* NVActivityIndicatorAnimationBallClipRotatePulse.swift in Sources */,
+				558264F62C62205400449B13 /* ComunityTabView.swift in Sources */,
 				553824BA2C58DB7600A744BD /* AuthViewModel.swift in Sources */,
 				55F49DE82C532AFE000879D1 /* NVActivityIndicatorAnimationBallRotate.swift in Sources */,
 				55F49D592C5210A5000879D1 /* DependenciesRepositoryType.swift in Sources */,
@@ -1327,6 +1385,7 @@
 				558264C82C5E89D500449B13 /* BaseView.swift in Sources */,
 				55A01B402C54A5FE00B92C63 /* WritingModel.swift in Sources */,
 				558264C32C5CD70A00449B13 /* String+Date.swift in Sources */,
+				558264F82C62206700449B13 /* ComunityTabModel.swift in Sources */,
 				55A01B412C54A5FE00B92C63 /* WritingReactor.swift in Sources */,
 				558264AE2C5A19F100449B13 /* EssayRepositoryType.swift in Sources */,
 				558264D42C5EA95100449B13 /* UsersViewModelType.swift in Sources */,
@@ -1346,6 +1405,7 @@
 				55F49DE32C532AFE000879D1 /* NVActivityIndicatorAnimationBallGridBeat.swift in Sources */,
 				553824BF2C58DC5900A744BD /* BaseViewModel.swift in Sources */,
 				552A42C12C51F01A002199F6 /* List.swift in Sources */,
+				558264FE2C636A7400449B13 /* EssayRadomListView.swift in Sources */,
 				55F49D612C5217B1000879D1 /* Networking.swift in Sources */,
 				55F49DFE2C532AFE000879D1 /* NVActivityIndicatorAnimationTriangleSkewSpin.swift in Sources */,
 				558264BB2C5B7CA400449B13 /* EssayViewCellReactor.swift in Sources */,
