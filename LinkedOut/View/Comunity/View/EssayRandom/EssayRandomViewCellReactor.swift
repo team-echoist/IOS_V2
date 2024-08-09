@@ -38,6 +38,7 @@ public class EssayRandomViewCellReactor: Reactor {
         public var title: String
         public var content: String
         public var thumbnail: String?
+        public var authorNickname: String?
     }
     
     public var initialState: State
@@ -46,14 +47,15 @@ public class EssayRandomViewCellReactor: Reactor {
         
         self.initialState = State(
             id: essayData.id,
-            createdDate: essayData.createdDate
+            createdDate: "· " + essayData.createdDate
                             .changeDateStringFormat(
                                 dateFormat: Constant.createDateOriginFormat,
                                 changeForamt: Constant.createDateTargetFormat
                             ),
             title: essayData.title,
-            content: essayData.content + "...",
-            thumbnail: essayData.thumbnail
+            content: essayData.content,
+            thumbnail: essayData.thumbnail,
+            authorNickname: essayData.author?.nickname
         )
     }
     

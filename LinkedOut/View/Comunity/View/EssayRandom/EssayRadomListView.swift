@@ -31,7 +31,7 @@ public class EssayRandomListView: BaseView, View {
         static let borderHeight = 4.f
         
         static let sectionLineSpacing = 0.f
-        static let sectionInsetLeftRight = 0.f
+        static let sectionInsetLeftRight = 20.f
         static let sectionInteritemSpacing = 0.f
         
         static let contentSideMargin = 20.f
@@ -79,7 +79,8 @@ public class EssayRandomListView: BaseView, View {
         $0.backgroundColor = .clear
         $0.bounces = false
         $0.register(EssayRandomViewCell.self, forCellWithReuseIdentifier: Constant.essayRandomCell)
-
+        $0.isPrefetchingEnabled = true
+        $0.contentInsetAdjustmentBehavior = .never
     }
     
     // MARK: Property
@@ -118,6 +119,7 @@ public class EssayRandomListView: BaseView, View {
                     
                     cell.dependency = cellDependency
                     cell.reactor = reactor
+                    
                     return cell
                 }
             }
@@ -132,12 +134,12 @@ public class EssayRandomListView: BaseView, View {
     // MARK: Bind - view
     
     public func bindView(_ reactor: Reactor) {
+        self.cvRandom.rx.setDelegate(self).disposed(by: self.disposeBag)
+        
         reactor.state
             .map { $0.essayList }
             .bind(to: self.cvRandom.rx.items(dataSource: self.dataSource))
-            .disposed(by: self.disposeBag)                    
-        
-        self.cvRandom.rx.setDelegate(self).disposed(by: self.disposeBag)
+            .disposed(by: self.disposeBag)
     }
     
     // MARK: Layout
@@ -207,7 +209,7 @@ extension EssayRandomListView: UICollectionViewDelegateFlowLayout {
         let sectionItem = self.dataSource[indexPath]
         switch sectionItem {
         case .essayRandomViewCellReactor(let reactor):
-            return EssayRandomViewCell.size(width: self.width, reactor: reactor)
+            return EssayRandomViewCell.size(width: self.width - (Metric.sectionInsetLeftRight * 2), reactor: reactor)
         }
     }
 

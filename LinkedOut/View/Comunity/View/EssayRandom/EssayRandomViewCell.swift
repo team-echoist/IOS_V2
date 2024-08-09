@@ -27,9 +27,12 @@ public class EssayRandomViewCell: BaseCollectionViewCell, View {
     // MARK: Metric
     
     public struct Metric {
-        static let baseCellHeihgt = 112.f
+        static let baseCellHeihgt = 128.f
+        static let cellPadding = 14.f
         
-        static let topHeight = 24.f
+        static let imageSpacing = 8.f
+        
+        static let topHeight = 21.f
         static let topSpacing = 8.f
         
         static let linkedOutSize = 24.f
@@ -68,6 +71,13 @@ public class EssayRandomViewCell: BaseCollectionViewCell, View {
     
     // MARK: UI
     
+    private let viStack = UIStackView().then {
+        $0.axis = .horizontal
+        $0.spacing = Metric.imageSpacing
+        $0.distribution = .fillProportionally
+        $0.alignment = .center
+    }
+    
     private let viContent = UIView()
     
     private let viTop = UIView()
@@ -76,6 +86,11 @@ public class EssayRandomViewCell: BaseCollectionViewCell, View {
         $0.textColor = .white
         $0.font = Font.title
         $0.lineBreakMode = .byTruncatingTail
+    }
+    
+    private let viContentStack = UIStackView().then {
+        $0.axis = .vertical
+        $0.spacing = 6.f
     }
     
     private let lbContent = UILabel().then {
@@ -113,17 +128,41 @@ public class EssayRandomViewCell: BaseCollectionViewCell, View {
         super.init(frame: frame)
         self.contentView.backgroundColor = Color.background
         
-        self.contentView.addSubview(self.viContent)
+        self.contentView.addSubview(self.viStack)
+        self.contentView.addSubview(self.viDivier)
         
-        let _ = [self.ivThumbnail, self.viTop, self.lbContent, self.viDivier, self.lbAuthorNickname].map {
+        let _ = [self.viContent, self.ivThumbnail].map {
+            self.viStack.addArrangedSubview($0)
+        }
+        
+        let _ = [self.viTop, self.viContentStack,].map {
             self.viContent.addSubview($0)
         }
         
+        // 내용 , 닉네임 라벨 stack view
+        let _ = [self.lbContent, self.lbAuthorNickname].map {
+            self.viContentStack.addArrangedSubview($0)
+        }
+                
         let _ = [self.lbTitle, self.lbCreateDate].map {
             self.viTop.addSubview($0)
         }
+        
+        self.setLayout()
                 
         super.addTapHandler()
+    }
+    
+    public override func prepareForReuse() {
+        super.prepareForReuse()                
+        self.disposeBag = DisposeBag()
+    }
+    
+    override public func sizeThatFits(_ size: CGSize) -> CGSize {
+        self.setNeedsLayout()
+        self.layoutIfNeeded()
+
+        return CGSize(width: 0, height: 0)
     }
     
     // MARK: Configure
@@ -147,9 +186,26 @@ public class EssayRandomViewCell: BaseCollectionViewCell, View {
             .subscribe(onNext: { [weak self] in
                 guard let self = self else { return }
                 if let urlString = $0, let url = URL(string: urlString) {
-                    self.ivThumbnail.kf.setImage(with: url)
+                    self.ivThumbnail.isHidden = false
+                    self.ivThumbnail.kf.setImage(with: url) { result in
+                        DispatchQueue.main.async {
+                            switch result {
+                            case .success(let value):
+                                self.ivThumbnail.image = value.image
+                            case .failure(_):
+                                self.ivThumbnail.image = nil
+                            }
+                        }
+                    }
+                } else {
+                    self.ivThumbnail.isHidden = true
                 }
             })
+            .disposed(by: self.disposeBag)
+        
+        reactor.state.map { $0.authorNickname }
+            .filterNil()
+            .bind(to: self.lbAuthorNickname.rx.text)
             .disposed(by: self.disposeBag)
         
         self.setNeedsLayout()
@@ -169,45 +225,44 @@ public class EssayRandomViewCell: BaseCollectionViewCell, View {
     public override func layoutSubviews() {
         super.layoutSubviews()
         
-        self.viContent.snp.remakeConstraints {
-            $0.edges.equalToSuperview().inset(20)
-        }
         
-        self.viTop.snp.remakeConstraints {
-            $0.height.equalTo(Metric.topHeight)
-            $0.leading.trailing.top.equalToSuperview()
-        }
-        
-        self.lbTitle.snp.remakeConstraints {
-            $0.leading.top.bottom.equalToSuperview()
-        }
-        
-        self.lbCreateDate.snp.remakeConstraints {
-            $0.centerY.equalTo(self.lbTitle)
-            $0.leading.equalTo(self.lbTitle.snp.trailing).offset(6.f)
-            $0.trailing.greaterThanOrEqualToSuperview()
-        }
-        
-        self.lbContent.snp.remakeConstraints {
-            $0.top.equalTo(self.viTop.snp.bottom).offset(10)
-            $0.leading.equalToSuperview()
-        }
-        
-        self.ivThumbnail.snp.remakeConstraints {
-            $0.centerY.equalTo(self.lbContent)
-            $0.leading.equalTo(self.lbContent.snp.trailing).offset(Metric.thumbnailLeftMargin)
-            $0.trailing.equalToSuperview()
-            $0.width.height.equalTo(Metric.thumbnailSize)
-        }
-        
-        self.viDivier.snp.remakeConstraints {
-            $0.leading.bottom.trailing.equalToSuperview()
-            $0.height.equalTo(1)
-        }
         
     }
     
     public func setLayout() {
+        self.viStack.snp.makeConstraints {
+            $0.top.bottom.equalToSuperview().inset(Metric.cellPadding)
+            $0.leading.trailing.equalToSuperview()
+        }
         
+        self.ivThumbnail.snp.makeConstraints {
+            $0.width.height.equalTo(Metric.thumbnailSize)
+        }
+        
+        self.viTop.snp.makeConstraints {
+            $0.height.equalTo(Metric.topHeight)
+            $0.leading.trailing.top.equalToSuperview()
+        }
+        
+        self.lbTitle.snp.makeConstraints {
+            $0.leading.top.bottom.equalToSuperview()
+        }
+        
+        self.lbCreateDate.snp.makeConstraints {
+            $0.centerY.equalTo(self.lbTitle)
+            $0.leading.equalTo(self.lbTitle.snp.trailing).offset(6.f)
+            $0.trailing.lessThanOrEqualToSuperview()
+        }
+        
+        self.viContentStack.snp.makeConstraints {
+            $0.top.equalTo(self.viTop.snp.bottom).offset(10)
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview()
+        }
+        
+        self.viDivier.snp.makeConstraints {
+            $0.leading.bottom.trailing.equalToSuperview()
+            $0.height.equalTo(2)
+        }
     }
 }

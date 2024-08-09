@@ -34,7 +34,6 @@ public final class EssayRepository: EssayRepositoryType {
             .flatMap { (response) in
                 return Single.just(response)
             }
-            .debug()
         
         return observable
     }
@@ -51,7 +50,6 @@ public final class EssayRepository: EssayRepositoryType {
             .flatMap { (response) in
                 return Single.just(response)
             }
-            .debug()
         
         return observable
     }
