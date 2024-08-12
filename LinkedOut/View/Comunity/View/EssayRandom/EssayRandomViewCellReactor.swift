@@ -37,6 +37,7 @@ public class EssayRandomViewCellReactor: Reactor {
         public var createdDate: String
         public var title: String
         public var content: String
+        public var status: EssayStatus
         public var thumbnail: String?
         public var authorNickname: String?
     }
@@ -44,6 +45,8 @@ public class EssayRandomViewCellReactor: Reactor {
     public var initialState: State
     
     public init(essayData: Essay) {
+        
+        log.debug(EssayStatus.getEssayStatus(essayData.status))
         
         self.initialState = State(
             id: essayData.id,
@@ -54,6 +57,7 @@ public class EssayRandomViewCellReactor: Reactor {
                             ),
             title: essayData.title,
             content: essayData.content,
+            status: .getEssayStatus(essayData.status),
             thumbnail: essayData.thumbnail,
             authorNickname: essayData.author?.nickname
         )

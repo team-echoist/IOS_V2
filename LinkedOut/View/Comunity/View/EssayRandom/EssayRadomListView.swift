@@ -44,7 +44,8 @@ public class EssayRandomListView: BaseView, View {
     // MARK: Font
     
     fileprivate struct Font {
-        static let title: UIFont = .systemFont(ofSize: 16.0, weight: .semibold)
+        static let title: UIFont = .getFont(size: 16.0, .semiBold)
+        static let subTitle: UIFont = .getFont(size: 12.0, .regular)
     }
     
     // MARK: Color
@@ -69,6 +70,7 @@ public class EssayRandomListView: BaseView, View {
     
     private let lbSubTitle = UILabel().then {
         $0.text = Constant.subTitle
+        $0.font = Font.subTitle
         $0.textColor = Color.randomSubTitle
     }
     

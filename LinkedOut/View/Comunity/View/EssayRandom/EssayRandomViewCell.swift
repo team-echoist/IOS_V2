@@ -32,7 +32,7 @@ public class EssayRandomViewCell: BaseCollectionViewCell, View {
         
         static let imageSpacing = 8.f
         
-        static let topHeight = 21.f
+        static let topHeight = 24.f
         static let topSpacing = 8.f
         
         static let linkedOutSize = 24.f
@@ -67,6 +67,7 @@ public class EssayRandomViewCell: BaseCollectionViewCell, View {
     
     public struct Image {
         static let option = UIImage(named: "option_dot")
+        static let linkedout = UIImage(named: "linkedout_small")
     }
     
     // MARK: UI
@@ -80,7 +81,10 @@ public class EssayRandomViewCell: BaseCollectionViewCell, View {
     
     private let viContent = UIView()
     
-    private let viTop = UIView()
+    private let viTop = UIStackView().then {
+        $0.axis = .horizontal
+        $0.spacing = 6.f
+    }
     
     private let lbTitle = UILabel().then {
         $0.textColor = .white
@@ -104,6 +108,10 @@ public class EssayRandomViewCell: BaseCollectionViewCell, View {
     private let lbCreateDate = UILabel().then {
         $0.textColor = Color.dateText
         $0.font = Font.createDate
+    }
+    
+    private let ivLinkedOut = UIImageView().then {
+        $0.image = Image.linkedout
     }
     
     private let lbAuthorNickname = UILabel().then {
@@ -144,8 +152,8 @@ public class EssayRandomViewCell: BaseCollectionViewCell, View {
             self.viContentStack.addArrangedSubview($0)
         }
                 
-        let _ = [self.lbTitle, self.lbCreateDate].map {
-            self.viTop.addSubview($0)
+        let _ = [self.ivLinkedOut, self.lbTitle, self.lbCreateDate].map {
+            self.viTop.addArrangedSubview($0)
         }
         
         self.setLayout()
@@ -154,7 +162,7 @@ public class EssayRandomViewCell: BaseCollectionViewCell, View {
     }
     
     public override func prepareForReuse() {
-        super.prepareForReuse()                
+        super.prepareForReuse()
         self.disposeBag = DisposeBag()
     }
     
@@ -208,6 +216,12 @@ public class EssayRandomViewCell: BaseCollectionViewCell, View {
             .bind(to: self.lbAuthorNickname.rx.text)
             .disposed(by: self.disposeBag)
         
+        reactor.state
+            .map { $0.status }
+            .map { $0 != EssayStatus.linkedout }
+            .bind(to: self.ivLinkedOut.rx.isHidden)
+            .disposed(by: self.disposeBag)
+        
         self.setNeedsLayout()
     }
     
@@ -241,18 +255,23 @@ public class EssayRandomViewCell: BaseCollectionViewCell, View {
         
         self.viTop.snp.makeConstraints {
             $0.height.equalTo(Metric.topHeight)
-            $0.leading.trailing.top.equalToSuperview()
-        }
-        
-        self.lbTitle.snp.makeConstraints {
-            $0.leading.top.bottom.equalToSuperview()
-        }
-        
-        self.lbCreateDate.snp.makeConstraints {
-            $0.centerY.equalTo(self.lbTitle)
-            $0.leading.equalTo(self.lbTitle.snp.trailing).offset(6.f)
+            $0.leading.top.equalToSuperview()
             $0.trailing.lessThanOrEqualToSuperview()
         }
+//        
+//        self.ivLinkedOut.snp.makeConstraints {
+//            $0.leading.top.bottom.equalToSuperview()
+//        }
+//        
+//        self.lbTitle.snp.makeConstraints {
+//            $0.centerY.equalTo(self.ivLinkedOut)
+//            $0.leading.equalTo(self.ivLinkedOut.snp.trailing).offset(6.f)
+//        }
+//        
+//        self.lbCreateDate.snp.makeConstraints {
+//            $0.centerY.equalTo(self.lbTitle)
+//            $0.leading.equalTo(self.lbTitle.snp.trailing).offset(6.f)
+//        }
         
         self.viContentStack.snp.makeConstraints {
             $0.top.equalTo(self.viTop.snp.bottom).offset(10)

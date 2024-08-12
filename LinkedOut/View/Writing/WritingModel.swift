@@ -55,6 +55,25 @@ public struct Essay: Codable {
     let author: Author?
 }
 
+public enum EssayStatus: String {
+    case privateStaus = "private"
+    case published = "published"
+    case linkedout = "linkedout"
+    
+    static func getEssayStatus(_ string: String) -> EssayStatus {
+        switch string {
+        case EssayStatus.privateStaus.rawValue:
+            return .privateStaus
+        case EssayStatus.published.rawValue:
+            return .published
+        case EssayStatus.linkedout.rawValue:
+            return .linkedout
+        default:
+            return .published
+        }
+    }
+}
+
 public struct EssaySentenceArray: Codable {
     let essays: [EssaySentence]
 }
