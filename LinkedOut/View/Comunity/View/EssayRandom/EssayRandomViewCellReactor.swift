@@ -45,9 +45,7 @@ public class EssayRandomViewCellReactor: Reactor {
     public var initialState: State
     
     public init(essayData: Essay) {
-        
-        log.debug(EssayStatus.getEssayStatus(essayData.status))
-        
+                
         self.initialState = State(
             id: essayData.id,
             createdDate: "· " + essayData.createdDate

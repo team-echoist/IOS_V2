@@ -83,6 +83,7 @@ public class EssayRandomListView: BaseView, View {
         $0.register(EssayRandomViewCell.self, forCellWithReuseIdentifier: Constant.essayRandomCell)
         $0.isPrefetchingEnabled = true
         $0.contentInsetAdjustmentBehavior = .never
+        $0.isScrollEnabled = false
     }
     
     // MARK: Property
@@ -102,7 +103,7 @@ public class EssayRandomListView: BaseView, View {
 
         super.init()
         self.backgroundColor = .Theme.black
-        
+                
         self.setLayout()
     }
         
@@ -131,6 +132,7 @@ public class EssayRandomListView: BaseView, View {
     // MARK: Bind
     public func bind(reactor: Reactor) {
         self.bindView(reactor)
+        self.bindState(reactor)
     }
     
     // MARK: Bind - view
@@ -138,9 +140,27 @@ public class EssayRandomListView: BaseView, View {
     public func bindView(_ reactor: Reactor) {
         self.cvRandom.rx.setDelegate(self).disposed(by: self.disposeBag)
         
+        
+    }
+    
+    // MARK: Bind - State
+    
+    public func bindState(_ reactor: Reactor) {
+        // data soruce
         reactor.state
             .map { $0.essayList }
             .bind(to: self.cvRandom.rx.items(dataSource: self.dataSource))
+            .disposed(by: self.disposeBag)
+        
+        // view height
+        reactor.state
+            .map { $0.essayList }
+            .subscribe(onNext: { [weak self] list in
+                guard let self = self else { return }
+                self.cvRandom.snp.updateConstraints {
+                    $0.height.equalTo(list[0].items.count * Int(EssayRandomViewCell.Metric.baseCellHeihgt))
+                }
+            })
             .disposed(by: self.disposeBag)
     }
     
@@ -173,6 +193,7 @@ public class EssayRandomListView: BaseView, View {
         
         self.cvRandom.snp.makeConstraints {
             $0.top.equalTo(self.lbSubTitle.snp.bottom).offset(Metric.listTopMargin)
+            $0.height.equalTo(500)
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }

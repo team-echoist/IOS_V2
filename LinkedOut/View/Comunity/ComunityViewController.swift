@@ -105,22 +105,21 @@ public final class ComunityViewController: BaseViewController, ComunityViewContr
         $0.backgroundColor = Color.divider
     }
     
+    private let viScroll = UIScrollView().then {
+        $0.showsVerticalScrollIndicator = true
+        $0.alwaysBounceVertical = true
+        $0.backgroundColor = .Theme.black
+    }
+    
+    private let viScrollContent = UIView()
+    
     // 랜덤 에세이
     private var viEssayRandom: EssayRandomListView
     
     // 팔로잉 에세이
-    private let viEssayFollowing = UIView().then {
-        $0.backgroundColor = .Theme.black
-    }
-    
-    private let cvEssayFollowing = UICollectionView(
-        frame: .zero,
-        collectionViewLayout: UICollectionViewFlowLayout()
-    ).then {
-        $0.backgroundColor = .clear
-        $0.bounces = false
-//        $0.register(EssayRandomViewCell.self, forCellWithReuseIdentifier: Constant.essayRandomCell)
-    }
+//    private let viEssayFollowing = UIView().then {
+//        $0.backgroundColor = .Theme.black
+//    }
         
     // MARK: - Initialize
     
@@ -144,8 +143,14 @@ public final class ComunityViewController: BaseViewController, ComunityViewContr
             self.viNavStack.addArrangedSubview($0)
         }
         
-        _ = [self.viTabDivider, self.viTabStack, self.viEssayFollowing, self.viEssayRandom].map {
+        _ = [self.viTabDivider, self.viTabStack, self.viScroll].map {
             self.view.addSubview($0)
+        }
+        
+        self.viScroll.addSubview(self.viScrollContent)
+        
+        _ = [self.viEssayRandom].map {
+            self.viScrollContent.addSubview($0)
         }
         
         _ = [self.viRandomTab, self.viBookmarkedTab].map {
@@ -155,6 +160,14 @@ public final class ComunityViewController: BaseViewController, ComunityViewContr
     
     public required convenience init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override public func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        let contentHeight = self.viEssayRandom.frame.maxY
+        self.viScrollContent.frame.size.height = contentHeight
+        self.viScroll.contentSize = CGSize(width: self.view.frame.width, height: contentHeight)
     }
     
     // MARK: View Life Cycle
@@ -183,7 +196,7 @@ public final class ComunityViewController: BaseViewController, ComunityViewContr
         
         self.viNavStack.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(Metric.navSideMargin)
-            $0.leading.equalTo(self.lbTitle.snp.trailing).offset(Metric.navTitleRightMargin)
+            $0.leading.greaterThanOrEqualTo(self.lbTitle.snp.trailing).offset(Metric.navTitleRightMargin)
             $0.centerY.equalToSuperview()
             $0.height.equalTo(Metric.navHeight)
         }
@@ -201,8 +214,19 @@ public final class ComunityViewController: BaseViewController, ComunityViewContr
             $0.height.equalTo(Metric.tabDividerHeight)
         }
         
-        self.viEssayRandom.snp.makeConstraints {
+        self.viScroll.snp.makeConstraints {
             $0.top.equalTo(self.viTabDivider.snp.bottom).offset(10.0)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        self.viScrollContent.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+            $0.centerX.top.bottom.equalToSuperview()
+            $0.width.equalToSuperview()
+        }
+        
+        self.viEssayRandom.snp.makeConstraints {
+            $0.top.equalToSuperview()
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
@@ -213,6 +237,7 @@ public final class ComunityViewController: BaseViewController, ComunityViewContr
     public func bind(reactor: Reactor) {
         self.bindState(reactor)
         self.bindAction(reactor)
+        self.bindView(reactor)
         
         reactor.action.onNext(.inputRefresh)
     }
@@ -248,11 +273,8 @@ public final class ComunityViewController: BaseViewController, ComunityViewContr
             })
             .disposed(by: self.disposeBag)
     }
-    
-    // MARK: Event
 
-
-    // MARK: Action
+    // MARK: Bind - Action
     func bindAction(_ reactor: Reactor) {
                 
         self.viRandomTab.rx.tapGesture()
@@ -269,5 +291,21 @@ public final class ComunityViewController: BaseViewController, ComunityViewContr
             })
             .disposed(by: self.disposeBag)
     }
+    
+    // MARK: Bind - View
+    public func bindView(_ reactor: Reactor) {
+        
+        self.viScroll.rx.didScroll
+            .subscribe(onNext: { [weak self] scrollView in
+                guard let self = self else { return }
+                if self.viScroll.contentOffset.y + 100 > self.viScroll.contentSize.height - self.viScroll.bounds.size.height {
+                    reactor.action.onNext(.loadPage)
+                }                
+            })
+            .disposed(by: self.disposeBag)
+    }
+        
+    // MARK: Event
+
 }
 

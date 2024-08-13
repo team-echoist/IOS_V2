@@ -22,6 +22,7 @@ public final class ComunityReactor: Reactor {
     
     public enum Action {
         case inputRefresh
+        case loadPage
         
         case inputSelectedTab(ComunityTabType)
     }
@@ -75,6 +76,8 @@ public final class ComunityReactor: Reactor {
         
         switch action {
         case .inputRefresh:
+            return self.getEssayList(start: self.startLoading, end: self.endLoading)
+        case .loadPage:
             return self.getEssayList(start: self.startLoading, end: self.endLoading)
         case .inputSelectedTab(let tab):
             return .just(.setSelectedTab(tab))
