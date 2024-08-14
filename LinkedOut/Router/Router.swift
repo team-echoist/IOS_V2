@@ -319,6 +319,11 @@ extension Router: RouterType {
         return vc
     }
     
+    public func routeEssayDetail(essayId: Int) {
+        let vc = self.viewFactory.makeEssayDetail(essayId: essayId)
+        self.screenPush(to: vc)
+    }
+    
 //    public func routeSwitchMainTabBar() {
 //        let vc = self.viewFactory.makeTabBar()
 //        let nvc = UINavigationController(rootViewController: vc)

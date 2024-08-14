@@ -118,6 +118,14 @@ public class EssayViewCell: BaseCollectionViewCell, View {
     public func bind(reactor: Reactor) {
         guard let dependency = self.dependency else { preconditionFailure() }
         
+        self.bindState(reactor)
+        self.bindView(reactor)
+        
+        self.setNeedsLayout()
+    }
+    
+    // MARK: Bind - State
+    public func bindState(_ reactor: Reactor) {
         reactor.state.map { $0.title }
             .bind(to: self.lbTitle.rx.text)
             .disposed(by: self.disposeBag)
@@ -138,8 +146,15 @@ public class EssayViewCell: BaseCollectionViewCell, View {
                 }
             })
             .disposed(by: self.disposeBag)
-        
-        self.setNeedsLayout()
+    }
+    
+    // MARK: Bind - View
+    public func bindView(_ reactor: Reactor) {
+        self.btnTapHandler.rx.tap
+            .subscribe(onNext: { _ in
+                reactor.action.onNext(.inputTapEssay(essayId: reactor.currentState.id))
+            })
+            .disposed(by: self.disposeBag)
     }
     
     // MARK: Size

@@ -26,4 +26,5 @@ public protocol RouterType {
     func getComunity() -> UIViewController
     func routeProfile()
     func getMyPage() -> UIViewController
+    func routeEssayDetail(essayId: Int)
 }

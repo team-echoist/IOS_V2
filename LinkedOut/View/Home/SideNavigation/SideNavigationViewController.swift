@@ -109,7 +109,7 @@ public final class SideNavigationViewController: BaseViewController, SideNavigat
                 guard let self = self else { return }
                 let translation = gesture.translation(in: view).x
                 
-                if translation > 0 {
+                if translation > 60 {
                     self.view.frame.origin.x = min(0, -view.frame.width + translation)
                 } else {
                     self.view.frame.origin.x = max(-view.frame.width, translation)
@@ -130,7 +130,7 @@ public final class SideNavigationViewController: BaseViewController, SideNavigat
                     self.sideNavigationDelegate?.openSideNavigationView()
                 } else if velocity < -500 {
                     self.sideNavigationDelegate?.hideSideNavigationView()
-                } else if translation > view.frame.width * 0.5 {
+                } else if translation > view.frame.width * 0.4 {
                     self.sideNavigationDelegate?.openSideNavigationView()
                 } else {
                     self.sideNavigationDelegate?.hideSideNavigationView()

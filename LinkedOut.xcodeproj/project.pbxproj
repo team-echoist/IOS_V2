@@ -97,6 +97,9 @@
 		558265242C6AEE5500449B13 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558265212C6AEE5500449B13 /* MyPageViewController.swift */; };
 		558265252C6AEE5500449B13 /* MyPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558265222C6AEE5500449B13 /* MyPageModel.swift */; };
 		558265262C6AEE5500449B13 /* MyPageReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558265232C6AEE5500449B13 /* MyPageReactor.swift */; };
+		5582652B2C6C56D100449B13 /* EssayDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558265282C6C56D100449B13 /* EssayDetailViewController.swift */; };
+		5582652C2C6C56D100449B13 /* EssayDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558265292C6C56D100449B13 /* EssayDetailModel.swift */; };
+		5582652D2C6C56D100449B13 /* EssayDetailReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5582652A2C6C56D100449B13 /* EssayDetailReactor.swift */; };
 		55A01B272C536D9D00B92C63 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B242C536D9D00B92C63 /* HomeViewController.swift */; };
 		55A01B282C536D9D00B92C63 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B252C536D9D00B92C63 /* HomeModel.swift */; };
 		55A01B292C536D9D00B92C63 /* HomeReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B262C536D9D00B92C63 /* HomeReactor.swift */; };
@@ -289,6 +292,9 @@
 		558265212C6AEE5500449B13 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		558265222C6AEE5500449B13 /* MyPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageModel.swift; sourceTree = "<group>"; };
 		558265232C6AEE5500449B13 /* MyPageReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageReactor.swift; sourceTree = "<group>"; };
+		558265282C6C56D100449B13 /* EssayDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssayDetailViewController.swift; sourceTree = "<group>"; };
+		558265292C6C56D100449B13 /* EssayDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssayDetailModel.swift; sourceTree = "<group>"; };
+		5582652A2C6C56D100449B13 /* EssayDetailReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssayDetailReactor.swift; sourceTree = "<group>"; };
 		55A01B242C536D9D00B92C63 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		55A01B252C536D9D00B92C63 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		55A01B262C536D9D00B92C63 /* HomeReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeReactor.swift; sourceTree = "<group>"; };
@@ -911,6 +917,16 @@
 			path = UIFont;
 			sourceTree = "<group>";
 		};
+		558265272C6C56BB00449B13 /* EssayDetail */ = {
+			isa = PBXGroup;
+			children = (
+				558265282C6C56D100449B13 /* EssayDetailViewController.swift */,
+				558265292C6C56D100449B13 /* EssayDetailModel.swift */,
+				5582652A2C6C56D100449B13 /* EssayDetailReactor.swift */,
+			);
+			path = EssayDetail;
+			sourceTree = "<group>";
+		};
 		55A01B232C536D9000B92C63 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -989,6 +1005,7 @@
 		55A0428E2C536AA90065DDBC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				558265272C6C56BB00449B13 /* EssayDetail */,
 				558264F22C621DE200449B13 /* Common */,
 				5582649D2C59B92E00449B13 /* Root */,
 				55A01B3B2C54A5C000B92C63 /* MyPage */,
@@ -1365,6 +1382,9 @@
 				558264D12C5EA5E700449B13 /* UsersRepository.swift in Sources */,
 				55F49D512C52107E000879D1 /* DependenciesViewController.swift in Sources */,
 				55F49E2C2C533D6B000879D1 /* JSONDecoder+NewEncoderDecoder.swift in Sources */,
+				5582652B2C6C56D100449B13 /* EssayDetailViewController.swift in Sources */,
+				5582652C2C6C56D100449B13 /* EssayDetailModel.swift in Sources */,
+				5582652D2C6C56D100449B13 /* EssayDetailReactor.swift in Sources */,
 				55F49DFD2C532AFE000879D1 /* NVActivityIndicatorAnimationSquareSpin.swift in Sources */,
 				558264D82C5EA9C800449B13 /* UserInfoData.swift in Sources */,
 				55F49D6D2C523498000879D1 /* UIViewController+Embed.swift in Sources */,

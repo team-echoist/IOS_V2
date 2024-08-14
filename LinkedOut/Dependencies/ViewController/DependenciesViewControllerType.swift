@@ -17,4 +17,5 @@ public protocol DependenciesViewControllerType {
     func makeWriting() -> UIViewController
     func makeComunity() -> UIViewController
     func makeMyPage() -> UIViewController
+    func makeEssayDetail(essayId: Int) -> UIViewController
 }

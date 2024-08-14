@@ -44,4 +44,8 @@ extension Dependencies: DependenciesReactorType {
             userViewModel: self.makeUser()
         )
     }
+    
+    public func makeEssayDetail() -> EssayDetailReactor {
+        return EssayDetailReactor()
+    }
 }

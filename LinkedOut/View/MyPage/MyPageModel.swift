@@ -21,4 +21,23 @@ public struct MyPageModel: ModelType {
         case account = "계정 관리"
     }
     
+    public enum SummaryItem: String, CaseIterable {
+        case writing = "쓴 글"
+        case posted = "발행"
+        case linkedout = "링크드아웃"
+    }
+}
+
+public struct MySummaryData {
+    
+    let type: MyPageModel.SummaryItem
+    let count: Int
+    
+    static func defaultData() -> [MySummaryData] {
+        return [
+            MySummaryData(type: .writing, count: 0),
+            MySummaryData(type: .posted, count: 0),
+            MySummaryData(type: .linkedout, count: 0),
+        ]
+    }
 }

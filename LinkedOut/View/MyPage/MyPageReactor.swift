@@ -22,6 +22,7 @@ public final class MyPageReactor: Reactor {
     
     public enum Action {
         case onTapListItem(MyPageModel.ListItem)
+        case inputProfileEdit
     }
     
     public enum Mutaion {
@@ -36,6 +37,8 @@ public final class MyPageReactor: Reactor {
         public var error: Tracked<LinkedOutError>?
         public var alert: Tracked<LocalizeString>?
         public var message: Tracked<String>?
+        
+        public var summaryData: [MySummaryData] = MySummaryData.defaultData()
     }
     
     // MARK: State
@@ -75,9 +78,9 @@ public final class MyPageReactor: Reactor {
                 break
             }
             return .empty()
-
+        case .inputProfileEdit:
+            return .empty()
         }
-        
     }
     
     // MARK: Reduce

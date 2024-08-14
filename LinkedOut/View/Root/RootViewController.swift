@@ -16,6 +16,7 @@ import RxViewController
 import SnapKit
 import Device
 import ManualLayout
+import Gifu
 
 public protocol RootViewControllerType {
     
@@ -35,7 +36,7 @@ public final class RootViewController: BaseViewController, RootViewControllerTyp
     }
     
     // MARK: Initialize
-    private let ivLogo = UIImageView().then {
+    private let ivLogo = GIFImageView().then {
         $0.image = UIImage.gifImageWithName("splash_clear")
     }
     
@@ -94,7 +95,7 @@ public final class RootViewController: BaseViewController, RootViewControllerTyp
             self.checkStatus(reactor)
         }
         
-        self.ivLogo.startAnimating()
+        self.ivLogo.animate(withGIFNamed: "splash_clear", loopCount: 1)
         
     }
     

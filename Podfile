@@ -21,6 +21,7 @@ target 'LinkedOut' do
   pod 'Kingfisher'
 
   #Etc
+  pod 'Gifu'
   pod 'Then'
   pod 'Localize-Swift'
   pod 'DeviceKit'

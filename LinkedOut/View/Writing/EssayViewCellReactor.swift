@@ -21,13 +21,12 @@ public class EssayViewCellReactor: Reactor {
     // MARK: Action
     
     public enum Action {
-        case inputTapEssay
+        case inputTapEssay(essayId: Int)
     }
     
     // MARK: Mutation
     
     public enum Mutation {
-        case setTapEssay
     }
     
     // MARK: State
@@ -61,8 +60,9 @@ public class EssayViewCellReactor: Reactor {
     
     public func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .inputTapEssay:
-            return .just(.setTapEssay)
+        case .inputTapEssay(let essayId):
+            SceneDelegate.shared.router.routeEssayDetail(essayId: essayId)
+            return .empty()
         }
     }
     
@@ -74,12 +74,7 @@ public class EssayViewCellReactor: Reactor {
     -> EssayViewCellReactor.State {
         var newState = state
         
-        switch mutation {
-            
-        case .setTapEssay:
-            return newState
-        }
-        
+        return newState
     }
     
 }

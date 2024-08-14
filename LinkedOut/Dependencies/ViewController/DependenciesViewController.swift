@@ -39,4 +39,11 @@ extension Dependencies: DependenciesViewControllerType {
     public func makeMyPage() -> UIViewController {
         return MyPageViewController(reactor: self.makeMyPage())
     }
+    
+    public func makeEssayDetail(essayId: Int) -> UIViewController {
+        return EssayDetailViewController(
+            reactor: self.makeEssayDetail(),
+            essayId: essayId
+        )
+    }
 }

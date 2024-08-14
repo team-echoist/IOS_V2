@@ -140,6 +140,7 @@ public final class MyPageViewController: BaseViewController, MyPageViewControlle
     
     private let viCountStack = UIStackView().then {
         $0.axis = .horizontal
+        $0.distribution = .fillEqually
         $0.backgroundColor = Color.profileCountBg
         $0.cornerRadius = Metric.profileCountRadius
     }
@@ -316,7 +317,58 @@ public final class MyPageViewController: BaseViewController, MyPageViewControlle
     // MARK: Bind
     
     public func bind(reactor: Reactor) {
-
+        self.bindState(reactor)
+        self.bindView(reactor)
+    }
+    
+    // MARK: Bind - State
+    public func bindState(_ reactor: Reactor) {
+        
+        reactor.state
+            .map { $0.summaryData }
+            .subscribe(onNext: { [weak self] list in
+                guard let self = self else { return }
+                if list.count == self.viCountStack.arrangedSubviews.count { return }
+                
+                let _ = list.map {
+                    let stack = UIStackView()
+                    stack.axis = .vertical
+                    stack.alignment = .center
+                    stack.distribution = .fillProportionally
+                    
+                    let titleLabel = UILabel()
+                    titleLabel.text = $0.type.rawValue
+                    titleLabel.font = Font.countTitle
+                    titleLabel.textColor = Color.count
+                    
+                    titleLabel.snp.makeConstraints {
+                        $0.height.equalTo(15.f)
+                    }
+                    
+                    let countLabel = UILabel()
+                    countLabel.text = String($0.count)
+                    countLabel.font = Font.countNumber
+                    countLabel.textColor = Color.count
+                    
+                    stack.addArrangedSubview(titleLabel)
+                    stack.addArrangedSubview(countLabel)
+                    stack.snp.makeConstraints {
+                        $0.height.equalTo(Metric.profileCountHeight)
+                    }
+                    
+                    self.viCountStack.addArrangedSubview(stack)
+                }
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
+    // MARK: Bind - View
+    public func bindView(_ reactor: Reactor) {
+        self.btnEditProfile.rx.tap
+            .subscribe(onNext: { _ in
+                reactor.action.onNext(.inputProfileEdit)
+            })
+            .disposed(by: self.disposeBag)
     }
     
     // MARK: Event

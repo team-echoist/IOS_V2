@@ -6,6 +6,7 @@ PODS:
   - Device (3.6.0)
   - DeviceKit (5.4.0)
   - Differentiator (5.0.0)
+  - Gifu (3.3.1)
   - Kingfisher (7.12.0)
   - Localize-Swift (3.2.0):
     - Localize-Swift/LocalizeSwiftCore (= 3.2.0)
@@ -65,6 +66,7 @@ DEPENDENCIES:
   - CocoaLumberjack/Swift
   - Device
   - DeviceKit
+  - Gifu
   - Kingfisher
   - Localize-Swift
   - ManualLayout
@@ -92,6 +94,7 @@ SPEC REPOS:
     - Device
     - DeviceKit
     - Differentiator
+    - Gifu
     - Kingfisher
     - Localize-Swift
     - ManualLayout
@@ -127,6 +130,7 @@ SPEC CHECKSUMS:
   Device: bd1978b3885a7a83d542f2ae0877f723be7d4ec1
   DeviceKit: bd34bb1766d926c3cc5a5f6e3e9a6dd10148b805
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
+  Gifu: 416d4e38c4c2fed012f019e0a1d3ffcb58e5b842
   Kingfisher: 53a10ea35051a436b5fb626ca2dd8f3144d755e9
   Localize-Swift: 6f4475136bdb0d7b2882ea3d4ea919d70142b232
   ManualLayout: 68ac8cfa6b5f656f7a9fadec3730208b95986880
@@ -147,6 +151,6 @@ SPEC CHECKSUMS:
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
   WeakMapTable: 05c694ce8439a7a9ebabb56187287a63c57673d6
 
-PODFILE CHECKSUM: 5973d5c0bbbdbc802c089f0eda8f28c810389c02
+PODFILE CHECKSUM: 529c66b7fac748d18315d4727de7e3c3e5f3b9d2
 
 COCOAPODS: 1.15.2
