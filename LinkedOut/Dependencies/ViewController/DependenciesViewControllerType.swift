@@ -16,4 +16,5 @@ public protocol DependenciesViewControllerType {
     func makeMainTabBar() -> UIViewController
     func makeWriting() -> UIViewController
     func makeComunity() -> UIViewController
+    func makeMyPage() -> UIViewController
 }

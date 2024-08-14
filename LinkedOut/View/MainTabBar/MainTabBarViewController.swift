@@ -48,7 +48,7 @@ public final class MainTabBarViewController: BaseViewController, MainTabBarViewC
     private lazy var tabbar: UITabBar = {
         let tabbar = UITabBar()
         tabbar.items = self.tabbarList
-        tabbar.barTintColor = .Theme.black
+        tabbar.barTintColor = .black
         tabbar.tintColor = .white
         tabbar.isTranslucent = false
         
@@ -152,7 +152,7 @@ public final class MainTabBarViewController: BaseViewController, MainTabBarViewC
                    case .comunity:
                        self.displayContentController(SceneDelegate.shared.router.getComunity())
                    case .profile:
-                       self.displayContentController(SceneDelegate.shared.router.getHomeView())
+                       self.displayContentController(SceneDelegate.shared.router.getMyPage())
                    case .writing:
                        self.displayContentController(SceneDelegate.shared.router.getWriting())
                    }

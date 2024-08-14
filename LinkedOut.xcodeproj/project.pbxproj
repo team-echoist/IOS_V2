@@ -94,6 +94,9 @@
 		5582651C2C66052E00449B13 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 558265132C66052E00449B13 /* Pretendard-SemiBold.otf */; };
 		5582651D2C66052E00449B13 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 558265142C66052E00449B13 /* Pretendard-Light.otf */; };
 		558265202C66075F00449B13 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5582651F2C66075F00449B13 /* UIFont+.swift */; };
+		558265242C6AEE5500449B13 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558265212C6AEE5500449B13 /* MyPageViewController.swift */; };
+		558265252C6AEE5500449B13 /* MyPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558265222C6AEE5500449B13 /* MyPageModel.swift */; };
+		558265262C6AEE5500449B13 /* MyPageReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558265232C6AEE5500449B13 /* MyPageReactor.swift */; };
 		55A01B272C536D9D00B92C63 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B242C536D9D00B92C63 /* HomeViewController.swift */; };
 		55A01B282C536D9D00B92C63 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B252C536D9D00B92C63 /* HomeModel.swift */; };
 		55A01B292C536D9D00B92C63 /* HomeReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B262C536D9D00B92C63 /* HomeReactor.swift */; };
@@ -283,6 +286,9 @@
 		558265132C66052E00449B13 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		558265142C66052E00449B13 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
 		5582651F2C66075F00449B13 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
+		558265212C6AEE5500449B13 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		558265222C6AEE5500449B13 /* MyPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageModel.swift; sourceTree = "<group>"; };
+		558265232C6AEE5500449B13 /* MyPageReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageReactor.swift; sourceTree = "<group>"; };
 		55A01B242C536D9D00B92C63 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		55A01B252C536D9D00B92C63 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		55A01B262C536D9D00B92C63 /* HomeReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeReactor.swift; sourceTree = "<group>"; };
@@ -973,6 +979,9 @@
 		55A01B3B2C54A5C000B92C63 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				558265212C6AEE5500449B13 /* MyPageViewController.swift */,
+				558265222C6AEE5500449B13 /* MyPageModel.swift */,
+				558265232C6AEE5500449B13 /* MyPageReactor.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -1366,6 +1375,9 @@
 				553F85C02C5884A5001D4AFC /* SideNavigationViewController.swift in Sources */,
 				553F85C12C5884A5001D4AFC /* SideNavigationModel.swift in Sources */,
 				553F85C22C5884A5001D4AFC /* SideNavigationReactor.swift in Sources */,
+				558265242C6AEE5500449B13 /* MyPageViewController.swift in Sources */,
+				558265252C6AEE5500449B13 /* MyPageModel.swift in Sources */,
+				558265262C6AEE5500449B13 /* MyPageReactor.swift in Sources */,
 				558264EE2C62061C00449B13 /* UIImage+Gif.swift in Sources */,
 				55F49D742C5234A4000879D1 /* UIViewController+ResizingScrollViewOnKeyboard.swift in Sources */,
 				55F49DE92C532AFE000879D1 /* NVActivityIndicatorAnimationBallRotateChase.swift in Sources */,

@@ -37,4 +37,11 @@ extension Dependencies: DependenciesReactorType {
             randomCellReactorFactory: EssayRandomViewCellReactor.init
         )
     }
+    
+    public func makeMyPage() -> MyPageReactor {
+        return MyPageReactor(
+            essayViewModel: self.makeEssay(),
+            userViewModel: self.makeUser()
+        )
+    }
 }

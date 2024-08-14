@@ -165,7 +165,7 @@ extension LinkedOutAPI: SugarTargetType {
         let locale: String = "ko"
         return ["Content-type": "application/json",
                 "locale": locale,
-                "Authorization" : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJ1c2VyMUBsaW5rZWRvdXRhcHAuY29tIiwiaWF0IjoxNzIxODkxMjI3LCJleHAiOjE3MjQ0ODMyMjd9.PBitovPYX20aqQs0poi--hEf3urJ__cPL_XAnNDLE-I"
+                "Authorization" : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTc5LCJpYXQiOjE3MjM1MjU2NDIsImV4cCI6MTcyNjExNzY0Mn0.c8LZT0FeDT-7DYYxDgjYSoq72f0Gb57ibsBvdr7QV6g"
                 // PreferenceDataManager.getAccessToken() as! String,
         ]
     }

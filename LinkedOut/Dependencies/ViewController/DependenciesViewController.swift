@@ -35,4 +35,8 @@ extension Dependencies: DependenciesViewControllerType {
     public func makeComunity() -> UIViewController {
         return ComunityViewController(reactor: makeComunity())
     }
+    
+    public func makeMyPage() -> UIViewController {
+        return MyPageViewController(reactor: self.makeMyPage())
+    }
 }

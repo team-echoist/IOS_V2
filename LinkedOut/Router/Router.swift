@@ -314,6 +314,11 @@ extension Router: RouterType {
         
     }
     
+    public func getMyPage() -> UIViewController {
+        let vc = self.viewFactory.makeMyPage()
+        return vc
+    }
+    
 //    public func routeSwitchMainTabBar() {
 //        let vc = self.viewFactory.makeTabBar()
 //        let nvc = UINavigationController(rootViewController: vc)

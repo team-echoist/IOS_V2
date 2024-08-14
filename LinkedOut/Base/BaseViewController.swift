@@ -52,7 +52,7 @@ open class BaseViewController: UIViewController, BaseViewControllerType, NVActiv
     
     fileprivate struct Color {
         static let title = UIColor.black
-        static let bg = UIColor.Theme.black
+        static let bg = UIColor.black
     }
     
     fileprivate struct Image {
