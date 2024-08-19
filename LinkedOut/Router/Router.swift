@@ -277,13 +277,17 @@ public final class Router: BaseViewController, View {
 
 extension Router: RouterType {
     
+    public func routeBack(animated: Bool) {
+        self.getRoot().popViewController(animated: animated)
+    }
+    
     public func routeHomeView() {
         let vc = self.viewFactory.makeMain()
         self.screenPush(to: vc)
     }
     
     public func routeMainTabBar() {
-        let vc = self.viewFactory.makeMainTabBar()
+        let vc = UINavigationController(rootViewController: self.viewFactory.makeMainTabBar())
         self.screenSwitch(to: vc)
     }
     
@@ -294,7 +298,6 @@ extension Router: RouterType {
     public func getWriting() -> UIViewController {
         return self.viewFactory.makeWriting()
     }
-    
     
     public func routeWriting() {
         let vc = self.viewFactory.makeWriting()

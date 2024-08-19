@@ -21,6 +21,7 @@ public protocol MainTabBarViewControllerType {
 
 public final class MainTabBarViewController: BaseViewController, MainTabBarViewControllerType, View {
     
+    
     public typealias Reactor = MainTabBarReactor
     
     

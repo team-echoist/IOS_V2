@@ -26,15 +26,15 @@ public final class EssayDetailReactor: Reactor {
     
     public enum Mutaion {
         case setLoading(Bool)
-//        case setError(Tracked<Error>?)
-//        case setAlert(Tracked<String>?)
+        case setError(Tracked<LinkedOutError>?)
+        case setAlert(Tracked<LocalizeString>?)
         case setMessage(Tracked<String>?)
     }
     
     public struct State {
         public var isLoading: Bool = false
-//        public var error: Tracked<Error>?
-//        public var alert: Tracked<String>?
+        public var error: Tracked<LinkedOutError>?
+        public var alert: Tracked<LocalizeString>?
         public var message: Tracked<String>?
     }
     
@@ -57,10 +57,9 @@ public final class EssayDetailReactor: Reactor {
     public func mutate(action: Action) -> Observable<Mutaion> {
         
         switch action {
-            case .inputBack:
-                // TODO: go
-                //AppDelegate.shared.router.back()
-                return .empty()
+        case .inputBack:
+            SceneDelegate.shared.router.routeBack(animated: true)
+            return .empty()
         }
         
     }
@@ -77,8 +76,8 @@ public final class EssayDetailReactor: Reactor {
         switch mutation {
             
             case let .setLoading(isLoading): newState.isLoading = isLoading; return newState
-//            case let .setError(error): newState.error = error; return newState
-//            case let .setAlert(alert): newState.alert = alert; return newState
+            case let .setError(error): newState.error = error; return newState
+            case let .setAlert(alert): newState.alert = alert; return newState
             case let .setMessage(message): newState.message = message; return newState
             
         }// switch

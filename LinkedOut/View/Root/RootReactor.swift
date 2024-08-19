@@ -75,6 +75,7 @@ public final class RootReactor: Reactor {
                     return .setNextPage
                 }
                 .catch { (error) in
+                    SceneDelegate.shared.router.routeMainTabBar()
                     return .just(.setError(makeError(LinkedOutError(error))))
                 }
             case .checkStatus:

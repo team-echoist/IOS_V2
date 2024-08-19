@@ -56,7 +56,7 @@ open class BaseViewController: UIViewController, BaseViewControllerType, NVActiv
     }
     
     fileprivate struct Image {
-        static let back = UIImage(named: "title_back")
+        static let back = UIImage(named: "back_white")
     }
     
     // MARK: Property
@@ -84,7 +84,6 @@ open class BaseViewController: UIViewController, BaseViewControllerType, NVActiv
     
     public let btnBack = UIButton().then {
         $0.setImage(Image.back, for: .normal)
-        $0.isHidden = true
     }
 
     // MARK: Initialize
@@ -203,6 +202,7 @@ open class BaseViewController: UIViewController, BaseViewControllerType, NVActiv
     // MARK: Configure
     
     open func setUpUI() {
+        self.navigationItem.hidesBackButton = true
         self.view.backgroundColor = Color.bg
         self.setUpNavigation()
     }

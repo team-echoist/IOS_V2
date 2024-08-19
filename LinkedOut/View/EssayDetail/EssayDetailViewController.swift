@@ -30,7 +30,42 @@ public final class EssayDetailViewController: BaseViewController, EssayDetailVie
     fileprivate struct Constant {
     }
     
-    // MARK: Initialize
+    // MARK: Image
+    
+    fileprivate struct Image {
+        static let option = UIImage(named: "option_dot")
+    }
+    
+    // MARK: Font
+    
+    fileprivate struct Font {
+        static let title = UIFont.getFont(size: 20, .semiBold)
+        static let content = UIFont.getFont(size: 16, .regular)
+    }
+    
+    // MARK: Color
+    
+    fileprivate struct Color {
+        static let content = UIColor(hexCode: "#B4B4B4")
+    }
+    
+    // MARK: Ui
+    
+    private let ivThumbnail = UIImageView().then {
+        $0.contentMode = .scaleAspectFill
+    }
+    
+    private let lbTitle = UILabel().then {
+        $0.font = Font.title
+        $0.textColor = .white
+    }
+    
+    private let lbContent = UILabel().then {
+        $0.font = Font.content
+        $0.textColor = Color.content
+    }
+    
+    // MARK: - Initialize
     
     public init(
         reactor: Reactor,
@@ -60,10 +95,25 @@ public final class EssayDetailViewController: BaseViewController, EssayDetailVie
     
     // MARK: Layout
     
+    public override func layoutCommon() {
+        super.layoutCommon()
+        super.layoutNavigationViewItems()
+    }
+    
     // MARK: Bind
     
     public func bind(reactor: Reactor) {
-
+        self.bindView(reactor)
+    }
+    
+    // MARK: Bind - View
+    
+    public func bindView(_ reactor: Reactor) {
+        self.btnBack.rx.tap
+            .subscribe(onNext: { _ in
+                reactor.action.onNext(.inputBack)
+            })
+            .disposed(by: self.disposeBag)
     }
     
     // MARK: Event

@@ -17,6 +17,7 @@ public enum RouterMethod {
 
 public protocol RouterType {
     
+    func routeBack(animated: Bool)
     func routeHomeView()
     func getHomeView() -> UIViewController
     func routeMainTabBar()
