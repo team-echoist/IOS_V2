@@ -11,6 +11,7 @@ public protocol EssayViewModelType {
     
     func getEssays() -> Single<ApiResult<EssayArray>>
     func postEssays()
+    func getEssayDetail(essayId: Int, type: EssayType) -> Single<ApiResult<EssayDetailResponse>>
     func getEssayRecommend(limit: Int?) -> Single<ApiResult<EssayNonePagingArray>>
     func getEssaysFollowings(page: Int?, limit: Int?) -> Single<ApiResult<EssayNonePagingArray>>
     func getEssaysSentence(type: String, limit: Int?) -> Single<ApiResult<EssaySentenceArray>>

@@ -31,6 +31,16 @@ public class EssayViewModel: BaseViewModel, EssayViewModelType {
         
     }
     
+    public func getEssayDetail(essayId: Int, type: EssayType) -> Single<ApiResult<EssayDetailResponse>> {
+        let observable = self
+            .essayRepository
+            .getEssayDetail(essayId: essayId, essayType: type)
+            .flatMap { (response) in
+                return Single.just(response)
+            }
+        return observable
+    }
+    
     public func getEssayRecommend(limit: Int?) -> Single<ApiResult<EssayNonePagingArray>> {
         let observable = self
             .essayRepository

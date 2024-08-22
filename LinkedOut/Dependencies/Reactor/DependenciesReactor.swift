@@ -46,6 +46,8 @@ extension Dependencies: DependenciesReactorType {
     }
     
     public func makeEssayDetail() -> EssayDetailReactor {
-        return EssayDetailReactor()
+        return EssayDetailReactor(
+            essayViewModel: self.makeEssay()
+        )
     }
 }

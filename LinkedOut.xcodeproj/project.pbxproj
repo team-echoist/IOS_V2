@@ -100,6 +100,7 @@
 		5582652B2C6C56D100449B13 /* EssayDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558265282C6C56D100449B13 /* EssayDetailViewController.swift */; };
 		5582652C2C6C56D100449B13 /* EssayDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558265292C6C56D100449B13 /* EssayDetailModel.swift */; };
 		5582652D2C6C56D100449B13 /* EssayDetailReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5582652A2C6C56D100449B13 /* EssayDetailReactor.swift */; };
+		5582652F2C747D1C00449B13 /* EssayDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5582652E2C747D1C00449B13 /* EssayDetail.swift */; };
 		55A01B272C536D9D00B92C63 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B242C536D9D00B92C63 /* HomeViewController.swift */; };
 		55A01B282C536D9D00B92C63 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B252C536D9D00B92C63 /* HomeModel.swift */; };
 		55A01B292C536D9D00B92C63 /* HomeReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A01B262C536D9D00B92C63 /* HomeReactor.swift */; };
@@ -295,6 +296,7 @@
 		558265282C6C56D100449B13 /* EssayDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssayDetailViewController.swift; sourceTree = "<group>"; };
 		558265292C6C56D100449B13 /* EssayDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssayDetailModel.swift; sourceTree = "<group>"; };
 		5582652A2C6C56D100449B13 /* EssayDetailReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssayDetailReactor.swift; sourceTree = "<group>"; };
+		5582652E2C747D1C00449B13 /* EssayDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssayDetail.swift; sourceTree = "<group>"; };
 		55A01B242C536D9D00B92C63 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		55A01B252C536D9D00B92C63 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		55A01B262C536D9D00B92C63 /* HomeReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeReactor.swift; sourceTree = "<group>"; };
@@ -799,6 +801,7 @@
 			isa = PBXGroup;
 			children = (
 				558264D72C5EA9C800449B13 /* UserInfoData.swift */,
+				5582652E2C747D1C00449B13 /* EssayDetail.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -1393,6 +1396,7 @@
 				558264A32C59B94500449B13 /* RootReactor.swift in Sources */,
 				55F49D6B2C52347B000879D1 /* UIViewController+ChildAddRemove.swift in Sources */,
 				553F85C02C5884A5001D4AFC /* SideNavigationViewController.swift in Sources */,
+				5582652F2C747D1C00449B13 /* EssayDetail.swift in Sources */,
 				553F85C12C5884A5001D4AFC /* SideNavigationModel.swift in Sources */,
 				553F85C22C5884A5001D4AFC /* SideNavigationReactor.swift in Sources */,
 				558265242C6AEE5500449B13 /* MyPageViewController.swift in Sources */,

@@ -55,6 +55,17 @@ public struct Essay: Codable {
     let author: Author?
 }
 
+public struct EssayDetailResponse: Codable {
+    
+    let essay: EssayDetail
+    let anotherEssays: AnotherEssayResponse?
+        
+}
+
+public struct AnotherEssayResponse: Codable {
+    let essays: [Essay]?
+}
+
 public enum EssayStatus: String {
     case privateStaus = "private"
     case published = "published"
@@ -87,7 +98,7 @@ public struct EssaySentence: Codable {
 
 public struct Author: Codable {
     let id: Int
-    let email, createdDate: String
+    var email, createdDate: String
     let nickname: String?
     let profileImage: String?
 }

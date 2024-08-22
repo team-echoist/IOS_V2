@@ -129,7 +129,8 @@ public final class ComunityReactor: Reactor {
             }
             .debug()
         
-        return .concat([start, action, end])
+//        return .concat([start, action, end])
+        return .concat([action])
     }
     
     private func getEssayData(_ response: ApiResult<EssayNonePagingArray>) -> ComunityReactor.Mutaion {

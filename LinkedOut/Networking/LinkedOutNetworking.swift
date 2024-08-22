@@ -27,6 +27,7 @@ public enum LinkedOutAPI {
     // essay
     case getEssays
     case postEssays
+    case getEssayDetail(essayId: Int, type: EssayType)
     case getEssaysRecommend(limit: Int = 20)
     case getEssaysFollowings(page: Int = 1, limit: Int = 20)
     case getEssaysSentence(type: String = "first", limit: Int = 20)
@@ -93,6 +94,9 @@ extension LinkedOutAPI: SugarTargetType {
             return .get(ApiRoute.essays.rawValue)
         case .postEssays:
             return .post(ApiRoute.essays.rawValue)
+        case .getEssayDetail(let essayId, _):
+            let url = "\(ApiRoute.essays.rawValue)/\(essayId)"
+            return .get(url)
         case .getEssaysRecommend:
             return .get(ApiRoute.essaysRecommend.rawValue)
         case .getEssaysFollowings:
@@ -107,7 +111,6 @@ extension LinkedOutAPI: SugarTargetType {
     }
     
     public var parameters: MoyaSugar.Parameters? {
-        return ApiParam.makeParam(from: [:], method: .get)
         switch self {
         // auth
         case .authHealthCheck:
@@ -122,6 +125,12 @@ extension LinkedOutAPI: SugarTargetType {
         case .postEssays:
             let dic: [String: Any] = [:]
             return ApiParam.makeParam(from: dic, method: .post)
+        case .getEssayDetail(_, let essayType):
+            let dic: [String: Any] = [
+                ApiParam.type.rawValue: essayType.rawValue
+            ]
+            
+            return ApiParam.makeParam(from: dic, method: .get)
         case .getEssaysRecommend(let limit):
             let dic: [String: Any] = [
                 ApiParam.limit.rawValue: limit
@@ -165,7 +174,7 @@ extension LinkedOutAPI: SugarTargetType {
         let locale: String = "ko"
         return ["Content-type": "application/json",
                 "locale": locale,
-                "Authorization" : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjA2LCJpYXQiOjE3MjQwNTA4MDcsImV4cCI6MTcyNjY0MjgwN30.TEKrxmQcEFaG8jYbkn2lw5q1qYvZzP_3t-DdHNlQeLk"
+                "Authorization" : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTc5LCJpYXQiOjE3MjM1MjU2NDIsImV4cCI6MTcyNjExNzY0Mn0.c8LZT0FeDT-7DYYxDgjYSoq72f0Gb57ibsBvdr7QV6g"
                 // PreferenceDataManager.getAccessToken() as! String,
         ]
     }

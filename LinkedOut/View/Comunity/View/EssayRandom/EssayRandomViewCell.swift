@@ -176,8 +176,15 @@ public class EssayRandomViewCell: BaseCollectionViewCell, View {
     // MARK: Configure
     
     public func bind(reactor: Reactor) {
-        guard let dependency = self.dependency else { preconditionFailure() }
+        guard let dependency = self.dependency else { preconditionFailure() }        
         
+        self.bindState(reactor)
+        self.bindAction(reactor)
+        
+        self.setNeedsLayout()
+    }
+    
+    private func bindState(_ reactor: Reactor) {
         reactor.state.map { $0.title }
             .bind(to: self.lbTitle.rx.text)
             .disposed(by: self.disposeBag)
@@ -221,8 +228,14 @@ public class EssayRandomViewCell: BaseCollectionViewCell, View {
             .map { $0 != EssayStatus.linkedout }
             .bind(to: self.ivLinkedOut.rx.isHidden)
             .disposed(by: self.disposeBag)
-        
-        self.setNeedsLayout()
+    }
+    
+    private func bindAction(_ reactor: Reactor) {
+        self.btnTapHandler.rx.tap
+            .subscribe(onNext: {
+                reactor.action.onNext(.inputTapEssay(essayId: reactor.initialState.id))
+            })
+            .disposed(by: self.disposeBag)
     }
     
     // MARK: Size

@@ -42,6 +42,18 @@ public final class EssayRepository: EssayRepositoryType {
         
     }
     
+    public func getEssayDetail(essayId: Int, essayType: EssayType) -> Single<ApiResult<EssayDetailResponse>> {
+        let observable = self
+            .networking
+            .request(.getEssayDetail(essayId: essayId, type: essayType))
+            .map(ApiResult<EssayDetailResponse>.self)
+            .flatMap { (response) in
+                return Single.just(response)
+            }
+        
+        return observable
+    }
+    
     public func getEssayRecommend(limit: Int?) -> Single<ApiResult<EssayNonePagingArray>> {
         let observable = self
             .networking

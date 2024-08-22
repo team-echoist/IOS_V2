@@ -7,11 +7,19 @@
 
 import RxSwift
 
+public enum EssayType: String {
+    case recommend = "recommend"
+    case privateType = "private"
+    case publish = "publish"
+}
+
 public protocol EssayRepositoryType {
     
     func getEssays() -> Single<ApiResult<EssayArray>>
     
     func postEssays()
+    
+    func getEssayDetail(essayId: Int, essayType: EssayType) -> Single<ApiResult<EssayDetailResponse>>
     
     func getEssayRecommend(limit: Int?) -> Single<ApiResult<EssayNonePagingArray>>
     

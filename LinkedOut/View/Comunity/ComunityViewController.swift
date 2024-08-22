@@ -298,7 +298,7 @@ public final class ComunityViewController: BaseViewController, ComunityViewContr
         self.viScroll.rx.didScroll
             .subscribe(onNext: { [weak self] scrollView in
                 guard let self = self else { return }
-                if self.viScroll.contentOffset.y + 100 > self.viScroll.contentSize.height - self.viScroll.bounds.size.height {
+                if self.viScroll.contentOffset.y + 150 > self.viScroll.contentSize.height - self.viScroll.bounds.size.height {
                     reactor.action.onNext(.loadPage)
                 }                
             })
