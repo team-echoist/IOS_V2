@@ -190,6 +190,14 @@ public final class HomeViewController: BaseViewController, HomeViewControllerTyp
                 reactor.action.onNext(.inputMenu(!reactor.currentState.showMenu))
             })
             .disposed(by: self.disposeBag)
+        
+        self.viWriting.rx
+            .tapGesture()
+            .filter { $0.state == .ended }
+            .subscribe(onNext: { _ in
+                reactor.action.onNext(.inputEssayCreate)
+            })
+            .disposed(by: self.disposeBag)
     }
     
     // MARK: Bind - State

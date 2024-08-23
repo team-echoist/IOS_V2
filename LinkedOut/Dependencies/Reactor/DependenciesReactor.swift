@@ -50,4 +50,10 @@ extension Dependencies: DependenciesReactorType {
             essayViewModel: self.makeEssay()
         )
     }
+    
+    public func makeEssayCreate() -> EssayCreateReactor {
+        return EssayCreateReactor(
+            essayViewModel: self.makeEssay()
+        )
+    }
 }

@@ -28,4 +28,5 @@ public protocol RouterType {
     func routeProfile()
     func getMyPage() -> UIViewController
     func routeEssayDetail(essayId: Int)
+    func routeEssayCrate()
 }

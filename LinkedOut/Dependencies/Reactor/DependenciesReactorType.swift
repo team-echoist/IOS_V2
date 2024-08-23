@@ -15,4 +15,5 @@ public protocol DependenciesReactorType {
     func makeComunity() -> ComunityReactor
     func makeMyPage() -> MyPageReactor
     func makeEssayDetail() -> EssayDetailReactor
+    func makeEssayCreate() -> EssayCreateReactor
 }

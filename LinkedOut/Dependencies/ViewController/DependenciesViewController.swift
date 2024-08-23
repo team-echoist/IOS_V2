@@ -46,4 +46,10 @@ extension Dependencies: DependenciesViewControllerType {
             essayId: essayId
         )
     }
+    
+    public func makeEssayCreate() -> UIViewController {
+        return EssayCreateViewController(
+            reactor: self.makeEssayCreate()
+        )
+    }
 }

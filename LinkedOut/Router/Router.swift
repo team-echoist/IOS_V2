@@ -327,6 +327,11 @@ extension Router: RouterType {
         self.screenPush(to: vc)
     }
     
+    public func routeEssayCrate() {
+        let vc = self.viewFactory.makeEssayCreate()
+        self.screenPresent(to: vc, animated: true)
+    }
+    
 //    public func routeSwitchMainTabBar() {
 //        let vc = self.viewFactory.makeTabBar()
 //        let nvc = UINavigationController(rootViewController: vc)
