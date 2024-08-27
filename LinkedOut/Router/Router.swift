@@ -281,6 +281,12 @@ extension Router: RouterType {
         self.getRoot().popViewController(animated: animated)
     }
     
+    public func routeDismiss(animated: Bool, completionHandler: RouteCompletionHandler? = nil) {
+        self.getRoot().dismiss(animated: animated) {
+            completionHandler?()
+        }
+    }
+    
     public func routeHomeView() {
         let vc = self.viewFactory.makeMain()
         self.screenPush(to: vc)

@@ -34,6 +34,9 @@ public final class EssayDetailViewController: BaseViewController, EssayDetailVie
     // MARK: Metric
         
     fileprivate struct Metric {
+        static let optionMargin = 20.f
+        static let optionSize = 30.f
+        
         static let thumbnailHeight = 220.f
         
         static let titleHeight = 67.f
@@ -74,6 +77,10 @@ public final class EssayDetailViewController: BaseViewController, EssayDetailVie
     }
     
     // MARK: Ui
+    
+    private let btnOption = UIButton().then {
+        $0.setImage(Image.option, for: .normal)
+    }
     
     private let ivThumbnail = UIImageView().then {
         $0.contentMode = .scaleAspectFill
@@ -122,6 +129,8 @@ public final class EssayDetailViewController: BaseViewController, EssayDetailVie
         self.essayId = essayId
         super.init()
         
+        self.viNavigation.addSubview(self.btnOption)
+        
         _ = [self.ivThumbnail, self.viTitle, self.lbContent, self.lbAuthor, self.lbCreatedDate].map {
             self.view.addSubview($0)
         }
@@ -153,6 +162,12 @@ public final class EssayDetailViewController: BaseViewController, EssayDetailVie
         super.layoutCommon()
         super.layoutNavigationViewItems()
         log.debug("essay detail layout common")
+        
+        self.btnOption.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(Metric.optionMargin)
+            $0.width.height.equalTo(Metric.optionSize)
+        }
         
         self.viTitle.snp.makeConstraints {
             $0.top.equalTo(self.viNavigation.snp.bottom)

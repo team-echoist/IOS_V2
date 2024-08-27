@@ -22,6 +22,7 @@ public final class EssayCreateReactor: Reactor {
     
     public enum Action {
         case inputCancel
+        case inputSave
     }
     
     public enum Mutaion {
@@ -57,9 +58,11 @@ public final class EssayCreateReactor: Reactor {
     public func mutate(action: Action) -> Observable<Mutaion> {
         
         switch action {
-            case .inputCancel:
-                SceneDelegate.shared.router.routeBack(animated: true)
-                return .empty()
+        case .inputCancel:
+            SceneDelegate.shared.router.routeDismiss(animated: true, completionHandler: nil)
+            return .empty()
+        case .inputSave:
+            return .empty()
         }
         
     }
