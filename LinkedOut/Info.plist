@@ -14,8 +14,6 @@
 		<string>Pretendard-Bold.otf</string>
 		<string>Pretendard-Black.otf</string>
 	</array>
-	<key>CFBundleIdentifier</key>
-	<string></string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
