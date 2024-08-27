@@ -65,19 +65,28 @@ public struct LinkedOutError: LocalizedError, CustomStringConvertible {
     
     // Moya Error
     public init(_ err: MoyaError?) {
-        if let response = try? err?.response?.mapJSON(failsOnEmptyData: false) as? [String: Any] {            
-            let message = response["message"] as? String
-            let statusCode = response["statusCode"] as? Int
-            self.init(description: message ?? LinkedOutError.emptyDesc, code: statusCode ?? 0)
-        } else {
-            self.init(description: err?.localizedDescription, code: err?.errorCode ?? 0)
-        }
+        if let response = err?.response {
+           do {
+               if let jsonObject = try response.mapJSON(failsOnEmptyData: false) as? [String: Any] {
+                   if let errorDict = jsonObject["error"] as? [String: Any],
+                      let errorMessage = errorDict["message"] as? String {
+                       let statusCode = jsonObject["statusCode"] as? Int ?? response.statusCode
+                       self.init(description: errorMessage, code: statusCode)
+                   } else {
+                       self.init(description: LinkedOutError.emptyDesc, code: response.statusCode)
+                   }
+               }
+           } catch {
+               self.init(description: err?.localizedDescription ?? LinkedOutError.emptyDesc, code: 0)
+           }
+       }
         
+        self.init(description: err?.localizedDescription, code: err?.errorCode ?? 0)
     }
     
-    // Foodinko API Error
+    // Linkedout API Error
     public init(_ res: ApiWebResult?) {
-        self.init(description: nil, code: res?.statusCode ?? 0)
+        self.init(description: res?.message, code: res?.statusCode ?? 0)
     }
     
     // Others Error
@@ -99,18 +108,18 @@ extension LinkedOutError: Equatable {
 extension PrimitiveSequence where Trait == SingleTrait, Element == Response {
     public func catchApiErrorJustReturn() -> Single<Element> {
         return flatMap { response in
-            let foodinkoWebResult = try response.map(ApiWebResult.self,
+            let linkedoutWebResult = try response.map(ApiWebResult.self,
                                                atKeyPath: "",
                                                using: JSONDecoder().since1970(),
                                                failsOnEmptyData: false)
             
             // 비지니스 에러
-            if foodinkoWebResult.success {
+            if linkedoutWebResult.success {
                 return .just(response)
             } else {
-                guard foodinkoWebResult.statusCode == 200 else {
+                guard linkedoutWebResult.statusCode == 200 else {
                     do {
-                        throw LinkedOutError(foodinkoWebResult)
+                        throw LinkedOutError(linkedoutWebResult)
                     }
                     catch {
                         throw error
