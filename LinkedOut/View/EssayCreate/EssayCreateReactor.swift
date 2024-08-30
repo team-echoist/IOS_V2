@@ -23,6 +23,8 @@ public final class EssayCreateReactor: Reactor {
     public enum Action {
         case inputCancel
         case inputSave
+        case inputTitleField(String)
+        case inputContentField(NSAttributedString)
     }
     
     public enum Mutaion {
@@ -30,6 +32,9 @@ public final class EssayCreateReactor: Reactor {
         case setError(Tracked<LinkedOutError>?)
         case setAlert(Tracked<LocalizedError>?)
         case setMessage(Tracked<String>?)
+        
+        case setTitleField(String)
+        case setContentField(NSAttributedString)
     }
     
     public struct State {
@@ -37,6 +42,15 @@ public final class EssayCreateReactor: Reactor {
         public var error: Tracked<LinkedOutError>?
         public var alert: Tracked<LocalizedError>?
         public var message: Tracked<String>?
+        
+        public var title: String = ""
+        public var content: String = ""
+        public var status: EssayStatus?
+        public var latitude: Double?
+        public var logintude: Double?
+        public var thumbnail: String?
+        public var location: String?
+        public var tags: [String]?
     }
     
     // MARK: State
@@ -62,7 +76,14 @@ public final class EssayCreateReactor: Reactor {
             SceneDelegate.shared.router.routeDismiss(animated: true, completionHandler: nil)
             return .empty()
         case .inputSave:
+            log.debug("inputSave")
+            log.debug(self.currentState.content)
             return .empty()
+        case .inputTitleField(let title):
+            return .just(.setTitleField(title))
+        case .inputContentField(let content):
+            return .just(.setContentField(content))
+            
         }
         
     }
@@ -83,6 +104,12 @@ public final class EssayCreateReactor: Reactor {
             case let .setAlert(alert): newState.alert = alert; return newState
             case let .setMessage(message): newState.message = message; return newState
             
-        }// switch
-    }// reduce
-}// class
+            case let .setTitleField(title): newState.title = title; return newState
+            case let .setContentField(content): 
+                let htmlData = try? content.data(from: NSRange(location: 0, length: content.length), documentAttributes: [.documentType: NSAttributedString.DocumentType.html])
+                let htmlString = String(data: htmlData!, encoding: .utf8)
+                newState.content = htmlString ?? ""
+                return newState
+        }
+    }
+}

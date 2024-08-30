@@ -27,8 +27,15 @@ public class EssayViewModel: BaseViewModel, EssayViewModelType {
         return observable
     }
     
-    public func postEssays() {
+    public func postEssays(essayCraeteData: EssayCreateData) -> Single<ApiWebResult> {
+        let observable = self
+            .essayRepository
+            .postEssays(essayCraeteData: essayCraeteData )
+            .flatMap { (response) in
+                return Single.just(response)
+            }
         
+        return observable
     }
     
     public func getEssayDetail(essayId: Int, type: EssayType) -> Single<ApiResult<EssayDetailResponse>> {

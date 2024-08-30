@@ -26,7 +26,7 @@ public enum LinkedOutAPI {
     case getUserInfo
     // essay
     case getEssays
-    case postEssays
+    case postEssays(essayCreateData: EssayCreateData)
     case getEssayDetail(essayId: Int, type: EssayType)
     case getEssaysRecommend(limit: Int = 20)
     case getEssaysFollowings(page: Int = 1, limit: Int = 20)
@@ -123,8 +123,17 @@ extension LinkedOutAPI: SugarTargetType {
         case .getEssays:
             let dic: [String: Any] = [:]
             return ApiParam.makeParam(from: dic, method: .get)
-        case .postEssays:
-            let dic: [String: Any] = [:]
+        case .postEssays(let data):
+            let dic: [String: Any] = [
+                ApiParam.title.rawValue: data.title,
+                ApiParam.content.rawValue: data.content,
+                ApiParam.status.rawValue: data.status,
+                ApiParam.linkedOutGauge.rawValue: data.linkedOutGauge,
+                ApiParam.latitude.rawValue: data.latitude,
+                ApiParam.longitude.rawValue: data.longitude,
+                ApiParam.location.rawValue: data.location,
+                ApiParam.tags.rawValue: data.tags,
+            ]
             return ApiParam.makeParam(from: dic, method: .post)
         case .getEssayDetail(_, let essayType):
             let dic: [String: Any] = [

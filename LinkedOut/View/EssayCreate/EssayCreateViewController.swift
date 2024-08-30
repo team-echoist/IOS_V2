@@ -190,7 +190,18 @@ public final class EssayCreateViewController: BaseViewController, EssayCreateVie
     // MARK: Bind
     
     public func bind(reactor: Reactor) {
+        self.bindView(reactor)
         self.bindAction(reactor)
+    }
+    
+    public func bindView(_ reactor: Reactor) {
+        self.tvContents.rx
+            .attributedText
+            .filterNil()
+            .bind(onNext: { text in
+                reactor.action.onNext(.inputContentField(text))
+            })
+            .disposed(by: self.disposeBag)
     }
     
     public func bindAction(_ reactor: Reactor) {

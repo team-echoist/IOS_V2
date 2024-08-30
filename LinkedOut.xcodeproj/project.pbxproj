@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5517A71B2C7FF51E002FC7F1 /* EssayCreateData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5517A71A2C7FF51E002FC7F1 /* EssayCreateData.swift */; };
 		552A40612C50D07E002199F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552A40602C50D07E002199F6 /* AppDelegate.swift */; };
 		552A40632C50D07E002199F6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552A40622C50D07E002199F6 /* SceneDelegate.swift */; };
 		552A40652C50D07E002199F6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552A40642C50D07E002199F6 /* ViewController.swift */; };
@@ -202,6 +203,7 @@
 
 /* Begin PBXFileReference section */
 		44ECDC8A1F3C5085ECA5A15E /* Pods-LinkedOut.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinkedOut.release.xcconfig"; path = "Target Support Files/Pods-LinkedOut/Pods-LinkedOut.release.xcconfig"; sourceTree = "<group>"; };
+		5517A71A2C7FF51E002FC7F1 /* EssayCreateData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssayCreateData.swift; sourceTree = "<group>"; };
 		552A405D2C50D07E002199F6 /* LinkedOut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LinkedOut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		552A40602C50D07E002199F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		552A40622C50D07E002199F6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -808,6 +810,7 @@
 			children = (
 				558264D72C5EA9C800449B13 /* UserInfoData.swift */,
 				5582652E2C747D1C00449B13 /* EssayDetail.swift */,
+				5517A71A2C7FF51E002FC7F1 /* EssayCreateData.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -1445,6 +1448,7 @@
 				55A01B292C536D9D00B92C63 /* HomeReactor.swift in Sources */,
 				558264B62C5B729900449B13 /* BaseTableViewCell.swift in Sources */,
 				553F85D22C58D111001D4AFC /* AuthRepositoryType.swift in Sources */,
+				5517A71B2C7FF51E002FC7F1 /* EssayCreateData.swift in Sources */,
 				552A427F2C50FB74002199F6 /* RouterType.swift in Sources */,
 				552A42BB2C51ED40002199F6 /* Localization.swift in Sources */,
 				55F49DE12C532AFE000879D1 /* NVActivityIndicatorAnimationBallClipRotatePulse.swift in Sources */,

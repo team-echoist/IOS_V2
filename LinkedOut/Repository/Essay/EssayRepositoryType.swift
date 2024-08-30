@@ -17,7 +17,7 @@ public protocol EssayRepositoryType {
     
     func getEssays() -> Single<ApiResult<EssayArray>>
     
-    func postEssays()
+    func postEssays(essayCraeteData: EssayCreateData) -> Single<ApiWebResult>
     
     func getEssayDetail(essayId: Int, essayType: EssayType) -> Single<ApiResult<EssayDetailResponse>>
     

@@ -38,8 +38,16 @@ public final class EssayRepository: EssayRepositoryType {
         return observable
     }
     
-    public func postEssays() {
+    public func postEssays(essayCraeteData: EssayCreateData) -> Single<ApiWebResult> {
+        let observable = self
+            .networking
+            .request(.postEssays(essayCreateData: essayCraeteData))
+            .map(ApiWebResult.self)
+            .flatMap { (response) in
+                return Single.just(response)
+            }
         
+        return observable
     }
     
     public func getEssayDetail(essayId: Int, essayType: EssayType) -> Single<ApiResult<EssayDetailResponse>> {
