@@ -62,6 +62,7 @@ public enum ApiParam: String {
     case storyId = "storyId" // 특정 스토리에 속한 에세이만 조회
     case keyword = "keyword" // 검색할 키워드
     case type = "type"
+    case pageType = "pageType"
     case title = "title"
     case content = "content"
     case linkedOutGauge = "linkedOutGauge"
@@ -127,7 +128,7 @@ extension LinkedOutAPI: SugarTargetType {
             return ApiParam.makeParam(from: dic, method: .post)
         case .getEssayDetail(_, let essayType):
             let dic: [String: Any] = [
-                ApiParam.type.rawValue: essayType.rawValue
+                ApiParam.pageType.rawValue: essayType.rawValue
             ]
             
             return ApiParam.makeParam(from: dic, method: .get)
