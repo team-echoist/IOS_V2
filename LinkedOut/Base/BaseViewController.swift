@@ -107,6 +107,9 @@ open class BaseViewController: UIViewController, BaseViewControllerType, NVActiv
         self.setUpUI()
         self.updateUI()
         
+        // tap시 keyboard 닫히는 액션 추가
+        self.hideKeyboardWhenTappedAround()
+        
         self.view.setNeedsUpdateConstraints()
     }
     

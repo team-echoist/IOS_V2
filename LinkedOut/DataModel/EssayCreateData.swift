@@ -18,4 +18,16 @@ public struct EssayCreateData {
     let longitude: Double?
     let location: String?
     let tags: [String]?
+    
+    init(title: String, content: String, status: EssayStatus) {
+        self.title = title
+        self.content = content
+        self.status = status.rawValue
+        self.linkedOutGauge = nil
+        self.thumbnail = nil
+        self.latitude = nil
+        self.longitude = nil
+        self.location = nil
+        self.tags = nil
+    }
 }

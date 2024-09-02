@@ -14,4 +14,12 @@ public struct EssayCreateModel: ModelType {
         
     }
     
+    public enum EssayTextEditType {
+        case bold
+        case size
+        case underline
+        case strikethrough
+        case etc
+    }
+    
 }
