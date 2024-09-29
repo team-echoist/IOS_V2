@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5517A71B2C7FF51E002FC7F1 /* EssayCreateData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5517A71A2C7FF51E002FC7F1 /* EssayCreateData.swift */; };
 		5517A71F2C816B25002FC7F1 /* Keyboard+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5517A71E2C816B24002FC7F1 /* Keyboard+.swift */; };
+		5517A7242C857B77002FC7F1 /* UITextView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5517A7232C857B76002FC7F1 /* UITextView+.swift */; };
 		552A40612C50D07E002199F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552A40602C50D07E002199F6 /* AppDelegate.swift */; };
 		552A40632C50D07E002199F6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552A40622C50D07E002199F6 /* SceneDelegate.swift */; };
 		552A40652C50D07E002199F6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552A40642C50D07E002199F6 /* ViewController.swift */; };
@@ -206,6 +207,7 @@
 		44ECDC8A1F3C5085ECA5A15E /* Pods-LinkedOut.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinkedOut.release.xcconfig"; path = "Target Support Files/Pods-LinkedOut/Pods-LinkedOut.release.xcconfig"; sourceTree = "<group>"; };
 		5517A71A2C7FF51E002FC7F1 /* EssayCreateData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssayCreateData.swift; sourceTree = "<group>"; };
 		5517A71E2C816B24002FC7F1 /* Keyboard+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keyboard+.swift"; sourceTree = "<group>"; };
+		5517A7232C857B76002FC7F1 /* UITextView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+.swift"; sourceTree = "<group>"; };
 		552A405D2C50D07E002199F6 /* LinkedOut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LinkedOut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		552A40602C50D07E002199F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		552A40622C50D07E002199F6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -423,6 +425,14 @@
 			path = Keyboard;
 			sourceTree = "<group>";
 		};
+		5517A7222C857B67002FC7F1 /* UITextView */ = {
+			isa = PBXGroup;
+			children = (
+				5517A7232C857B76002FC7F1 /* UITextView+.swift */,
+			);
+			path = UITextView;
+			sourceTree = "<group>";
+		};
 		552A40542C50D07E002199F6 = {
 			isa = PBXGroup;
 			children = (
@@ -572,6 +582,7 @@
 		552A42BC2C51EF8C002199F6 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				5517A7222C857B67002FC7F1 /* UITextView */,
 				5517A71D2C816B16002FC7F1 /* Keyboard */,
 				5582651E2C66072C00449B13 /* UIFont */,
 				558264EC2C62060900449B13 /* UIImage */,
@@ -1467,6 +1478,7 @@
 				553824BA2C58DB7600A744BD /* AuthViewModel.swift in Sources */,
 				55F49DE82C532AFE000879D1 /* NVActivityIndicatorAnimationBallRotate.swift in Sources */,
 				55F49D592C5210A5000879D1 /* DependenciesRepositoryType.swift in Sources */,
+				5517A7242C857B77002FC7F1 /* UITextView+.swift in Sources */,
 				552A427D2C50FB74002199F6 /* Router.swift in Sources */,
 				55F49D682C52309B000879D1 /* ApiResult.swift in Sources */,
 				552A40922C50DB60002199F6 /* BaseViewController.swift in Sources */,
