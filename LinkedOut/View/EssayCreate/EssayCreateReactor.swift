@@ -24,8 +24,10 @@ public final class EssayCreateReactor: Reactor {
         case inputCancel
         case inputSave
         case inputTitleField(String)
-        case inputContentField(NSAttributedString)
-        case inputEditText(EssayCreateModel.EssayTextEditType)
+        case inputSelectedText(String)
+        case inputContent(String) // 단순 string만 입력
+        case inputContentField(NSAttributedString, NSRange)
+        case inputEditText(EssayCreateModel.EssayTextEditType, NSRange)
         case inputTempSave
         case inputHideEdit
         
@@ -39,7 +41,10 @@ public final class EssayCreateReactor: Reactor {
         case setMessage(Tracked<String>?)
         
         case setTitleField(String)
-        case setContentField(NSAttributedString)
+        case setContent(String)
+        case setContentField(NSAttributedString, NSRange)
+        case editContentField(EssayCreateModel.EssayTextEditType, NSRange)
+        case setSelectedContentText(String)
         
         case setKeyboardState(height: CGFloat, isVisible: Bool)
     }
@@ -52,6 +57,8 @@ public final class EssayCreateReactor: Reactor {
         
         public var title: String = ""
         public var content: String = ""
+        public var contentAttribute: NSMutableAttributedString = NSMutableAttributedString(string: "")
+        public var selectedContent: String = ""
         public var status: EssayStatus?
         public var latitude: Double?
         public var logintude: Double?
@@ -89,15 +96,18 @@ public final class EssayCreateReactor: Reactor {
             return self.getPostEssay(start: self.startLoading, end: self.endLoading)
         case .inputTitleField(let title):
             return .just(.setTitleField(title))
-        case .inputContentField(let content):
-            return .just(.setContentField(content))
-            
+        case .inputSelectedText(let selectedText):
+            return .just(.setSelectedContentText(selectedText))
+        case .inputContent(let content):
+            return .just(.setContent(content))
+        case .inputContentField(let content, let range):
+            return .just(.setContentField(content, range))
         case .keyboardStateChanged(height: let height, isVisible: let isVisible):
             return .just(.setKeyboardState(height: height, isVisible: isVisible))
-        case .inputEditText(let editType):
-            return .empty()
+        case .inputEditText(let editType, let range):
+            return .just(.editContentField(editType, range))
         case .inputTempSave:
-            // TODO: 임시저장 로그 추가            
+            // TODO: 임시저장 로그 추가
             return .empty()
         case .inputHideEdit:
             return .empty()
@@ -115,22 +125,38 @@ public final class EssayCreateReactor: Reactor {
         var newState = state
         
         switch mutation {
+        case let .setLoading(isLoading): newState.isLoading = isLoading; return newState
+        case let .setError(error): newState.error = error; return newState
+        case let .setAlert(alert): newState.alert = alert; return newState
+        case let .setMessage(message): newState.message = message; return newState
             
-            case let .setLoading(isLoading): newState.isLoading = isLoading; return newState
-            case let .setError(error): newState.error = error; return newState
-            case let .setAlert(alert): newState.alert = alert; return newState
-            case let .setMessage(message): newState.message = message; return newState
+        case let .setTitleField(title): newState.title = title; return newState
+        case let .setContent(content): newState.content = content; return newState
+        case let .setContentField(content, range):
+            let htmlData = try? content.data(from: range, documentAttributes: [.documentType: NSAttributedString.DocumentType.html])
+            let htmlString = String(data: htmlData!, encoding: .utf8)
+            newState.content = self.generateHTML(text: content)//htmlString ?? ""
+            return newState
+        case let .editContentField(type, range):
+            let attributedText = NSMutableAttributedString(attributedString: self.currentState.contentAttribute)
+
+            let attributes: [NSAttributedString.Key: Any] = [
+                .foregroundColor: UIColor.red // 예: 텍스트 색상 변경
+            ]
+//            
+            attributedText.addAttributes(attributes, range: range)
             
-            case let .setTitleField(title): newState.title = title; return newState
-            case let .setContentField(content): 
-//                let htmlData = try? content.data(from: NSRange(location: 0, length: content.length), documentAttributes: [.documentType: NSAttributedString.DocumentType.html])
-//                let htmlString = String(data: htmlData!, encoding: .utf8)
-                newState.content = self.generateHTML(text: content)//htmlString ?? ""
-                return newState
-            case let .setKeyboardState(height, isVisible):
-                newState.keyboardHeight = height
-                newState.isKeyboardVisible = isVisible
-                return newState
+            let htmlData = try? attributedText.data(from: NSRange(location: 0, length: attributedText.length), documentAttributes: [.documentType: NSAttributedString.DocumentType.html])
+            let htmlString = String(data: htmlData!, encoding: .utf8)
+            newState.content = self.generateHTML(text: attributedText)//htmlString ?? ""
+            return newState
+        case let .setSelectedContentText(content):
+            newState.selectedContent = content
+            return newState
+        case let .setKeyboardState(height, isVisible):
+            newState.keyboardHeight = height
+            newState.isKeyboardVisible = isVisible
+            return newState
         }
     }
     
@@ -142,8 +168,18 @@ public final class EssayCreateReactor: Reactor {
     ) -> Observable<Mutaion> {
         guard !self.currentState.isLoading else { return .empty() }
         
-        guard self.currentState.title.isEmpty, self.currentState.content.isEmpty else { return .just(.setError(makeError(LinkedOutError(title: "입력하지 않은 항목이 있습니다.", code: 400)))) }
+        guard self.currentState.title.isEmpty else {
+            return .just(.setError(makeError(LinkedOutError(title: "제목을 입력하지 않았습니다.", code: 400))))
+        }
         
+//        guard self.currentState.content.isEmpty else {
+//            return .just(.setError(makeError(LinkedOutError(title: "내용을 입력하지 않았습니다.", code: 400))))
+//        }
+//        
+//        let htmlData = try? self.currentState.contentAttribute.data(from: NSRange(location: 0, length: content.length), documentAttributes: [.documentType: NSAttributedString.DocumentType.html])
+//        let htmlString = String(data: htmlData!, encoding: .utf8)
+//        let content = self.generateHTML(text: content)//htmlString ?? ""
+                
         let title = self.currentState.title
         let content = self.currentState.content
         
@@ -192,5 +228,9 @@ public final class EssayCreateReactor: Reactor {
         }
         
         return "<p>\(html)</p>"
+    }
+    
+    public func changeTextStyle(type: EssayCreateModel.EssayTextEditType, text: String) {
+        
     }
 }

@@ -65,19 +65,25 @@ public final class RootReactor: Reactor {
         
         switch action {
             case .setInit:
-            return userViewModel
-                .getUserInfo()
-                .asObservable()
-                .map { response in
-                    print(response)
-                    MyInfoManager.shared.myInfo = response.data
-                    SceneDelegate.shared.router.routeMainTabBar()
-                    return .setNextPage
-                }
-                .catch { (error) in
-                    SceneDelegate.shared.router.routeMainTabBar()
-                    return .just(.setError(makeError(LinkedOutError(error))))
-                }
+            // TODO: Token 체크
+            if (MyInfoManager.shared.isLogin) {
+                return userViewModel
+                    .getUserInfo()
+                    .asObservable()
+                    .map { response in
+                        print(response)
+                        MyInfoManager.shared.myInfo = response.data
+                        SceneDelegate.shared.router.routeMainTabBar()
+                        return .setNextPage
+                    }
+                    .catch { (error) in
+                        SceneDelegate.shared.router.routeMainTabBar()
+                        return .just(.setError(makeError(LinkedOutError(error))))
+                    }
+            } else {
+                SceneDelegate.shared.router.routeLogin()
+                return .just(.setNextPage)
+            }
             case .checkStatus:
             return authViewModel
                 .getHealthcheck()

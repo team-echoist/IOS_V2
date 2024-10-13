@@ -162,9 +162,28 @@ public final class EssayCreateViewController: BaseViewController, EssayCreateVie
         $0.backgroundColor = Color.divider
     }
     
+    let btnTextSizeEdit = UIButton().then {
+        $0.setImage(Image.size, for: .normal)
+    }
+    
+    let btnTextBoldEdit = UIButton().then {
+        $0.setImage(Image.bold, for: .normal)
+    }
+    
+    let btnTextUnderlineEdit = UIButton().then {
+        $0.setImage(Image.underline, for: .normal)
+    }
+    
+    let btnTextStrikethroughEdit = UIButton().then {
+        $0.setImage(Image.strikethrough, for: .normal)
+    }
+    
+    let btnTextAddEtcEdit = UIButton().then {
+        $0.setImage(Image.addEtc, for: .normal)
+    }
+    
     // MARK: - property
     
-    let textEditorIcons = [Image.size, Image.bold, Image.underline, Image.strikethrough, Image.addEtc]
     
     // MARK: - Initialize
     
@@ -182,13 +201,13 @@ public final class EssayCreateViewController: BaseViewController, EssayCreateVie
         _ = [self.viEditIconStack, self.viSaveAndHideEdit].map {
             self.viTextEditor.addSubview($0)
         }
-                        
         
-        _ = self.textEditorIcons.map {
-            let button = UIButton()
-            button.setImage($0, for: .normal)
-            self.viEditIconStack.addArrangedSubview(button)
-            button.snp.makeConstraints {
+        let textEditorIcons = [self.btnTextSizeEdit, self.btnTextBoldEdit, self.btnTextUnderlineEdit, self.btnTextStrikethroughEdit, self.btnTextAddEtcEdit]
+        
+        _ = textEditorIcons.map {
+            self.viEditIconStack.addArrangedSubview($0)
+            
+            $0.snp.makeConstraints {
                 $0.width.height.equalTo(Metric.editIconSize)
             }
         }
@@ -317,7 +336,7 @@ public final class EssayCreateViewController: BaseViewController, EssayCreateVie
             .attributedText
             .filterNil()
             .bind(onNext: { text in
-                reactor.action.onNext(.inputContentField(text))
+                reactor.action.onNext(.inputContentField(text, self.tvContents.selectedRange))
             })
             .disposed(by: self.disposeBag)
     }
@@ -355,6 +374,28 @@ public final class EssayCreateViewController: BaseViewController, EssayCreateVie
             })
             .disposed(by: self.disposeBag)
         
+        // 에디터 버튼 액션
+        self.bindTextEditorActions(reactor)
+        
+        _ = [self.btnTextSizeEdit, self.btnTextBoldEdit, self.btnTextUnderlineEdit, self.btnTextStrikethroughEdit, self.btnTextAddEtcEdit].map {
+            $0.rx.tap
+                .subscribe(onNext: { [weak self] in
+                    guard let self = self else { return }
+                    
+                    reactor.action.onNext(.inputEditText(.bold, self.tvContents.selectedRange))
+
+                    let attributedText = NSMutableAttributedString(attributedString: self.tvContents.attributedText)
+                    
+                    let attributes: [NSAttributedString.Key: Any] = [
+                        .foregroundColor: UIColor.red
+                    ]
+                    
+                    attributedText.addAttributes(attributes, range: self.tvContents.selectedRange)
+                    self.self.tvContents.attributedText = attributedText
+                })
+                .disposed(by: self.disposeBag)
+        }
+                
         // keyboard 액션
         NotificationCenter.rx.keyboardNotification()
             .map { .keyboardStateChanged(height: $0.0, isVisible: $0.1) }
@@ -362,11 +403,51 @@ public final class EssayCreateViewController: BaseViewController, EssayCreateVie
             .disposed(by: disposeBag)
     }
     
+    public func bindTextEditorActions(_ reactor: Reactor) {
+        /*
+         changeFontButton.rx.tap
+             .withLatestFrom(selectedRangeObservable)
+             .subscribe(onNext: { [weak self] selectedRange in
+                 guard let self = self else { return }
+
+                 let attributedText = NSMutableAttributedString(attributedString: self.textView.attributedText)
+                 
+                 let attributes: [NSAttributedString.Key: Any] = [
+                     .font: UIFont.systemFont(ofSize: 20), // 원하는 폰트와 사이즈 설정
+                     .foregroundColor: UIColor.red // 예: 텍스트 색상 변경
+                 ]
+                 
+                 attributedText.addAttributes(attributes, range: selectedRange)
+                 self.textView.attributedText = attributedText
+             })
+             .disposed(by: disposeBag)
+         */
+        
+        self.tvContents.rx
+            .didChangeSelection
+            .subscribe(onNext: { [weak self] in
+                guard let self = self else { return }
+                if let text = self.tvContents.text(from: self.tvContents.selectedRange) {
+                    reactor.action.onNext(.inputSelectedText(text))
+                }
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.tvContents.rx
+            .didChange
+            .subscribe(onNext: { [weak self] in
+                guard let self = self else { return }
+                reactor.action.onNext(.inputContent(self.tvContents.text))
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
     // MARK: Bind - State
     public func bindState(_ reactor: Reactor) {
         self.bindErrorState(reactor)
         self.bindAlertState(reactor)
         self.bindKeyboardState(reactor)
+        self.bindContentState(reactor)
     }
     
     private func bindErrorState(_ reactor: Reactor) {
@@ -411,6 +492,26 @@ public final class EssayCreateViewController: BaseViewController, EssayCreateVie
                         $0.bottom.equalToSuperview()
                     }
                 }
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
+    private func bindContentState(_ reactor: Reactor) {
+        reactor.state
+            .map { $0.contentAttribute }
+            .distinctUntilChanged()
+            .subscribe(onNext: {
+                log.debug("get attribte")
+                log.debug($0)
+            })
+            .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.content }
+            .distinctUntilChanged()
+            .subscribe(onNext: {
+                log.debug("get content")
+                log.debug($0)
             })
             .disposed(by: self.disposeBag)
     }

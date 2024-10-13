@@ -52,4 +52,8 @@ extension Dependencies: DependenciesViewControllerType {
             reactor: self.makeEssayCreate()
         )
     }
+    
+    public func makeLogin() -> UIViewController {
+        return LoginViewController(reactor: self.makeLogin())
+    }
 }

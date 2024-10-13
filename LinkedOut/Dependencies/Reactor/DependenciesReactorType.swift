@@ -16,4 +16,7 @@ public protocol DependenciesReactorType {
     func makeMyPage() -> MyPageReactor
     func makeEssayDetail() -> EssayDetailReactor
     func makeEssayCreate() -> EssayCreateReactor
+    
+    // MARK: - Login
+    func makeLogin() -> LoginReactor
 }

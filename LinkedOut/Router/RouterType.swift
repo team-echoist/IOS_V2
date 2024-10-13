@@ -30,4 +30,6 @@ public protocol RouterType {
     func getMyPage() -> UIViewController
     func routeEssayDetail(essayId: Int)
     func routeEssayCrate()
+    // MARK: - Login
+    func routeLogin()
 }

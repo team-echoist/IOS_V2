@@ -11,7 +11,7 @@ public class MyInfoManager {
     
     static let shared = MyInfoManager()
     
-    public var isLogin = true
+    public var isLogin = false
     
     public var myInfo: UserInfoData? = nil
 }

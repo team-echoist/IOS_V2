@@ -56,4 +56,8 @@ extension Dependencies: DependenciesReactorType {
             essayViewModel: self.makeEssay()
         )
     }
+    
+    public func makeLogin() -> LoginReactor {
+        return LoginReactor()
+    }
 }

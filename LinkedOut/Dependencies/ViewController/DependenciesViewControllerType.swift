@@ -20,4 +20,7 @@ public protocol DependenciesViewControllerType {
     func makeEssayDetail(essayId: Int) -> UIViewController
     // TODO : 임시저장 Id 불러와서 데이터 세팅하게끔 파라미터 추가, tempSaveId
     func makeEssayCreate() -> UIViewController
+    
+    // MARK: - Login
+    func makeLogin() -> UIViewController
 }

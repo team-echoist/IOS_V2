@@ -87,7 +87,7 @@ public final class Router: BaseViewController, View {
     override public func viewDidLoad() {
         super.viewDidLoad()
         self.add(self.current)
-        log.debug("add current view controller - parent: \(self.current.parent), superView: \(self.current.view.superview)")
+        log.debug("add current view controller - parent: \(String(describing: self.current.parent)), superView: \(String(describing: self.current.view.superview))")
     }
 
     override public func viewWillAppear(_ animated: Bool) {
@@ -350,4 +350,9 @@ extension Router: RouterType {
 //        let vc = StaffSupportAuthCodeViewController(eventSeq: eventSeq, isEvent: isEvent, preScreenId: preScreenId)
 //        self.screenPush(to: vc, animated: false)
 //    }
+    
+    public func routeLogin() {
+        let vc = self.viewFactory.makeLogin()
+        self.screenPush(to: vc)
+    }
 }
