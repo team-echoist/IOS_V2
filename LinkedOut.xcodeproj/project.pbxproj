@@ -44,6 +44,15 @@
 		553F85C52C58C25A001D4AFC /* ISideNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553F85C42C58C25A001D4AFC /* ISideNavigation.swift */; };
 		553F85D22C58D111001D4AFC /* AuthRepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553F85D12C58D111001D4AFC /* AuthRepositoryType.swift */; };
 		553F85D42C58D121001D4AFC /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553F85D32C58D121001D4AFC /* AuthRepository.swift */; };
+		5564FA782CC8899A00B9B5C3 /* LoginResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5564FA772CC8899A00B9B5C3 /* LoginResult.swift */; };
+		5564FA7D2CC8947800B9B5C3 /* SignupTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5564FA7A2CC8947800B9B5C3 /* SignupTermsViewController.swift */; };
+		5564FA7E2CC8947800B9B5C3 /* SignupTermsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5564FA7B2CC8947800B9B5C3 /* SignupTermsModel.swift */; };
+		5564FA7F2CC8947800B9B5C3 /* SignupTermsReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5564FA7C2CC8947800B9B5C3 /* SignupTermsReactor.swift */; };
+		5564FA842CC8AF6E00B9B5C3 /* SignupEmailAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5564FA812CC8AF6E00B9B5C3 /* SignupEmailAuthViewController.swift */; };
+		5564FA852CC8AF6E00B9B5C3 /* SignupEmailAuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5564FA822CC8AF6E00B9B5C3 /* SignupEmailAuthModel.swift */; };
+		5564FA862CC8AF6E00B9B5C3 /* SignupEmailAuthReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5564FA832CC8AF6E00B9B5C3 /* SignupEmailAuthReactor.swift */; };
+		5564FA8B2CD37B4700B9B5C3 /* TermsAgreeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5564FA8A2CD37B4700B9B5C3 /* TermsAgreeButton.swift */; };
+		5564FA8D2CD4A4D600B9B5C3 /* TermsAgreeButtonReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5564FA8C2CD4A4D600B9B5C3 /* TermsAgreeButtonReactor.swift */; };
 		558264A12C59B94500449B13 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5582649E2C59B94500449B13 /* RootViewController.swift */; };
 		558264A22C59B94500449B13 /* RootModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5582649F2C59B94500449B13 /* RootModel.swift */; };
 		558264A32C59B94500449B13 /* RootReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558264A02C59B94500449B13 /* RootReactor.swift */; };
@@ -249,6 +258,15 @@
 		553F85C42C58C25A001D4AFC /* ISideNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISideNavigation.swift; sourceTree = "<group>"; };
 		553F85D12C58D111001D4AFC /* AuthRepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepositoryType.swift; sourceTree = "<group>"; };
 		553F85D32C58D121001D4AFC /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
+		5564FA772CC8899A00B9B5C3 /* LoginResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResult.swift; sourceTree = "<group>"; };
+		5564FA7A2CC8947800B9B5C3 /* SignupTermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupTermsViewController.swift; sourceTree = "<group>"; };
+		5564FA7B2CC8947800B9B5C3 /* SignupTermsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupTermsModel.swift; sourceTree = "<group>"; };
+		5564FA7C2CC8947800B9B5C3 /* SignupTermsReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupTermsReactor.swift; sourceTree = "<group>"; };
+		5564FA812CC8AF6E00B9B5C3 /* SignupEmailAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupEmailAuthViewController.swift; sourceTree = "<group>"; };
+		5564FA822CC8AF6E00B9B5C3 /* SignupEmailAuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupEmailAuthModel.swift; sourceTree = "<group>"; };
+		5564FA832CC8AF6E00B9B5C3 /* SignupEmailAuthReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupEmailAuthReactor.swift; sourceTree = "<group>"; };
+		5564FA8A2CD37B4700B9B5C3 /* TermsAgreeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAgreeButton.swift; sourceTree = "<group>"; };
+		5564FA8C2CD4A4D600B9B5C3 /* TermsAgreeButtonReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAgreeButtonReactor.swift; sourceTree = "<group>"; };
 		5582649E2C59B94500449B13 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		5582649F2C59B94500449B13 /* RootModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootModel.swift; sourceTree = "<group>"; };
 		558264A02C59B94500449B13 /* RootReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootReactor.swift; sourceTree = "<group>"; };
@@ -753,6 +771,36 @@
 			path = Bookmark;
 			sourceTree = "<group>";
 		};
+		5564FA792CC8945E00B9B5C3 /* SignupTerms */ = {
+			isa = PBXGroup;
+			children = (
+				5564FA892CD37B3100B9B5C3 /* View */,
+				5564FA7A2CC8947800B9B5C3 /* SignupTermsViewController.swift */,
+				5564FA7B2CC8947800B9B5C3 /* SignupTermsModel.swift */,
+				5564FA7C2CC8947800B9B5C3 /* SignupTermsReactor.swift */,
+			);
+			path = "Signup\U0010Terms";
+			sourceTree = "<group>";
+		};
+		5564FA802CC8AF5800B9B5C3 /* SignupEmailAuth */ = {
+			isa = PBXGroup;
+			children = (
+				5564FA812CC8AF6E00B9B5C3 /* SignupEmailAuthViewController.swift */,
+				5564FA822CC8AF6E00B9B5C3 /* SignupEmailAuthModel.swift */,
+				5564FA832CC8AF6E00B9B5C3 /* SignupEmailAuthReactor.swift */,
+			);
+			path = SignupEmailAuth;
+			sourceTree = "<group>";
+		};
+		5564FA892CD37B3100B9B5C3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5564FA8A2CD37B4700B9B5C3 /* TermsAgreeButton.swift */,
+				5564FA8C2CD4A4D600B9B5C3 /* TermsAgreeButtonReactor.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		5582649D2C59B92E00449B13 /* Root */ = {
 			isa = PBXGroup;
 			children = (
@@ -839,6 +887,7 @@
 				558264D72C5EA9C800449B13 /* UserInfoData.swift */,
 				5582652E2C747D1C00449B13 /* EssayDetail.swift */,
 				5517A71A2C7FF51E002FC7F1 /* EssayCreateData.swift */,
+				5564FA772CC8899A00B9B5C3 /* LoginResult.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -1048,6 +1097,8 @@
 		55A0428E2C536AA90065DDBC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5564FA802CC8AF5800B9B5C3 /* SignupEmailAuth */,
+				5564FA792CC8945E00B9B5C3 /* SignupTerms */,
 				55E23F4B2CA95D610036D5E7 /* Login */,
 				558265302C78179100449B13 /* EssayCreate */,
 				558265272C6C56BB00449B13 /* EssayDetail */,
@@ -1449,6 +1500,7 @@
 				553F85C02C5884A5001D4AFC /* SideNavigationViewController.swift in Sources */,
 				5582652F2C747D1C00449B13 /* EssayDetail.swift in Sources */,
 				553F85C12C5884A5001D4AFC /* SideNavigationModel.swift in Sources */,
+				5564FA8B2CD37B4700B9B5C3 /* TermsAgreeButton.swift in Sources */,
 				553F85C22C5884A5001D4AFC /* SideNavigationReactor.swift in Sources */,
 				558265242C6AEE5500449B13 /* MyPageViewController.swift in Sources */,
 				558265252C6AEE5500449B13 /* MyPageModel.swift in Sources */,
@@ -1472,11 +1524,15 @@
 				55F49DDF2C532AFE000879D1 /* NVActivityIndicatorAnimationBallClipRotate.swift in Sources */,
 				558264CA2C5E8AA900449B13 /* WritingTabModel.swift in Sources */,
 				55F49E022C532AFE000879D1 /* NVActivityIndicatorShape.swift in Sources */,
+				5564FA842CC8AF6E00B9B5C3 /* SignupEmailAuthViewController.swift in Sources */,
+				5564FA852CC8AF6E00B9B5C3 /* SignupEmailAuthModel.swift in Sources */,
+				5564FA862CC8AF6E00B9B5C3 /* SignupEmailAuthReactor.swift in Sources */,
 				55F49DE02C532AFE000879D1 /* NVActivityIndicatorAnimationBallClipRotateMultiple.swift in Sources */,
 				558264AA2C5A19B700449B13 /* EssayViewModelType.swift in Sources */,
 				558264AB2C5A19B700449B13 /* EssayViewModel.swift in Sources */,
 				55F49DDE2C532AFE000879D1 /* NVActivityIndicatorAnimationBallBeat.swift in Sources */,
 				552A40652C50D07E002199F6 /* ViewController.swift in Sources */,
+				5564FA8D2CD4A4D600B9B5C3 /* TermsAgreeButtonReactor.swift in Sources */,
 				55F49DF22C532AFE000879D1 /* NVActivityIndicatorAnimationBlank.swift in Sources */,
 				558264A62C59FC4300449B13 /* View+.swift in Sources */,
 				55A01B272C536D9D00B92C63 /* HomeViewController.swift in Sources */,
@@ -1554,6 +1610,7 @@
 				55F49D752C5234A4000879D1 /* UIViewController+NavigationBar.swift in Sources */,
 				553F85C52C58C25A001D4AFC /* ISideNavigation.swift in Sources */,
 				55A01B3F2C54A5FE00B92C63 /* WritingViewController.swift in Sources */,
+				5564FA782CC8899A00B9B5C3 /* LoginResult.swift in Sources */,
 				558264C82C5E89D500449B13 /* BaseView.swift in Sources */,
 				55A01B402C54A5FE00B92C63 /* WritingModel.swift in Sources */,
 				558264C32C5CD70A00449B13 /* String+Date.swift in Sources */,
@@ -1573,6 +1630,9 @@
 				55A01B382C537D8000B92C63 /* MainTabBarReactor.swift in Sources */,
 				55A01B312C537AB500B92C63 /* UIColor+.swift in Sources */,
 				55F49E012C532AFE000879D1 /* NVActivityIndicatorAnimationDelegate.swift in Sources */,
+				5564FA7D2CC8947800B9B5C3 /* SignupTermsViewController.swift in Sources */,
+				5564FA7E2CC8947800B9B5C3 /* SignupTermsModel.swift in Sources */,
+				5564FA7F2CC8947800B9B5C3 /* SignupTermsReactor.swift in Sources */,
 				55F49E032C532AFE000879D1 /* NVActivityIndicatorView.swift in Sources */,
 				55F49DE32C532AFE000879D1 /* NVActivityIndicatorAnimationBallGridBeat.swift in Sources */,
 				553824BF2C58DC5900A744BD /* BaseViewModel.swift in Sources */,

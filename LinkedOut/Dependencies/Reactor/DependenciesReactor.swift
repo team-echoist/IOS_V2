@@ -60,4 +60,8 @@ extension Dependencies: DependenciesReactorType {
     public func makeLogin() -> LoginReactor {
         return LoginReactor()
     }
+    
+    public func makeSignupTerms() -> SignupTermsReactor {
+        return SignupTermsReactor()
+    }
 }

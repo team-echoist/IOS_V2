@@ -9,4 +9,6 @@ import RxSwift
 
 public protocol AuthRepositoryType {
     func getHealthCheck() -> Single<ApiWebResult>
+    
+    func postLogin(email: String, password: String) -> Single<ApiResult<LoginResult>>
 }

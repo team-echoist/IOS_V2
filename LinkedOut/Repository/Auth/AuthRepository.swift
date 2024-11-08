@@ -35,4 +35,17 @@ public final class AuthRepository: AuthRepositoryType {
         
         return observable
     }   
+    
+    public func postLogin(email: String, password: String) -> Single<ApiResult<LoginResult>> {
+        let observable = self
+            .networking
+            .request(.postLogin(email: email, password: password))
+            .map(ApiResult<LoginResult>.self)
+            .flatMap { (response) in
+                return Single.just(response)
+            }
+            .debug()
+        
+        return observable
+    }
 }

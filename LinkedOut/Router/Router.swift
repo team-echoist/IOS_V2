@@ -355,4 +355,20 @@ extension Router: RouterType {
         let vc = self.viewFactory.makeLogin()
         self.screenPush(to: vc)
     }
+    
+    public func routeSignupTerms() {
+        let vc = self.viewFactory.makeSignupTerms()
+        self.screenPush(to: vc)
+    }
+    
+    public func routeSignupEmailAuth() {
+        // TODO:
+    }
+    
+    // MARK: - Utils
+    public func routeToWeburl(url: String) {
+        if let url = URL(string: url) {
+            UIApplication.shared.open(url)
+        }        
+    }
 }

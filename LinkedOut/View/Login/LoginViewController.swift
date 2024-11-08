@@ -305,12 +305,6 @@ public final class LoginViewController: BaseViewController, LoginViewControllerT
     
     // MARK: Layout
     
-    public override func layoutCommon() {
-        super.layoutCommon()
-        super.layoutNavigationViewItems()
-        
-    }
-    
     private func setStackGuide() {
         _ = [self.btnFindId, self.btnResetPassword, self.btnRegister].map {
             self.stackGuide.addArrangedSubview($0)
@@ -326,8 +320,9 @@ public final class LoginViewController: BaseViewController, LoginViewControllerT
         }
     }
     
-    public override func setupConstraints() {
-        super.setupConstraints()
+    public override func layoutCommon() {
+        super.layoutCommon()
+        super.layoutNavigationViewItems()
         
         self.viContent.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(Metric.contentSideMargin)

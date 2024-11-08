@@ -56,4 +56,8 @@ extension Dependencies: DependenciesViewControllerType {
     public func makeLogin() -> UIViewController {
         return LoginViewController(reactor: self.makeLogin())
     }
+    
+    public func makeSignupTerms() -> UIViewController {
+        return SignupTermsViewController(reactor: self.makeSignupTerms())
+    }
 }

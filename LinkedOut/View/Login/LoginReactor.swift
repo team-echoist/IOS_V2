@@ -95,6 +95,7 @@ public final class LoginReactor: Reactor {
         case .inputResetPassword:
             return .empty()
         case .inputRegister:
+            SceneDelegate.shared.router.routeSignupTerms()
             return .empty()
         case .inputGoogle:
             return .empty()

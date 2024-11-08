@@ -17,6 +17,7 @@ public protocol DependenciesReactorType {
     func makeEssayDetail() -> EssayDetailReactor
     func makeEssayCreate() -> EssayCreateReactor
     
-    // MARK: - Login
+    // MARK: - Auth
     func makeLogin() -> LoginReactor
+    func makeSignupTerms() -> SignupTermsReactor
 }

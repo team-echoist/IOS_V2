@@ -22,6 +22,7 @@ enum EnvironmentAPI {
 public enum LinkedOutAPI {
     // auth
     case authHealthCheck
+    case postLogin(email: String, password: String)
     // user
     case getUserInfo
     // essay
@@ -40,6 +41,12 @@ public enum LinkedOutAPI {
 enum ApiRoute: String {
     // auth
     case authHealthCheck = "auth/health-check"
+    case authLogin = "auth/login"
+    case authCheckEmail = "auth/check/email"
+    case authCheckNickname = "auth/check/nickname"
+    case authEmailVerify = "auth/email/verify"
+    case authEmailChange = "auth/email/change"
+    case authSign = "auth/sign"
     
     // user
     case userInfo = "users/info"
@@ -72,6 +79,8 @@ public enum ApiParam: String {
     case longitude = "longitude"
     case location = "location"
     case tags = "tags"
+    case email = "email"
+    case password = "password"
 
     static func makeParam(from dic: [String: Any?], method: HTTPMethod) -> MoyaSugar.Parameters? {
         let params = MoyaSugar.Parameters(
@@ -88,6 +97,8 @@ extension LinkedOutAPI: SugarTargetType {
         switch self {
         case .authHealthCheck:
             return .get(ApiRoute.authHealthCheck.rawValue)
+        case .postLogin:
+            return .post(ApiRoute.authLogin.rawValue)
         case .getUserInfo:
             return .get(ApiRoute.userInfo.rawValue)
         // Essasy
@@ -116,6 +127,12 @@ extension LinkedOutAPI: SugarTargetType {
         // auth
         case .authHealthCheck:
             return ApiParam.makeParam(from: [:], method: .get)
+        case .postLogin(email: let email, password: let password):
+            let dic: [String: Any] = [
+                ApiParam.email.rawValue: email,
+                ApiParam.password.rawValue: password,
+            ]
+            return ApiParam.makeParam(from: dic, method: .post)
         // user
         case .getUserInfo:
             return ApiParam.makeParam(from: [:], method: .get)
@@ -124,7 +141,7 @@ extension LinkedOutAPI: SugarTargetType {
             let dic: [String: Any] = [:]
             return ApiParam.makeParam(from: dic, method: .get)
         case .postEssays(let data):
-            let dic: [String: Any] = [
+            let dic: [String: Any?] = [
                 ApiParam.title.rawValue: data.title,
                 ApiParam.content.rawValue: data.content,
                 ApiParam.status.rawValue: data.status,

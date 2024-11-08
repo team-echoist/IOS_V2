@@ -30,6 +30,10 @@ public protocol RouterType {
     func getMyPage() -> UIViewController
     func routeEssayDetail(essayId: Int)
     func routeEssayCrate()
-    // MARK: - Login
+    // MARK: - Auth
     func routeLogin()
+    func routeSignupTerms()
+    func routeSignupEmailAuth()
+    // MARK: - Utils
+    func routeToWeburl(url: String)
 }
